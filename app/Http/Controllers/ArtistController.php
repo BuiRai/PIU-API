@@ -2,37 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Song;
-
+use App\Artist;
 use Illuminate\Http\Request;
 use Response;
 
-class SongController extends Controller
+class ArtistController extends Controller
 {
-
     /**
-     * Display all the songs from the database
-     * @return \Illuminate\Http\JsonResponse the response
+     * Display all the artists
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index() {
-        $songs = Song::with('artist')->get();
+        $artists = Artist::all();
 
         return response()->json([
             'status'=>'ok',
-            'data'=>$songs
+            'data'=>$artists
         ], 200);
     }
 
     /**
-     * Store a song on the database
-     * @param Request $request the request sent by the client
-     * @return Response the response
+     * Store an artist on the database
+     * @param Request $request Request $request the request sent by the client
+     * @return Response The response
      */
     public function store(Request $request) {
         // Verify is all the fields are on the user's request
-        if (!$request->input('id') || !$request->input('title') ||
-            !$request->input('artist') || !$request->input('bpm') ||
-            !$request->input('bannerImage')) {
+        if (!$request->input('name')){
             return response([
                 'errors' => array([
                     'code' => 422,
@@ -41,99 +37,83 @@ class SongController extends Controller
             ], 422);
         }
 
-        $newSong = Song::create($request->all());
-        $response = Response::make(json_encode(['data' => $newSong]), 201)
-            ->header('Location', 'http://localhost:8000/api/v1.0/songs/'.$newSong->id)
+        $newArtist = Artist::create($request->all());
+        $response = Response::make(json_encode(['data' => $newArtist]), 201)
+            ->header('Location', 'http://localhost:8000/api/v1.0/artists/'.$newArtist->id)
             ->header('Content-Type', 'application/json');
         return $response;
     }
 
     /**
-     * Show a song by the id from the database
-     * @param $id the id of the song
-     * @return \Illuminate\Http\JsonResponse the response
+     * Show an artist by the id from the database
+     * @param $id the id of the artist
+     * @return mixed the response
      */
     public function show($id) {
-        $song = Song::find($id);
-        $song->artist;
+        $artist = Artist::find($id);
 
-        if (!$song) {
+        if (!$artist) {
             return response()->json([
                 'errors'=>array(
                     'code' => 404,
-                    'message' => $this->notSongFound()
+                    'message' => $this->notArtistFound($id)
                 )
             ], 404);
         }
 
         return response()->json([
             'status'=>'ok',
-            'data'=>$song
+            'data'=>$artist
         ], 202);
     }
 
     /**
-     * Update an existing song from the database
+     * Update an existing artist from the database
      * @param Request $request the request with the fields to update
-     * @param $id the id of the song to update
+     * @param $id id of the artist to update
      * @return mixed the response
      */
     public function update(Request $request, $id) {
-        $song = Song::find($id);
+        $artist = Artist::find($id);
 
-        if (!$song) {
+        if (!$artist) {
             return response()->json([
                 'errors' => array([
                     'code'=>404,
-                    'message' => $this->notSongFound()
+                    'message' => $this->notArtistFound($id)
                 ])
             ], 404);
         }
 
-        $title = $request->input('title');
-        $artist = $request->input('artist');
-        $bpm = $request->input('bpm');
-        $bannerImage = $request->input('bannerImage');
+        $name = $request->input('name');
 
         // If is a PARCH request, then
         if ($request->method() === 'PATCH') {
             $band = false; // Band to control if the song has been modified
-            if ($title) {
-                $song->title = $title;
-                $band = true;
-            }
-            if ($artist) {
-                $song->artist = $artist;
-                $band = true;
-            }
-            if ($bpm) {
-                $song->bpm = $bpm;
-                $band = true;
-            }
-            if ($bannerImage) {
-                $song->bannerImage = $bannerImage;
+            if ($name) {
+                $artist->name = $name;
                 $band = true;
             }
 
             // If some data was modified, we update the song, and then, save the song object
             if ($band) {
-                $song->save();
+                $artist->save();
                 return response()->json([
                     'status' => 'ok',
-                    'data' => $song
+                    'data' => $artist
                 ], 200);
             } else { // Else, send a message to client
                 return response()->json([
                     'errors' => array([
                         'code' => 304,
-                        'message' => 'No song data has been changed'
+                        'message' => 'No artist data has been changed'
                     ])
                 ], 304);
             }
         }
 
         // If the request is no PATCH, then is a PUT, so
-        if (!$title || !$artist || !$bpm || $bannerImage) {
+        if (!$name) {
             return response()->json([
                 'errors' => array([
                     'code' => 422,
@@ -142,33 +122,30 @@ class SongController extends Controller
             ], 422);
         }
 
-        $song->title = $title;
-        $song->artist = $artist;
-        $song->bpm = $bpm;
-        $song->bannerImage = $bannerImage;
-        $song->save();
+        $artist->name = $name;
+        $artist->save();
         return response()->json([
             'status' => 'ok',
-            'data' => $song
+            'data' => $artist
         ], 202);
     }
 
-    public function destroy($id) {
-        $song = Song::find($id);
+    public function destroy($id){
+        $artist = Artist::find($id);
 
-        if (!$song) {
+        if (!$artist) {
             return response()->json([
                 'errors' => array([
                     'code'=>404,
-                    'message' => $this->notSongFound()
+                    'message' => $this->notArtistFound($id)
                 ])
             ], 404);
         }
 
-        $song->delete();
+        $artist->delete();
         return response()->json([
             'code' => 204,
-            'message' => 'The song has been removed successfully'
+            'message' => 'The artist has been removed successfully'
         ], 204);
     }
 
@@ -178,7 +155,8 @@ class SongController extends Controller
      * ################################################################################################################
      */
 
-    private function notSongFound($id){
-        return 'The Song with the id: \''.$id.'\' has not be found';
+    private function notArtistFound($id){
+        return 'The Artist with the id: \''.$id.'\' has not be found';
     }
 }
+
