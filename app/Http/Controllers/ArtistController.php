@@ -55,8 +55,8 @@ class ArtistController extends Controller
         if (!$artist) {
             return response()->json([
                 'errors'=>array(
-                    'code'=>404,
-                    'message'=>'The Artist with the id: \''.$id.'\' has not be found'
+                    'code' => 404,
+                    'message' => $this->notArtistFound($id)
                 )
             ], 404);
         }
@@ -80,7 +80,7 @@ class ArtistController extends Controller
             return response()->json([
                 'errors' => array([
                     'code'=>404,
-                    'message' => 'The Artist with the id: \''.$id.'\' has not be found'
+                    'message' => $this->notArtistFound($id)
                 ])
             ], 404);
         }
@@ -137,7 +137,7 @@ class ArtistController extends Controller
             return response()->json([
                 'errors' => array([
                     'code'=>404,
-                    'message' => 'The Artist with the id: \''.$id.'\' has not be found'
+                    'message' => $this->notArtistFound($id)
                 ])
             ], 404);
         }
@@ -148,4 +148,15 @@ class ArtistController extends Controller
             'message' => 'The artist has been removed successfully'
         ], 204);
     }
+
+    /**
+     * ################################################################################################################
+     *                                             PRIVATE METHODS
+     * ################################################################################################################
+     */
+
+    private function notArtistFound($id){
+        return 'The Artist with the id: \''.$id.'\' has not be found';
+    }
 }
+

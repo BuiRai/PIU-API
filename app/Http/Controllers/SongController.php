@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Artist;
 use App\Song;
 
 use Illuminate\Http\Request;
@@ -61,8 +60,8 @@ class SongController extends Controller
         if (!$song) {
             return response()->json([
                 'errors'=>array(
-                    'code'=>404,
-                    'message'=>'The Song with the id: \''.$id.'\' has not be found'
+                    'code' => 404,
+                    'message' => $this->notSongFound()
                 )
             ], 404);
         }
@@ -86,7 +85,7 @@ class SongController extends Controller
             return response()->json([
                 'errors' => array([
                     'code'=>404,
-                    'message' => 'The Song with the id: \''.$id.'\' has not be found'
+                    'message' => $this->notSongFound()
                 ])
             ], 404);
         }
@@ -161,7 +160,7 @@ class SongController extends Controller
             return response()->json([
                 'errors' => array([
                     'code'=>404,
-                    'message' => 'The Song with the id: \''.$id.'\' has not be found'
+                    'message' => $this->notSongFound()
                 ])
             ], 404);
         }
@@ -171,5 +170,15 @@ class SongController extends Controller
             'code' => 204,
             'message' => 'The song has been removed successfully'
         ], 204);
+    }
+
+    /**
+     * ################################################################################################################
+     *                                             PRIVATE METHODS
+     * ################################################################################################################
+     */
+
+    private function notSongFound($id){
+        return 'The Song with the id: \''.$id.'\' has not be found';
     }
 }
