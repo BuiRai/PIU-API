@@ -19,11 +19,11 @@ class Artist extends Model
      * Relations below here
      */
 
-//    /**
-//     * An artist belongs to a song
-//     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-//     */
-//    public function song() {
-//        return $this->belongsTo('App\Song');
-//    }
+    /**
+     * An artist belongs to a song
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function song() {
+        return $this->hasOne('App\Song');
+    }
 }

@@ -17,4 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('songs', 'SongController', ['only'=>['index', 'show', 'store', 'update', 'destroy']]);
+Route::group(array('prefix'=>'/v1.0'), function (){
+    Route::resource('songs', 'SongController', ['only'=>['index', 'show', 'store', 'update', 'destroy']]);
+    Route::resource('artists', 'ArtistController', ['only'=>['index', 'show', 'store', 'update', 'destroy']]);
+});

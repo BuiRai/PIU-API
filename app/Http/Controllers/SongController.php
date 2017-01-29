@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Artist;
 use App\Song;
 
 use Illuminate\Http\Request;
@@ -15,9 +16,11 @@ class SongController extends Controller
      * @return \Illuminate\Http\JsonResponse the response
      */
     public function index() {
+        $songs = Song::with('artist')->get();
+
         return response()->json([
             'status'=>'ok',
-            'data'=>Song::all()
+            'data'=>$songs
         ], 200);
     }
 
@@ -41,7 +44,7 @@ class SongController extends Controller
 
         $newSong = Song::create($request->all());
         $response = Response::make(json_encode(['data' => $newSong]), 201)
-            ->header('Location', 'http://localhost:8000/api/songs/'.$newSong->id)
+            ->header('Location', 'http://localhost:8000/api/v1.0/songs/'.$newSong->id)
             ->header('Content-Type', 'application/json');
         return $response;
     }
@@ -53,6 +56,7 @@ class SongController extends Controller
      */
     public function show($id) {
         $song = Song::find($id);
+        $song->artist;
 
         if (!$song) {
             return response()->json([
