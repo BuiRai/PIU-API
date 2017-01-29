@@ -13,7 +13,7 @@ class Song extends Model
     protected $table='songs';
 
     // Fillable attributes
-    protected $fillable = array('id', 'title','artist','bpm','bannerImage');
+    protected $fillable = array('id', 'title','bpm','bannerImage' , 'artist_id');
 
     // Hidden fields
     protected $hidden = ['created_at','updated_at'];
@@ -21,5 +21,13 @@ class Song extends Model
     /*
      * Relations below here
      */
+
+//    /**
+//     * A song has one artist
+//     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+//     */
+//    public function artist(){
+//        return $this->hasOne('App\Artist');
+//    }
 
 }

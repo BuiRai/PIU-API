@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Song;
+use App\Artist;
 use Faker\Factory as Faker;
 
 class SongsTableSeeder extends Seeder
@@ -15,14 +16,15 @@ class SongsTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
+        $totalArtists = Artist::all()->count();
+
         for ($i = 0 ; $i < 10 ; $i++) {
             Song::create([
                 'id'=>$faker->word(),
                 'title'=>$faker->word(),
-                'artist'=>$faker->word(),
                 'bpm'=>$faker->numberBetween(150,220),
-                'bannerImage'=>$faker->imageUrl()
-
+                'bannerImage'=>$faker->imageUrl(),
+                'artist_id' => $faker->numberBetween(1, $totalArtists)
             ]);
         }
     }
