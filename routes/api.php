@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(array('prefix'=>'/v1.0'), function (){
-    Route::resource('songs', 'SongController', ['only'=>['index', 'show', 'store', 'update', 'destroy']]);
-    Route::resource('artists', 'ArtistController', ['only'=>['index', 'show', 'store', 'update', 'destroy']]);
+    Route::resource('songs', 'SongController', ['except' => ['create', 'edit']]);
+    Route::resource('artists', 'ArtistController', ['except' => ['create', 'edit']]);
+    Route::resource('gameVersions', 'GameVersionController', ['except' => ['create', 'edit']]);
 });

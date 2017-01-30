@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Song;
 use App\Artist;
+use App\GameVersion;
 use Faker\Factory as Faker;
 
 class SongsTableSeeder extends Seeder
@@ -17,6 +18,7 @@ class SongsTableSeeder extends Seeder
         $faker = Faker::create();
 
         $totalArtists = Artist::all()->count();
+        $totalGameVersions = GameVersion::all()->count();
 
         for ($i = 0 ; $i < 10 ; $i++) {
             Song::create([
@@ -24,7 +26,8 @@ class SongsTableSeeder extends Seeder
                 'title'=>$faker->word(),
                 'bpm'=>$faker->numberBetween(150,220),
                 'bannerImage'=>$faker->imageUrl(),
-                'artist_id' => $faker->numberBetween(1, $totalArtists)
+                'artist_id' => $faker->numberBetween(1, $totalArtists),
+                'game_version_id' => $faker->numberBetween(1, $totalGameVersions)
             ]);
         }
     }

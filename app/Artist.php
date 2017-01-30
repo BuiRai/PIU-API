@@ -23,7 +23,7 @@ class Artist extends Model
      * An artist belongs to a song
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function song() {
-        return $this->hasOne('App\Song');
+    public function songs() {
+        return $this->hasMany('App\Song');
     }
 }

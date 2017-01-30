@@ -2,37 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Song;
-
 use Illuminate\Http\Request;
+use App\GameVersion;
 use Response;
 
-class SongController extends Controller
+class GameVersionController extends Controller
 {
 
     /**
-     * Display all the songs from the database
-     * @return \Illuminate\Http\JsonResponse the response
+     * Display all the game versions from the database
+     * @return mixed the response
      */
     public function index() {
-        $songs = Song::with('artist')->get();
+        $gameVersions = GameVersion::all();
 
         return response()->json([
             'status'=>'ok',
-            'data'=>$songs
+            'data'=>$gameVersions
         ], 200);
     }
 
     /**
-     * Store a song on the database
+     * Store a game version on the database
      * @param Request $request the request sent by the client
      * @return Response the response
      */
     public function store(Request $request) {
         // Verify is all the fields are on the user's request
-        if (!$request->input('id') || !$request->input('title') ||
-            !$request->input('artist') || !$request->input('bpm') ||
-            !$request->input('bannerImage')) {
+        if (!$request->input('name') || !$request->input('launchYear')){
             return response([
                 'errors' => array([
                     'code' => 422,
@@ -41,100 +38,90 @@ class SongController extends Controller
             ], 422);
         }
 
-        $newSong = Song::create($request->all());
-        $response = Response::make(json_encode(['data' => $newSong]), 201)
-            ->header('Location', 'http://localhost:8000/api/v1.0/songs/'.$newSong->id)
+        $newGameVersion = GameVersion::create($request->all());
+        $response = Response::make(json_encode(['data' => $newGameVersion]), 201)
+            ->header('Location', 'http://localhost:8000/api/v1.0/artists/'.$newGameVersion->id)
             ->header('Content-Type', 'application/json');
         return $response;
     }
 
     /**
-     * Show a song by the id from the database
-     * @param $id the id of the song
-     * @return \Illuminate\Http\JsonResponse the response
+     * Show a game version by the id from the database
+     * @param $id id of the game version
+     * @return mixed the response
      */
     public function show($id) {
-        $song = Song::find($id);
-        $song->artist;
-        $song->game_version;
+        $gameVersion = GameVersion::find($id);
+        $gameVersion->songs;
 
-        if (!$song) {
+        if (!$gameVersion) {
             return response()->json([
                 'errors'=>array(
                     'code' => 404,
-                    'message' => $this->notSongFound()
+                    'message' => $this->notGameVersionFound($id)
                 )
             ], 404);
         }
 
         return response()->json([
             'status'=>'ok',
-            'data'=>$song
+            'data'=>$gameVersion
         ], 202);
     }
 
     /**
-     * Update an existing song from the database
+     * Update an existing game version from the database
      * @param Request $request the request with the fields to update
-     * @param $id the id of the song to update
+     * @param $id id of the song to update
      * @return mixed the response
      */
     public function update(Request $request, $id) {
-        $song = Song::find($id);
+        $gameVersion = GameVersion::find($id);
 
-        if (!$song) {
+        if (!$gameVersion) {
             return response()->json([
                 'errors' => array([
                     'code'=>404,
-                    'message' => $this->notSongFound()
+                    'message' => $this->notGameVersionFound($id)
                 ])
             ], 404);
         }
 
-        $title = $request->input('title');
-        $artist = $request->input('artist');
-        $bpm = $request->input('bpm');
-        $bannerImage = $request->input('bannerImage');
+        $name = $request->input('name');
+        $launchYear = $request->input('launchYear');
 
         // If is a PARCH request, then
         if ($request->method() === 'PATCH') {
             $band = false; // Band to control if the song has been modified
-            if ($title) {
-                $song->title = $title;
+            if ($name) {
+                $gameVersion->name = $name;
                 $band = true;
             }
-            if ($artist) {
-                $song->artist = $artist;
-                $band = true;
-            }
-            if ($bpm) {
-                $song->bpm = $bpm;
-                $band = true;
-            }
-            if ($bannerImage) {
-                $song->bannerImage = $bannerImage;
+
+            if ($launchYear) {
+                $gameVersion->launchYear = $launchYear;
                 $band = true;
             }
 
             // If some data was modified, we update the song, and then, save the song object
             if ($band) {
-                $song->save();
+                $gameVersion->save();
                 return response()->json([
                     'status' => 'ok',
-                    'data' => $song
+                    'data' => $gameVersion
                 ], 200);
             } else { // Else, send a message to client
                 return response()->json([
                     'errors' => array([
                         'code' => 304,
-                        'message' => 'No song data has been changed'
+                        'message' => 'No Game Version data has been changed'
                     ])
                 ], 304);
             }
         }
 
         // If the request is no PATCH, then is a PUT, so
-        if (!$title || !$artist || !$bpm || $bannerImage) {
+        if (!$name || !$launchYear) {
             return response()->json([
                 'errors' => array([
                     'code' => 422,
@@ -143,38 +130,36 @@ class SongController extends Controller
             ], 422);
         }
 
-        $song->title = $title;
-        $song->artist = $artist;
-        $song->bpm = $bpm;
-        $song->bannerImage = $bannerImage;
-        $song->save();
+        $gameVersion->name = $name;
+        $gameVersion->launchYear = $launchYear;
+        $gameVersion->save();
         return response()->json([
             'status' => 'ok',
-            'data' => $song
+            'data' => $gameVersion
         ], 202);
     }
 
     /**
-     * Delete a song from the database
-     * @param $id the song's id
+     * Delete a game version from the database
+     * @param $id the game version's id
      * @return mixed the response
      */
-    public function destroy($id) {
-        $song = Song::find($id);
+    public function destroy($id){
+        $gameVersion = GameVersion::find($id);
 
-        if (!$song) {
+        if (!$gameVersion) {
             return response()->json([
                 'errors' => array([
                     'code'=>404,
-                    'message' => $this->notSongFound()
+                    'message' => $this->notGameVersionFound($id)
                 ])
             ], 404);
         }
 
-        $song->delete();
+        $gameVersion->delete();
         return response()->json([
             'code' => 204,
-            'message' => 'The song has been removed successfully'
+            'message' => 'The Game Version has been removed successfully'
         ], 204);
     }
 
@@ -184,7 +169,7 @@ class SongController extends Controller
      * ################################################################################################################
      */
 
-    private function notSongFound($id){
-        return 'The Song with the id: \''.$id.'\' has not be found';
+    private function notGameVersionFound($id){
+        return 'The Artist with the id: \''.$id.'\' has not be found';
     }
 }
