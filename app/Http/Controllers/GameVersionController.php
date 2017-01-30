@@ -9,6 +9,10 @@ use Response;
 class GameVersionController extends Controller
 {
 
+    /**
+     * Display all the game versions from the database
+     * @return mixed the response
+     */
     public function index() {
         $gameVersions = GameVersion::all();
 
@@ -18,6 +22,11 @@ class GameVersionController extends Controller
         ], 200);
     }
 
+    /**
+     * Store a game version on the database
+     * @param Request $request the request sent by the client
+     * @return Response the response
+     */
     public function store(Request $request) {
         // Verify is all the fields are on the user's request
         if (!$request->input('name') || !$request->input('launchYear')){
@@ -36,6 +45,11 @@ class GameVersionController extends Controller
         return $response;
     }
 
+    /**
+     * Show a game version by the id from the database
+     * @param $id id of the game version
+     * @return mixed the response
+     */
     public function show($id) {
         $gameVersion = GameVersion::find($id);
         $gameVersion->songs;
@@ -55,6 +69,12 @@ class GameVersionController extends Controller
         ], 202);
     }
 
+    /**
+     * Update an existing game version from the database
+     * @param Request $request the request with the fields to update
+     * @param $id id of the song to update
+     * @return mixed the response
+     */
     public function update(Request $request, $id) {
         $gameVersion = GameVersion::find($id);
 
@@ -119,6 +139,11 @@ class GameVersionController extends Controller
         ], 202);
     }
 
+    /**
+     * Delete a game version from the database
+     * @param $id the game version's id
+     * @return mixed the response
+     */
     public function destroy($id){
         $gameVersion = GameVersion::find($id);
 

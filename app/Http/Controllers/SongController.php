@@ -56,6 +56,7 @@ class SongController extends Controller
     public function show($id) {
         $song = Song::find($id);
         $song->artist;
+        $song->game_version;
 
         if (!$song) {
             return response()->json([
@@ -153,6 +154,11 @@ class SongController extends Controller
         ], 202);
     }
 
+    /**
+     * Delete a song from the database
+     * @param $id the song's id
+     * @return mixed the response
+     */
     public function destroy($id) {
         $song = Song::find($id);
 
