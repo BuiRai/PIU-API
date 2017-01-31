@@ -1,0 +1,21 @@
+{
+  "name": "PumpItUp-API",
+  "homepage": "https://pumpitup.herokuapp.com/",
+  "authors": [
+    "buirai <buirai_naetle@hotmail.com>"
+  ],
+  "description": "A litle API to display PIU's data",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "bootstrap-material-design": "^4.0.2"
+  }
+}
