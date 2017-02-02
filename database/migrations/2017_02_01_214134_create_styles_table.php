@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStepmakersTable extends Migration
+class CreateStylesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateStepmakersTable extends Migration
      */
     public function up()
     {
-        Schema::create('stepmakers', function (Blueprint $table) {
+        Schema::defaultStringLength(191);
+        Schema::create('styles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username')->unique();
+            $table->string('style')->unique();
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateStepmakersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stepmakers');
+        Schema::dropIfExists('styles');
     }
 }

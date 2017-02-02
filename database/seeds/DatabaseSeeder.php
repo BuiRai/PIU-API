@@ -17,5 +17,17 @@ class DatabaseSeeder extends Seeder
         $this->call(GameVersionTableSeeder::class);
         $this->call(SongsTableSeeder::class);
         $this->call(StepmakerTableSeeder::class);
+        $this->call(StylesTableSeeder::class);
+        $this->call(LevelsTableSeeder::class);
+
+        // DROP TABLE migrations;
+        // DROP TABLE levels;
+        // DROP TABLE songs;
+        // DROP TABLE password_resets;
+        // DROP TABLE artists;
+        // DROP TABLE users;
+        // DROP TABLE gameversions;
+        // DROP TABLE stepmakers;
+        // DROP TABLE styles;
     }
 }

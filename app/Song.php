@@ -15,7 +15,7 @@ class Song extends Model
     // Fillable attributes
     protected $fillable = array('id', 'title','bpm','bannerImage' , 'artist_id', 'game_version_id');
 
-    protected $visible = ['id', 'title', 'bpm', 'bannerImage', 'artist', 'game_version'];
+    protected $visible = ['id', 'title', 'bpm', 'bannerImage', 'artist', 'game_version', 'levels'];
 
     // Hidden fields
     protected $hidden = ['created_at','updated_at'];
@@ -28,12 +28,16 @@ class Song extends Model
      * A song has one artist
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function artist(){
+    public function artist() {
         return $this->belongsTo('App\Artist', 'artist_id');
     }
 
     public function gameVersion() {
         return $this->belongsTo('App\GameVersion', 'game_version_id');
+    }
+
+    public function levels() {
+        return $this->hasMany('App\Level');
     }
 
 }

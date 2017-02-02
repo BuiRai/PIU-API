@@ -8,18 +8,19 @@ class CreateSongsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * 
      * @return void
      */
     public function up()
     {
         Schema::create('songs', function (Blueprint $table) {
-            $table->string('id', 32);
+            $table->string('id', 32)->unique();
             $table->string('title');
             $table->string('bpm');
             $table->string('bannerImage');
             $table->integer('artist_id')->unsigned();
 
+            $table->primary('id');
             $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');
             $table->timestamps();
         });
@@ -32,6 +33,9 @@ class CreateSongsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('songs');
+        Schema::dropIfExists('songs', function(Blueprint $table){
+            $table->dropForeign(['artist_id']);
+            $table->dropColumn('artist_id');
+        });
     }
 }

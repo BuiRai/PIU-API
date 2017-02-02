@@ -4,16 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Stepmaker extends Model
+class Style extends Model
 {
-	// Name of the table on MySql
-    protected $table = 'stepmakers';
+    // Name of the table on MySql
+    protected $table = 'styles';
 
-	// Fillable attributes
-    protected $fillable = array('username');
+    // Fillable attributes
+    protected $fillable = array('style');
 
     // Visible fields
-    protected $visible = ['username', 'levels'];
+    protected $visible = ['id', 'style','levels'];
 
     // Hidden fields
     protected $hidden = ['created_at','updated_at'];
@@ -22,8 +22,8 @@ class Stepmaker extends Model
      * Relations below here
      */
     
-    public function levels(){
+    public function levels() {
     	return $this->hasMany('App\Level');
     }
-    
+
 }
