@@ -27,6 +27,7 @@ class AddGameVersionIdToSongsTable extends Migration
     public function down()
     {
         Schema::table('songs', function (Blueprint $table) {
+            $table->dropForeign(['game_version_id']);
             $table->dropColumn('game_version_id');
         });
     }

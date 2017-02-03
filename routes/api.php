@@ -21,4 +21,7 @@ Route::group(array('prefix'=>'/v1.0'), function (){
     Route::resource('songs', 'SongController', ['except' => ['create', 'edit']]);
     Route::resource('artists', 'ArtistController', ['except' => ['create', 'edit']]);
     Route::resource('gameVersions', 'GameVersionController', ['except' => ['create', 'edit']]);
+    Route::resource('stepmakers', 'StepmakerController', ['except' => ['create', 'edit']]);
+    Route::resource('styles', 'StyleController', ['except' => ['create', 'edit']]);
+    Route::resource('levels', 'LevelController', ['except' => ['create', 'edit']]);
 });
