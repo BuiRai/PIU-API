@@ -16,8 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::group(array('prefix'=>'/v1.0'), function (){
+// Route::group(['prefix' => 'v1.0', 'middleware' => ['cors']], function (){
+Route::group(['prefix' => 'v1.0', 'middleware' => 'cors'], function (){
     Route::resource('songs', 'SongController', ['except' => ['create', 'edit']]);
     Route::resource('artists', 'ArtistController', ['except' => ['create', 'edit']]);
     Route::resource('gameVersions', 'GameVersionController', ['except' => ['create', 'edit']]);
