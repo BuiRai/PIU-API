@@ -11,6 +11,9 @@ class GameVersion extends Model
 
     protected $fillable = array('id', 'name', 'launchYear');
 
+    // Visible fields
+    protected $visible = ['id','name', 'launchYear'];
+
     // Hidden fields
     protected $hidden = ['created_at','updated_at'];
 

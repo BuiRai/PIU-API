@@ -13,7 +13,7 @@ class Stepmaker extends Model
     protected $fillable = array('username');
 
     // Visible fields
-    protected $visible = ['username', 'levels'];
+    protected $visible = ['id', 'username', 'levels'];
 
     // Hidden fields
     protected $hidden = ['created_at','updated_at'];

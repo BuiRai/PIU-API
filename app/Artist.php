@@ -12,6 +12,9 @@ class Artist extends Model
     // Fillable attributes
     protected $fillable = array('name');
 
+    // Visible fields
+    protected $visible = ['id', 'name','songs'];
+
     // Hidden fields
     protected $hidden = ['created_at','updated_at'];
 

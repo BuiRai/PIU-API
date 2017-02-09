@@ -61,6 +61,7 @@ class ArtistController extends Controller
             ], 404);
         }
 
+        $artist->songs;
         return response()->json([
             'status'=>'ok',
             'data'=>$artist
