@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Route::group(['prefix' => 'v1.0', 'middleware' => ['cors']], function (){
 Route::group(['prefix' => 'v1.0', 'middleware' => 'cors'], function (){
     Route::resource('songs', 'SongController', ['except' => ['create', 'edit']]);
+    Route::post('songs/image/{id}', 'SongController@image');
     Route::resource('artists', 'ArtistController', ['except' => ['create', 'edit']]);
     Route::resource('gameVersions', 'GameVersionController', ['except' => ['create', 'edit']]);
     Route::resource('stepmakers', 'StepmakerController', ['except' => ['create', 'edit']]);

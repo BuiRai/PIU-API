@@ -23,15 +23,27 @@ class SongController extends Controller
 				], 200);
 		}
 
+		public function image(Request $request, $id) {
+			if ($request->file('bannerImage') && $request->input('id')) {
+				return response()->json([
+						'status'=>'ok',
+						'id'=> $request->input('id')
+				], 202);
+			}else {
+				return response()->json([
+						'status'=>'error'
+				], 404);
+			}
+		}
+
 		/**
 		 * Store a song on the database
 		 * @param Request $request the request sent by the client
 		 * @return Response the response
 		 */
 		public function store(Request $request) {
-				if (!$request->input('id') || !$request->input('title') ||
-						!$request->input('artist_id') || !$request->input('bpm') ||
-						!$request->file('bannerImage') || !$request->input('game_version_id')) {
+				if (!$request->file('bannerImage') || !$request->input('id') || !$request->input('title') ||
+						!$request->input('artist_id') || !$request->input('bpm') ||  !$request->input('game_version_id')) {
 						return response([
 								'errors' => array([
 										'code' => 422,
@@ -44,13 +56,13 @@ class SongController extends Controller
 				$imageName = 'PIUapi_'.md5($request->input('id')).'.'.$image->getClientOriginalExtension();
 				$imagePath = public_path().'\\images\\songs\\';
 				$image->move($imagePath, $imageName);
-				$ImageLink = 'localhost:8000/images/songs/'.$imageName;
+				$imageLink = 'localhost:8000/images/songs/'.$imageName;
 
 				$newSong = Song::create([
 					'id'=>$request->input('id'),
 					'title'=>$request->input('title'),
           'bpm'=>$request->input('bpm'),
-          'bannerImage'=>$ImageLink,
+          'bannerImage'=>$imageLink,
           'artist_id' => $request->input('artist_id'),
           'game_version_id' => $request->input('game_version_id')
         ]);

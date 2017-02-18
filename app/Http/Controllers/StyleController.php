@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Style;
 use Response;
+use App\Http\Requests\StylesRequest;
 
 class StyleController extends Controller
 {
@@ -27,6 +28,7 @@ class StyleController extends Controller
      * @return Response The response
      */
     public function store(Request $request) {
+
         // Verify is all the fields are on the user's request
         if (!$request->input('style')){
             return response([
