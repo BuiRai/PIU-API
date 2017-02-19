@@ -15,7 +15,7 @@ class SongController extends Controller
 		 * @return \Illuminate\Http\JsonResponse the response
 		 */
 		public function index() {
-				$songs = Song::with('artist')->get();
+				$songs = Song::with('artist')->with('gameVersion')->get();
 
 				return response()->json([
 						'status'=>'ok',
