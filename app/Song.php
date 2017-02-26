@@ -15,7 +15,7 @@ class Song extends Model
     // Fillable attributes
     protected $fillable = array('id', 'title','bpm','bannerImage' , 'artist_id', 'game_version_id');
 
-    protected $visible = ['id', 'title', 'bpm', 'bannerImage', 'artist', 'levels', 'gameVersion'];
+    protected $visible = ['id', 'title', 'bpm', 'bannerImage', 'artist', 'levels', 'gameVersion', 'artist_id', 'game_version_id'];
 
     // Hidden fields
     protected $hidden = ['created_at','updated_at'];

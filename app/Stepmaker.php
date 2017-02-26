@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stepmaker extends Model
 {
-	// Name of the table on MySql
+        // Name of the table on MySql
     protected $table = 'stepmakers';
 
-	// Fillable attributes
+        // Fillable attributes
     protected $fillable = array('username');
 
     // Visible fields
@@ -21,9 +21,9 @@ class Stepmaker extends Model
     /*
      * Relations below here
      */
-    
+
     public function levels(){
-    	return $this->hasMany('App\Level');
+        return $this->hasMany('App\Level');
     }
-    
+
 }
