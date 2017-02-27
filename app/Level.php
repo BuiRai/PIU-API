@@ -10,10 +10,10 @@ class Level extends Model
     protected $table = 'levels';
 
     // Fillable attributes
-    protected $fillable = array('song_id', 'stepmaker_id', 'level', 'mode');
+    protected $fillable = array('song_id', 'stepmaker_id', 'level', 'style_id');
 
     // Visible fields
-    protected $visible = ['level', 'song_id', 'stepmaker_id', 'style_id', 'song', 'stepmaker', 'style'];
+    protected $visible = ['id', 'level', 'song_id', 'stepmaker_id', 'style_id', 'song', 'stepmaker', 'style'];
 
     // Hidden fields
     protected $hidden = ['created_at','updated_at'];
@@ -21,7 +21,7 @@ class Level extends Model
     /*
      * Relations below here
      */
-    
+
     public function song() {
     	return $this->belongsTo('App\Song');
     }

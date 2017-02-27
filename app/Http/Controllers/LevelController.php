@@ -13,7 +13,7 @@ class LevelController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function index() {
-        $levels = Level::all();
+        $levels = Level::with('song')->with('stepmaker')->with('style')->get();
 
         return response()->json([
             'status'=>'ok',
@@ -38,7 +38,7 @@ class LevelController extends Controller
         }
 
         $newLevel = Level::create($request->all());
-        $response = Response::make(json_encode(['data' => $newLevel]), 201)
+        $response = \Response::make(json_encode(['data' => $newLevel]), 201)
             ->header('Location', 'http://localhost:8000/api/v1.0/levels/'.$newLevel->id)
             ->header('Content-Type', 'application/json');
         return $response;

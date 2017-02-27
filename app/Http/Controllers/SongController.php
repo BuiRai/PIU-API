@@ -66,9 +66,7 @@ class SongController extends Controller
      * @return \Illuminate\Http\JsonResponse the response
      */
     public function show($id) {
-      $song = Song::find($id);
-      $song->artist;
-      $song->game_version;
+      $song = Song::with('artist', 'gameVersion', 'levels')->find($id);
 
       if (!$song) {
         return response()->json([
