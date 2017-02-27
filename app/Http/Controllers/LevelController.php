@@ -135,7 +135,7 @@ class LevelController extends Controller
     }
 
     // If the request is no PATCH, then is a PUT, so
-    if (!$level) {
+    if (!$level_value || !$song_id || !$stepmaker_id || !$style_id) {
       return response()->json([
         'errors' => array([
           'code' => 422,
