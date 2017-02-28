@@ -22,6 +22,7 @@ Route::group(['prefix' => 'v1.0', 'middleware' => 'cors'], function (){
     Route::post('songs/image/{id}', 'SongController@image');
     Route::resource('artists', 'ArtistController', ['except' => ['create', 'edit']]);
     Route::resource('gameVersions', 'GameVersionController', ['except' => ['create', 'edit']]);
+    Route::post('gameVersions/image/{id}', 'GameVersionController@image');
     Route::resource('stepmakers', 'StepmakerController', ['except' => ['create', 'edit']]);
     Route::resource('styles', 'StyleController', ['except' => ['create', 'edit']]);
     Route::resource('levels', 'LevelController', ['except' => ['create', 'edit']]);

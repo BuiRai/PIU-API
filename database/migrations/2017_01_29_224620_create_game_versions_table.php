@@ -16,7 +16,8 @@ class CreateGameVersionsTable extends Migration
         Schema::create('gameVersions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->date('launchYear');
+            $table->date('launch_year');
+            $table->string('banner_image');
             $table->timestamps();
         });
     }

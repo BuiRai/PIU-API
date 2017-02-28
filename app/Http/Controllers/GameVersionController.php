@@ -29,7 +29,7 @@ class GameVersionController extends Controller
    */
   public function store(Request $request) {
     // Verify is all the fields are on the user's request
-    if (!$request->input('name') || !$request->input('launchYear')){
+    if (!$request->file('banner_image') || !$request->input('name') || !$request->input('launch_year')){
       return response([
         'errors' => array([
           'code' => 422,
@@ -38,7 +38,18 @@ class GameVersionController extends Controller
       ], 422);
     }
 
-    $newGameVersion = GameVersion::create($request->all());
+    $image = $request->file('banner_image');
+    $imageName = 'PIUapi_'.md5($request->input('id')).'.'.$image->getClientOriginalExtension();
+    $imagePath = public_path().'/images/gameVersions/';
+    $image->move($imagePath, $imageName);
+    $imageLink = 'http://localhost:8000/images/gameVersions/'.$imageName;
+
+    $newGameVersion = GameVersion::create([
+      'name' => $request->input('name'),
+      'launch_year' => $request->input('launch_year'),
+      'banner_image' => $imageLink
+    ]);
+
     $response = Response::make(json_encode(['data' => $newGameVersion]), 201)
       ->header('Location', 'http://localhost:8000/api/v1.0/artists/'.$newGameVersion->id)
       ->header('Content-Type', 'application/json');
@@ -87,9 +98,9 @@ class GameVersionController extends Controller
     }
 
     $name = $request->input('name');
-    $launchYear = $request->input('launchYear');
+    $launchYear = $request->input('launch_year');
 
-    // If is a PARCH request, then
+    // If is a PATCH request, then
     if ($request->method() === 'PATCH') {
       $band = false; // Band to control if the song has been modified
       if ($name) {
@@ -130,8 +141,44 @@ class GameVersionController extends Controller
     }
 
     $gameVersion->name = $name;
-    $gameVersion->launchYear = $launchYear;
+    $gameVersion->launch_year = $launchYear;
     $gameVersion->save();
+    return response()->json([
+      'status' => 'ok',
+      'data' => $gameVersion
+    ], 202);
+  }
+
+  public function image(Request $request, $id) {
+    if (!$request->file('banner_image')) {
+      return response()->json([
+        'errors' => array([
+          'code' => 422,
+          'message' => 'Missing values to complete the update'
+        ])
+      ], 422);
+    }
+
+    $gameVersion = GameVersion::find($id);
+
+    if (!$gameVersion) {
+      return response()->json([
+        'errors' => array([
+          'code'=>404,
+          'message' => $this->notSongFound()
+        ])
+      ], 404);
+    }
+
+    $image = $request->file('banner_image');
+    $imageName = $id . '_' . md5(time()) . '.' . $image->getClientOriginalExtension();
+    $imagePath = public_path().'/images/gameVersions/';
+    $image->move($imagePath, $imageName);
+    $imageLink = 'http://localhost:8000/images/gameVersions/'.$imageName;
+
+    $gameVersion->banner_image = $imageLink;
+    $gameVersion->save();
+
     return response()->json([
       'status' => 'ok',
       'data' => $gameVersion
