@@ -17,5 +17,6 @@ class SongsTableSeeder extends Seeder
   {
     $this->call(SongsPrime2Seeder::class);
     $this->call(SongsPrimeSeeder::class);
+    $this->call(SongsFiestaExSeeder::class);
   }
 }
