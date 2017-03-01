@@ -42,7 +42,7 @@ class ArtistsTableSeeder extends Seeder
     Artist::create([ 'name' => 'Banya Production']);
     Artist::create([ 'name' => 'Nina Pilots & PXNDX']);
     Artist::create([ 'name' => 'Vassline']);
-    Artist::create([ 'name' => 'YAHPP']);
+    Artist::create([ 'name' => 'Yahpp']);
 
     // FIESTA
     Artist::create([ 'name' => 'Doin']);
@@ -78,7 +78,7 @@ class ArtistsTableSeeder extends Seeder
     Artist::create([ 'name' => 'J-Mi & Midi-D']);
     Artist::create([ 'name' => 'SynthWulf & MAX']);
     Artist::create([ 'name' => 'SQUAR']);
-    Artist::create([ 'name' => 'SID SOUND']);
+    Artist::create([ 'name' => 'SID-SOUND']);
     Artist::create([ 'name' => 'Yak Won']);
     Artist::create([ 'name' => 'Sugar Eyes']);
     Artist::create([ 'name' => 'Ben Chalatit']);
@@ -115,9 +115,8 @@ class ArtistsTableSeeder extends Seeder
     Artist::create([ 'name' => 'Last Note.']);
     Artist::create([ 'name' => 'Masayoshi Minoshima']);
     Artist::create([ 'name' => 'you']);
-    Artist::create([ 'name' => 'SakuzyoYa']);
+    Artist::create([ 'name' => 'Sakuzyo']);
     Artist::create([ 'name' => 'Bakusute Sotokanda Icchome']);
-    Artist::create([ 'name' => 'Matduke']);
     Artist::create([ 'name' => 'Wisin Ft. Michel Teló']);
     Artist::create([ 'name' => 'Lylloo feat. Egas']);
     Artist::create([ 'name' => 'Daddy Yankee']);

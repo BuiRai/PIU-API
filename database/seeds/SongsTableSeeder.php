@@ -16,5 +16,6 @@ class SongsTableSeeder extends Seeder
   public function run()
   {
     $this->call(SongsPrime2Seeder::class);
+    $this->call(SongsPrimeSeeder::class);
   }
 }
