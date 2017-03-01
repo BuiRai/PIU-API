@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Artist;
-use Faker\Factory as Faker;
 
 class ArtistsTableSeeder extends Seeder
 {
@@ -13,7 +12,6 @@ class ArtistsTableSeeder extends Seeder
    */
   public function run()
   {
-    $faker = Faker::create();
 
     // 1ST ~ PERFECT COLLECTION
     Artist::create([ 'name' => 'BanYa']);

@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Stepmaker;
-use Faker\Factory as Faker;
 
 class StepmakerTableSeeder extends Seeder
 {
@@ -13,13 +12,6 @@ class StepmakerTableSeeder extends Seeder
    */
   public function run()
   {
-    $faker = Faker::create();
-
-    // for ($i=0 ; $i < 5 ; $i++) {
-    // 	Stepmaker::create([
-    // 		'username' => $faker->word()
-    // 	]);
-    // }
 
     Stepmaker::create(['username' => 'Unknow Stepmaker']);
     Stepmaker::create(['username' => 'BPM']);
