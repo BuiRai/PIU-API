@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Artist;
-use Faker\Factory as Faker;
 
 class ArtistsTableSeeder extends Seeder
 {
@@ -13,7 +12,6 @@ class ArtistsTableSeeder extends Seeder
    */
   public function run()
   {
-    $faker = Faker::create();
 
     // 1ST ~ PERFECT COLLECTION
     Artist::create([ 'name' => 'BanYa']);
@@ -75,7 +73,7 @@ class ArtistsTableSeeder extends Seeder
     Artist::create([ 'name' => 'Beltaine']);
     Artist::create([ 'name' => 'Affinity']);
     Artist::create([ 'name' => 'SynthWulf']);
-    Artist::create([ 'name' => 'J-Mi & Midi-D']);
+    Artist::create([ 'name' => 'JJ-Mi & Midi-D Ft. Hanna Stockzell']);
     Artist::create([ 'name' => 'SynthWulf & MAX']);
     Artist::create([ 'name' => 'SQUAR']);
     Artist::create([ 'name' => 'SID-SOUND']);
@@ -88,6 +86,7 @@ class ArtistsTableSeeder extends Seeder
     Artist::create([ 'name' => 'BanYa & Cranky']);
     Artist::create([ 'name' => 'BanYa & DM Ashura']);
     Artist::create([ 'name' => 'Nightmare']);
+    Artist::create([ 'name' => 'Doin & MAX']);
 
     // PRIME
     Artist::create([ 'name' => 'AKB48 (Cover)']);

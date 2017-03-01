@@ -4,7 +4,6 @@ use Illuminate\Database\Seeder;
 use App\Song;
 use App\Artist;
 use App\GameVersion;
-use Faker\Factory as Faker;
 
 class SongsTableSeeder extends Seeder
 {
@@ -17,6 +16,7 @@ class SongsTableSeeder extends Seeder
   {
     $this->call(SongsPrime2Seeder::class);
     $this->call(SongsPrimeSeeder::class);
+    $this->call(SongsFiesta2Seeder::class);
     $this->call(SongsFiestaExSeeder::class);
   }
 }

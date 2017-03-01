@@ -17,7 +17,7 @@ class CreateGameVersionsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->date('launch_year');
-            $table->string('banner_image');
+            $table->string('banner_image')->default('http://www.mooreslandinghomes.com/Common/images/jquery/galleria/image-not-found.png');
             $table->timestamps();
         });
     }
