@@ -8,7 +8,7 @@ class CreateSongsTable extends Migration
 {
     /**
      * Run the migrations.
-     * 
+     *
      * @return void
      */
     public function up()
@@ -17,7 +17,7 @@ class CreateSongsTable extends Migration
             $table->string('id', 32)->unique();
             $table->string('title');
             $table->string('bpm');
-            $table->string('bannerImage');
+            $table->string('bannerImage')->default('http://www.mooreslandinghomes.com/Common/images/jquery/galleria/image-not-found.png');
             $table->integer('artist_id')->unsigned();
 
             $table->primary('id');
