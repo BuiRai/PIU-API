@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Stepmaker;
 use Response;
+use Illuminate\Support\Facades\Cache;
 
 class StepmakerController extends Controller
 {
@@ -13,11 +14,15 @@ class StepmakerController extends Controller
    * @return \Illuminate\Http\JsonResponse
    */
   public function index() {
-    $stepmakers = Stepmaker::with('levels')->get();
+    $stepmakers = Cache::remember('CacheStepmakers', 20/60, function(){
+        return Stepmaker::with('levels')->paginate(10);
+    });
 
     return response()->json([
       'status'=>'ok',
-      'data'=>$stepmakers
+      'next'=>$stepmakers->nextPageUrl(),
+      'previous'=>$stepmakers->previousPageUrl(),
+      'data'=>$stepmakers->items()
     ], 200);
   }
 

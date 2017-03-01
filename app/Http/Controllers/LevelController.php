@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Level;
 use Reponse;
+use Illuminate\Support\Facades\Cache;
 
 class LevelController extends Controller
 {
@@ -13,11 +14,15 @@ class LevelController extends Controller
  * @return \Illuminate\Http\JsonResponse
  */
   public function index() {
-    $levels = Level::with('song')->with('stepmaker')->with('style')->get();
+    $levels = Cache::remember('CacheLevels', 20/60, function(){
+        return Level::with('song')->with('stepmaker')->with('style')->paginate(10);
+    });
 
     return response()->json([
       'status'=>'ok',
-      'data'=>$levels
+      'next'=>$levels->nextPageUrl(),
+      'previous'=>$levels->previousPageUrl(),
+      'data'=>$levels->items()
     ], 200);
   }
 

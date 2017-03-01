@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Artist;
 use Illuminate\Http\Request;
 use Response;
+use Illuminate\Support\Facades\Cache;
 
 class ArtistController extends Controller
 {
@@ -13,11 +14,15 @@ class ArtistController extends Controller
    * @return \Illuminate\Http\JsonResponse
    */
   public function index() {
-    $artists = Artist::with('songs')->get();
+    $artists = Cache::remember('CacheArtists', 20/60, function(){
+      return Artist::with('songs')->paginate(10);
+    });
 
     return response()->json([
       'status'=>'ok',
-      'data'=>$artists
+      'next'=>$artists->nextPageUrl(),
+      'previous'=>$artists->previousPageUrl(),
+      'data'=>$artists->items()
     ], 200);
   }
 

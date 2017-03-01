@@ -6,6 +6,7 @@ use App\Song;
 
 use Illuminate\Http\Request;
 use Response;
+use Illuminate\Support\Facades\Cache;
 
 class SongController extends Controller
 {
@@ -15,11 +16,15 @@ class SongController extends Controller
    * @return \Illuminate\Http\JsonResponse the response
    */
   public function index() {
-    $songs = Song::with('artist')->with('gameVersion')->get();
+    $songs = Cache::remember('CacheSongs', 20/60, function(){
+        return Song::with('artist')->with('gameVersion')->paginate();
+    });
 
     return response()->json([
       'status'=>'ok',
-      'data'=>$songs
+      'next'=>$songs->nextPageUrl(),
+      'previous'=>$songs->previousPageUrl(),
+      'data'=>$songs->items()
     ], 200);
   }
 

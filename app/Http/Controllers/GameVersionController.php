@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\GameVersion;
 use Response;
+use Illuminate\Support\Facades\Cache;
 
 class GameVersionController extends Controller
 {
@@ -14,11 +15,15 @@ class GameVersionController extends Controller
    * @return mixed the response
    */
   public function index() {
-    $gameVersions = GameVersion::all();
+    $gameVersions = Cache::remember('CacheGameVersions', 20/60, function(){
+        return GameVersion::paginate(10);
+    });
 
     return response()->json([
       'status'=>'ok',
-      'data'=>$gameVersions
+      'next'=>$gameVersions->nextPageUrl(),
+      'previous'=>$gameVersions->previousPageUrl(),
+      'data'=>$gameVersions->items()
     ], 200);
   }
 

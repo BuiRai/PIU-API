@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Style;
 use Response;
 use App\Http\Requests\StylesRequest;
+use Illuminate\Support\Facades\Cache;
 
 class StyleController extends Controller
 {
@@ -14,11 +15,15 @@ class StyleController extends Controller
    * @return \Illuminate\Http\JsonResponse
    */
   public function index() {
-    $styles = Style::all();
+    $styles = Cache::remember('CacheStyles', 16/60, function(){
+        return Style::paginate(5);
+    });
 
     return response()->json([
       'status'=>'ok',
-      'data'=>$styles
+      'next'=>$styles->nextPageUrl(),
+      'previous'=>$styles->previousPageUrl(),
+      'data'=>$styles->items()
     ], 200);
   }
 
