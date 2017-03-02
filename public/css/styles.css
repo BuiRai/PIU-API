@@ -1,0 +1,40 @@
+html {
+    font-family: GillSans, Calibri, Trebuchet, sans-serif;
+}
+
+.green {
+    background: #04B431 !important;
+}
+
+.json-preview {
+    width: 70%;
+    margin: auto;
+    padding: 15px 5px;
+    background: #F2F2F2;
+    border: 1px solid #BDBDBD;
+    font-size: 13px;
+}
+
+.header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    margin: 0px;
+    background: #0B3B39;
+    color: #CEF6F5;
+}
+
+.header h1 {
+    font-weight: 900;
+    font-size: 45px;
+}
+
+.header h2{
+    font-size: 30px;
+}
+
+.header h1, .header h2, .header p {
+    margin: 10px;
+}
