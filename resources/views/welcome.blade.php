@@ -17,7 +17,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     </head>
-    <body>
+    <body ng-app="app">
         <nav>
             <div class="nav-wrapper green">
                 <a href="#" class="brand-logo">Logo</a>

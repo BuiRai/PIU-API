@@ -6,4 +6,3 @@ app.config(function ($interpolateProvider) {
     $interpolateProvider.endSymbol('%>');
 
 });
-//# sourceMappingURL=app.js.map
