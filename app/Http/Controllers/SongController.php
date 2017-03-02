@@ -17,7 +17,7 @@ class SongController extends Controller
    */
   public function index() {
     $songs = Cache::remember('CacheSongs', 20/60, function(){
-        return Song::with('artist')->with('gameVersion')->paginate();
+        return Song::with('artist')->with('gameVersion')->paginate(10);
     });
 
     return response()->json([

@@ -25,7 +25,7 @@ class ArtistsTableSeeder extends Seeder
 
     // EXCEED ~ ZERO
     Artist::create([ 'name' => 'Louis']);
-    Artist::create([ 'name' => 'SOM2']);
+    Artist::create([ 'name' => 'Som2']);
     Artist::create([ 'name' => 'Wax']);
 
     // NX ~ NXA
