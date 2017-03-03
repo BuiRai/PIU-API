@@ -13,7 +13,7 @@
 
         <!-- Styles -->
         <!-- <link rel="stylesheet" href="{{ asset('plugins/materialize/css/materialize.css')  }}"> -->
-        <link rel="stylesheet" href="{{ asset('css/styles.css')  }}">
+        <link rel="stylesheet" href="{{ URL::asset('css/styles.css')  }}">
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -78,15 +78,15 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 
         <!-- Main -->
-        <script src="{{ asset('angular/app.js') }}"></script>
-        <script src="{{ asset('angular/main/main.module.js') }}"></script>
-        <script src="{{ asset('angular/main/config/main.config.js') }}"></script>
-        <script src="{{ asset('angular/main/controllers/main.controller.js') }}"></script>
+        <script src="{{ URL::asset('angular/app.js') }}"></script>
+        <script src="{{ URL::asset('angular/main/main.module.js') }}"></script>
+        <script src="{{ URL::asset('angular/main/config/main.config.js') }}"></script>
+        <script src="{{ URL::asset('angular/main/controllers/main.controller.js') }}"></script>
         <!-- Artists -->
-        <script src="{{ asset('angular/artists/artists.module.js') }}"></script>
-        <script src="{{ asset('angular/artists/config/artists.routes.js') }}"></script>
-        <script src="{{ asset('angular/artists/services/artists.service.js') }}"></script>
-        <script src="{{ asset('angular/artists/controllers/index.controller.js') }}"></script>
+        <script src="{{ URL::asset('angular/artists/artists.module.js') }}"></script>
+        <script src="{{ URL::asset('angular/artists/config/artists.routes.js') }}"></script>
+        <script src="{{ URL::asset('angular/artists/services/artists.service.js') }}"></script>
+        <script src="{{ URL::asset('angular/artists/controllers/index.controller.js') }}"></script>
 
     </body>
 </html>
