@@ -14,8 +14,10 @@ class StyleController extends Controller
    * Display all the styles
    * @return \Illuminate\Http\JsonResponse
    */
-  public function index() {
-    $styles = Cache::remember('CacheStyles', 16/60, function(){
+  public function index(Request $request) {
+    $page = $request->has('page') ? $request->query('page') : 1;
+
+    $styles = Cache::remember('CacheStyles_page_' . $page, 16/60, function(){
         return Style::paginate(5);
     });
 

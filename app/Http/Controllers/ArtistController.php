@@ -13,8 +13,10 @@ class ArtistController extends Controller
    * Display all the artists
    * @return \Illuminate\Http\JsonResponse
    */
-  public function index() {
-    $artists = Cache::remember('CacheArtists', 20/60, function(){
+  public function index(Request $request) {
+    $page = $request->has('page') ? $request->query('page') : 1;
+
+    $artists = Cache::remember('CacheArtists_page_' . $page, 20/60, function(){
       return Artist::with('songs')->paginate(10);
     });
 

@@ -13,8 +13,10 @@ class LevelController extends Controller
  * Display all the levels
  * @return \Illuminate\Http\JsonResponse
  */
-  public function index() {
-    $levels = Cache::remember('CacheLevels', 20/60, function(){
+  public function index(Request $request) {
+    $page = $request->has('page') ? $request->query('page') : 1;
+
+    $levels = Cache::remember('CacheLevels_page_' . $page, 20/60, function(){
         return Level::with('song')->with('stepmaker')->with('style')->paginate(10);
     });
 

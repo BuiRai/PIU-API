@@ -7,7 +7,7 @@
             <input type="text" ng-model="vm.apiSource">
         </md-input-container>
         <div>
-            <md-button class="md-raised" ng-click="vm.search()">
+            <md-button type="submit" class="md-raised" ng-click="vm.search()">
             <!-- below is the material icons -->
                 submit
             </md-button>
@@ -15,9 +15,10 @@
     </div>
 </form>
 
+
 <div class="json-preview">
-    <md-subheader class="md-no-sticky"><h3>Result</h3></md-subheader>
-    <pre ng-if="vm.result !== undefined">
+	<md-subheader class="md-no-sticky"><h3>Result</h3></md-subheader>
+  <pre style="" ng-if="vm.result !== undefined">
     {{ vm.result | json }}
-</pre>
+	</pre>
 </div>

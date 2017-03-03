@@ -13,8 +13,10 @@ class StepmakerController extends Controller
    * Display all the stepmakers
    * @return \Illuminate\Http\JsonResponse
    */
-  public function index() {
-    $stepmakers = Cache::remember('CacheStepmakers', 20/60, function(){
+  public function index(Request $request) {
+    $page = $request->has('page') ? $request->query('page') : 1;
+
+    $stepmakers = Cache::remember('CacheStepmakers_page_' . $page, 20/60, function(){
         return Stepmaker::with('levels')->paginate(10);
     });
 

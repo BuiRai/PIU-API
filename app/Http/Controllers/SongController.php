@@ -15,8 +15,12 @@ class SongController extends Controller
    * Display all the songs from the database
    * @return \Illuminate\Http\JsonResponse the response
    */
-  public function index() {
-    $songs = Cache::remember('CacheSongs', 20/60, function(){
+  public function index(Request $request) {
+    $page = $request->has('page') ? $request->query('page') : 1;
+
+    error_log('CURRENT PAGE:' . $page);
+
+    $songs = Cache::remember('CacheSongs_page_' . $page, 20/60, function(){
         return Song::with('artist')->with('gameVersion')->paginate(10);
     });
 

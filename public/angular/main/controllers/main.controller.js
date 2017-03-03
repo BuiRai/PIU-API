@@ -12,12 +12,12 @@
 		vm.result;
 
 		vm.init = function(){
-			console.log('init main controller...');
+
 		};
 
 		vm.search = function() {
       $http.get(vm.apiSource).then(function(response){
-				vm.result = response.data;
+        vm.result = response.data;
 			}).catch(function(err){
 
 			});

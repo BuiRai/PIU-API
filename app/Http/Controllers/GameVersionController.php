@@ -14,8 +14,10 @@ class GameVersionController extends Controller
    * Display all the game versions from the database
    * @return mixed the response
    */
-  public function index() {
-    $gameVersions = Cache::remember('CacheGameVersions', 20/60, function(){
+  public function index(Request $request) {
+    $page = $request->has('page') ? $request->query('page') : 1;
+
+    $gameVersions = Cache::remember('CacheGameVersions_page_' . $page, 20/60, function(){
         return GameVersion::paginate(10);
     });
 
