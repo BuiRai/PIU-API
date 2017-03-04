@@ -1,9 +1,75 @@
 
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import "colors";
 
 // Variables
 @import "variables";
 
 // Bootstrap
 //@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+html {
+	font-family: GillSans, Calibri, Trebuchet, sans-serif;
+}
+
+.green {
+  background: $color_primary !important;
+}
+
+.green-light {
+	background: $color_tertiary !important;
+}
+
+.green-dark {
+	background: $color_secondary !important;
+	color: white !important;
+}
+
+.footer {
+	padding: 10px;
+	bottom:0;
+  width:100%;
+}
+
+.footer a {
+	color: white !important;
+	text-decoration: none;
+}
+
+.footer a:visited {
+	color: $color_yellow_light !important;
+}
+
+.json-preview {
+    width: 70%;
+    margin: auto;
+    padding: 15px 5px;
+    background: $color_gray_light;
+    border: 1px solid $color_gray;
+    font-size: 13px;
+    overflow:scroll;
+    height: 600px;
+}
+
+.header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    margin: 0px;
+    background: $color_secondary;
+    color: $color_tertiary;
+
+    & h1 {
+    	font-weight: 900;
+    	font-size: 45px;
+    	margin: 10px;
+    }
+
+    & h2 {
+    	font-size: 30px;
+    	margin: 10px;
+    }
+}

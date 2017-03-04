@@ -15,6 +15,7 @@
 	    'ngSanitize',
 	    'ngTouch',
 	    'ngMaterial',
+      'md.data.table'
   	],
   	mainApplicationModuleName: mainApplicationModuleName,
   	registerModule: registerModule

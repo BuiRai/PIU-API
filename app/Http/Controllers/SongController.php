@@ -17,8 +17,7 @@ class SongController extends Controller
    */
   public function index(Request $request) {
     $page = $request->has('page') ? $request->query('page') : 1;
-
-    error_log('CURRENT PAGE:' . $page);
+    $totalSongs = Song::all()->count();
 
     $songs = Cache::remember('CacheSongs_page_' . $page, 20/60, function(){
         return Song::with('artist')->with('gameVersion')->paginate(10);
@@ -28,7 +27,8 @@ class SongController extends Controller
       'status'=>'ok',
       'next'=>$songs->nextPageUrl(),
       'previous'=>$songs->previousPageUrl(),
-      'data'=>$songs->items()
+      'data'=>$songs->items(),
+      'totalItems'=>$totalSongs
     ], 200);
   }
 

@@ -16,5 +16,4 @@
 
 	routeConfig.$inject = ['$routeProvider'];
 
-
 }());

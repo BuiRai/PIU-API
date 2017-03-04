@@ -15,6 +15,7 @@ class ArtistController extends Controller
    */
   public function index(Request $request) {
     $page = $request->has('page') ? $request->query('page') : 1;
+    $totalArtists = Artist::all()->count();
 
     $artists = Cache::remember('CacheArtists_page_' . $page, 20/60, function(){
       return Artist::with('songs')->paginate(10);
@@ -24,7 +25,8 @@ class ArtistController extends Controller
       'status'=>'ok',
       'next'=>$artists->nextPageUrl(),
       'previous'=>$artists->previousPageUrl(),
-      'data'=>$artists->items()
+      'data'=>$artists->items(),
+      'totalItems'=>$totalArtists
     ], 200);
   }
 

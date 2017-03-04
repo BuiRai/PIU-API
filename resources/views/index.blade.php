@@ -11,9 +11,15 @@
         {{--<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">--}}
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
+        <!-- FontAwesome -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+        <!-- mdtable -->
+        <link rel="stylesheet" href="{{ URL::asset('vendor/angular-material-data-table/dist/md-data-table.min.css') }}">
+
         <!-- Styles -->
         <!-- <link rel="stylesheet" href="{{ asset('plugins/materialize/css/materialize.css')  }}"> -->
-        <link rel="stylesheet" href="{{ URL::asset('css/styles.css')  }}">
+        <link rel="stylesheet" href="{{ URL::asset('css/app.css')  }}">
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -52,7 +58,12 @@
                     </div>
                 <!-- </div> -->
                 <md-divider></md-divider>
-                <div>
+
+
+            </md-toolbar>
+        </div>
+
+        <div>
                     <header class="header">
                         <h1>PIU - API</h1>
                         <h2>The RESTful Pump It Up API</h2>
@@ -62,8 +73,16 @@
                 <md-content flex layout-padding>
                     <div ng-view=""></div>
                 </md-content>
-            </md-toolbar>
-        </div>
+
+        <footer class="green-dark footer">
+            <div layout="row" layout-align="center center">
+                <a href="https://github.com/BuiRai/PIU-API">
+                  <i class="fa fa-github" aria-hidden="true"></i>
+                  GitHub
+                </a>
+            </div>
+        </footer>
+
         <!-- Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
@@ -77,6 +96,9 @@
         <!-- Angular Material Library -->
         <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 
+        <!-- Bower components -->
+        <script src="{{ URL::asset('vendor/angular-material-data-table/dist/md-data-table.min.js') }}"></script>
+
         <!-- Main -->
         <script src="{{ URL::asset('angular/app.js') }}"></script>
         <script src="{{ URL::asset('angular/main/main.module.js') }}"></script>
@@ -87,6 +109,11 @@
         <script src="{{ URL::asset('angular/artists/config/artists.routes.js') }}"></script>
         <script src="{{ URL::asset('angular/artists/services/artists.service.js') }}"></script>
         <script src="{{ URL::asset('angular/artists/controllers/index.controller.js') }}"></script>
+        <!-- Songs -->
+        <script src="{{ URL::asset('angular/songs/songs.module.js') }}"></script>
+        <script src="{{ URL::asset('angular/songs/config/songs.routes.js') }}"></script>
+        <script src="{{ URL::asset('angular/songs/services/songs.service.js') }}"></script>
+        <script src="{{ URL::asset('angular/songs/controllers/index.controller.js') }}"></script>
 
     </body>
 </html>
