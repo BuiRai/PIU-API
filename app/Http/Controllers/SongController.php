@@ -20,7 +20,7 @@ class SongController extends Controller
     $totalSongs = Song::all()->count();
 
     $songs = Cache::remember('CacheSongs_page_' . $page, 20/60, function(){
-        return Song::with('artist')->with('gameVersion')->paginate(10);
+        return Song::with('artist')->with('gameVersion')->with('type')->paginate(10);
     });
 
     return response()->json([
@@ -75,7 +75,7 @@ class SongController extends Controller
    * @return \Illuminate\Http\JsonResponse the response
    */
   public function show($id) {
-    $song = Song::with('artist', 'gameVersion', 'levels')->find($id);
+    $song = Song::with('artist', 'gameVersion', 'levels', 'type', 'channels')->find($id);
 
     if (!$song) {
       return response()->json([

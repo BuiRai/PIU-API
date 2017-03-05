@@ -4,6 +4,8 @@ use Illuminate\Database\Seeder;
 use App\Song;
 use App\Artist;
 use App\GameVersion;
+use App\Type;
+use App\Channel;
 
 class Songs2ndDanceFloorSeeder extends Seeder
 {
@@ -21,45 +23,66 @@ class Songs2ndDanceFloorSeeder extends Seeder
         $sechsKies = Artist::where('name', 'Sechs Kies')->first();
         $clon = Artist::where('name', 'CLON')->first();
 
+        // Types
+        $short = Type::find(1);
+        $normal = Type::find(2);
+        $remix = Type::find(3);
+        $full = Type::find(4);
+
+        // Channels
+        $first_to_PC = Channel::find(1);
+        $remixChannel = Channel::find(11);
+
         // Game versions
         $secondDF = GameVersion::where('name', 'The 2nd Dance Floor')->first();
 
-        Song::create([
+        // Songs
+        $song;
+        $song = Song::create([
             'id'=>'204',
             'title'=>'Final Audition',
             'bpm'=>'130.5',
             'artist_id'=>$banYa->id,
-            'game_version_id'=>$secondDF->id
+            'game_version_id'=>$secondDF->id,
+            'type_id'=>$normal->id
         ]);
-        Song::create([
+        $song->channels()->attach([1]);
+        $song = Song::create([
             'id'=>'205',
             'title'=>'Extravaganza',
             'bpm'=>'195',
             'artist_id'=>$banYa->id,
-            'game_version_id'=>$secondDF->id
+            'game_version_id'=>$secondDF->id,
+            'type_id'=>$normal->id
         ]);
-        Song::create([
+        $song->channels()->attach([1]);
+        $song = Song::create([
             'id'=>'212',
             'title'=>'Com\'back',
             'bpm'=>'158',
             'artist_id'=>$sechsKies->id,
-            'game_version_id'=>$secondDF->id
+            'game_version_id'=>$secondDF->id,
+            'type_id'=>$normal->id
         ]);
-        Song::create([
+        $song->channels()->attach([1]);
+        $song = Song::create([
             'id'=>'213',
             'title'=>'Mobius Strip',
             'bpm'=>'106',
             'artist_id'=>$sechsKies->id,
-            'game_version_id'=>$secondDF->id
+            'game_version_id'=>$secondDF->id,
+            'type_id'=>$normal->id
         ]);
-        Song::create([
+        $song->channels()->attach([1]);
+        $song = Song::create([
             'id'=>'224',
             'title'=>'Repeatorment Remix',
             'bpm'=>'150',
             'artist_id'=>$banYa->id,
-            'game_version_id'=>$secondDF->id
+            'game_version_id'=>$secondDF->id,
+            'type_id'=>$remix->id
         ]);
-
+        $song->channels()->attach([1, 11]);
 
     }
 }
