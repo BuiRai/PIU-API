@@ -8,14 +8,15 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
-        {{--<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">--}}
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
         <!-- FontAwesome -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
         <!-- mdtable -->
-        <link rel="stylesheet" href="{{ URL::asset('vendor/angular-material-data-table/dist/md-data-table.min.css') }}">
+        <!-- <link rel="stylesheet" href="{{ URL::asset('vendor/angular-material-data-table/dist/md-data-table.min.css') }}"> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.10/md-data-table.min.css">
 
         <!-- Styles -->
         <!-- <link rel="stylesheet" href="{{ asset('plugins/materialize/css/materialize.css')  }}"> -->
@@ -97,7 +98,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 
         <!-- Bower components -->
-        <script src="{{ URL::asset('vendor/angular-material-data-table/dist/md-data-table.min.js') }}"></script>
+        <!-- <script src="{{ URL::asset('vendor/angular-material-data-table/dist/md-data-table.min.js') }}"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.10/md-data-table.min.js"></script>
 
         <!-- Main -->
         <script src="{{ URL::asset('angular/app.js') }}"></script>
