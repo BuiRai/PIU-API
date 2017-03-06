@@ -12,18 +12,17 @@ class ChannelsTableSeeder extends Seeder
      */
     public function run()
     {
-        Channel::create(['name' => '1st ~ Perfect Collection']);
-        Channel::create(['name' => 'Extra ~ Prex 3']);
-        Channel::create(['name' => 'Exceed ~ Zero']);
-        Channel::create(['name' => 'NX ~ NXA']);
-        Channel::create(['name' => 'Fiesta']);
-        Channel::create(['name' => 'Fiesta Ex']);
-        Channel::create(['name' => 'Fiesta 2']);
-        Channel::create(['name' => 'Prime']);
-        Channel::create(['name' => 'Prime 2']);
-        //
-        Channel::create(['name' => 'Full Song']);
-        Channel::create(['name' => 'Remix']);
-        Channel::create(['name' => 'Shortcut']);
+        Channel::create(['name' => '1st ~ Perfect Collection']); // 1
+        Channel::create(['name' => 'Extra ~ Prex 3']); // 2
+        Channel::create(['name' => 'Exceed ~ Zero']); // 3
+        Channel::create(['name' => 'NX ~ NXA']); // 4
+        Channel::create(['name' => 'Fiesta']); // 5
+        Channel::create(['name' => 'Fiesta Ex']); // 6
+        Channel::create(['name' => 'Fiesta 2']); // 7
+        Channel::create(['name' => 'Prime']); // 8
+        Channel::create(['name' => 'Prime 2']); // 9
+        Channel::create(['name' => 'Full Song']); // 10
+        Channel::create(['name' => 'Remix']); // 11
+        Channel::create(['name' => 'Shortcut']); // 12
     }
 }
