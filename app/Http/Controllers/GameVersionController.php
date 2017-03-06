@@ -14,18 +14,25 @@ class GameVersionController extends Controller
    * Display all the game versions from the database
    * @return mixed the response
    */
-  public function index(Request $request) {
+  public function index(Request $request)
+  {
     $page = $request->has('page') ? $request->query('page') : 1;
+    $totalGameVersions = GameVersion::all()->count();
 
-    $gameVersions = Cache::remember('CacheGameVersions_page_' . $page, 20/60, function(){
-        return GameVersion::paginate(10);
-    });
+    if ($request->has('page')) {
+        $gameVersions = Cache::remember('CacheGameVersions_page_' . $page, 20/60, function(){
+            return GameVersion::paginate(10)->items();
+        });
+    } else {
+        $gameVersions = Cache::remember('CacheGameVersions_full_', 20/60, function(){
+            return GameVersion::all();
+        });
+    }
 
     return response()->json([
       'status'=>'ok',
-      'next'=>$gameVersions->nextPageUrl(),
-      'previous'=>$gameVersions->previousPageUrl(),
-      'data'=>$gameVersions->items()
+      'data'=>$gameVersions,
+      'totalItems'=>$totalGameVersions
     ], 200);
   }
 
@@ -34,7 +41,8 @@ class GameVersionController extends Controller
    * @param Request $request the request sent by the client
    * @return Response the response
    */
-  public function store(Request $request) {
+  public function store(Request $request)
+  {
     // Verify is all the fields are on the user's request
     if (!$request->file('banner_image') || !$request->input('name') || !$request->input('launch_year')){
       return response([
@@ -49,7 +57,7 @@ class GameVersionController extends Controller
     $imageName = 'PIUapi_'.md5($request->input('id')).'.'.$image->getClientOriginalExtension();
     $imagePath = public_path().'/images/gameVersions/';
     $image->move($imagePath, $imageName);
-    $imageLink = 'http://localhost:8000/images/gameVersions/'.$imageName;
+    $imageLink = env('BASE_PATH') . 'images/gameVersions/'.$imageName;
 
     $newGameVersion = GameVersion::create([
       'name' => $request->input('name'),
@@ -58,7 +66,7 @@ class GameVersionController extends Controller
     ]);
 
     $response = Response::make(json_encode(['data' => $newGameVersion]), 201)
-      ->header('Location', 'http://localhost:8000/api/v1.0/artists/'.$newGameVersion->id)
+      ->header('Location', env('BASE_PATH') . 'api/' . env('API_VER') . 'artists/'.$newGameVersion->id)
       ->header('Content-Type', 'application/json');
     return $response;
   }
@@ -68,7 +76,8 @@ class GameVersionController extends Controller
    * @param $id id of the game version
    * @return mixed the response
    */
-  public function show($id) {
+  public function show($id)
+  {
     $gameVersion = GameVersion::with('songs.artist')->find($id);
 
     if (!$gameVersion) {
@@ -92,7 +101,8 @@ class GameVersionController extends Controller
    * @param $id id of the song to update
    * @return mixed the response
    */
-  public function update(Request $request, $id) {
+  public function update(Request $request, $id)
+  {
     $gameVersion = GameVersion::find($id);
 
     if (!$gameVersion) {
@@ -156,7 +166,8 @@ class GameVersionController extends Controller
     ], 202);
   }
 
-  public function image(Request $request, $id) {
+  public function image(Request $request, $id)
+  {
     if (!$request->file('banner_image')) {
       return response()->json([
         'errors' => array([
@@ -181,7 +192,7 @@ class GameVersionController extends Controller
     $imageName = $id . '_' . md5(time()) . '.' . $image->getClientOriginalExtension();
     $imagePath = public_path().'/images/gameVersions/';
     $image->move($imagePath, $imageName);
-    $imageLink = 'http://localhost:8000/images/gameVersions/'.$imageName;
+    $imageLink = env('BASE_PATH') . 'images/gameVersions/'.$imageName;
 
     $gameVersion->banner_image = $imageLink;
     $gameVersion->save();
@@ -197,7 +208,8 @@ class GameVersionController extends Controller
    * @param $id the game version's id
    * @return mixed the response
    */
-  public function destroy($id){
+  public function destroy($id)
+  {
     $gameVersion = GameVersion::find($id);
 
     if (!$gameVersion) {
@@ -222,7 +234,8 @@ class GameVersionController extends Controller
    * ################################################################################################################
    */
 
-  private function notGameVersionFound($id){
+  private function notGameVersionFound($id)
+  {
     return 'The Artist with the id: \''.$id.'\' has not be found';
   }
 }

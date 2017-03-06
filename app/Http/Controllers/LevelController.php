@@ -13,18 +13,25 @@ class LevelController extends Controller
  * Display all the levels
  * @return \Illuminate\Http\JsonResponse
  */
-  public function index(Request $request) {
+  public function index(Request $request)
+  {
     $page = $request->has('page') ? $request->query('page') : 1;
+    $totalLevels = Level::all()->count();
 
-    $levels = Cache::remember('CacheLevels_page_' . $page, 20/60, function(){
-        return Level::with('song')->with('stepmaker')->with('style')->paginate(10);
-    });
+    if ($request->has('page')) {
+        $levels = Cache::remember('CacheLevels_page_' . $page, 20/60, function(){
+            return Level::with('song')->with('stepmaker')->with('style')->paginate(10)->items();
+        });
+    } else {
+        $levels = Cache::remember('CacheLevels_full', 20/60, function(){
+            return Level::with('song')->with('stepmaker')->with('style')->get();
+        });
+    }
 
     return response()->json([
       'status'=>'ok',
-      'next'=>$levels->nextPageUrl(),
-      'previous'=>$levels->previousPageUrl(),
-      'data'=>$levels->items()
+      'data'=>$levels,
+      'totalItems'=>$totalLevels
     ], 200);
   }
 
@@ -33,7 +40,8 @@ class LevelController extends Controller
    * @param Request $request Request $request the request sent by the client
    * @return Response The response
    */
-  public function store(Request $request) {
+  public function store(Request $request)
+  {
     // Verify is all the fields are on the user's request
     if (!$request->input('level') || !$request->input('song_id') || !$request->input('stepmaker_id') || !$request->input('style_id')){
       return response([
@@ -46,7 +54,7 @@ class LevelController extends Controller
 
     $newLevel = Level::create($request->all());
     $response = \Response::make(json_encode(['data' => $newLevel]), 201)
-      ->header('Location', 'http://localhost:8000/api/v1.0/levels/'.$newLevel->id)
+      ->header('Location', env('BASE_PATH') . 'api/' . env('API_VER') . 'levels/'.$newLevel->id)
       ->header('Content-Type', 'application/json');
     return $response;
   }
@@ -56,7 +64,8 @@ class LevelController extends Controller
    * @param $id the id of the artist
    * @return mixed the response
    */
-  public function show($id) {
+  public function show($id)
+  {
     $level = Level::with('song', 'stepmaker', 'style')->find($id);
 
     if (!$level) {
@@ -84,7 +93,8 @@ class LevelController extends Controller
    * @param $id id of the artist to update
    * @return mixed the response
    */
-  public function update(Request $request, $id) {
+  public function update(Request $request, $id)
+  {
     $level = Level::find($id);
 
     if (!$level) {
@@ -168,7 +178,8 @@ class LevelController extends Controller
    * @param  $id The level's id
    * @return Response the response
    */
-  public function destroy($id){
+  public function destroy($id)
+  {
     $level = Level::find($id);
 
     if (!$level) {
@@ -193,7 +204,8 @@ class LevelController extends Controller
    * ################################################################################################################
    */
 
-  private function notLevelFound($id){
+  private function notLevelFound($id)
+  {
     return 'The Level with the id: \''.$id.'\' has not be found';
   }
 }

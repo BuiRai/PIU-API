@@ -31,7 +31,16 @@
 								<td md-cell>{{song.id}}</td>
 								<td md-cell>{{song.title}}</td>
 								<td md-cell>{{song.artist.name}}</td>
-								<td md-cell>{{song.type.name}}</td>
+								<td md-cell>
+									<span ng-class="{
+										'badge-green': song.type.id === 1,
+										'badge-orange': song.type.id === 2,
+										'badge-blue': song.type.id === 3,
+										'badge-purple': song.type.id === 4
+									}">
+										{{song.type.name}}
+									</span>
+								</td>
 								<td md-cell>{{song.bpm}}</td>
 								<td md-cell>{{song.game_version.name}}</td>
 							</tr>

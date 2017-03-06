@@ -50,3 +50,19 @@ html {
   .header h2 {
     font-size: 30px;
     margin: 10px; }
+
+.badge, .badge-orange, .badge-green, .badge-blue, .badge-purple {
+  padding: 2px 6px;
+  color: white; }
+
+.badge-orange {
+  background: #B18904; }
+
+.badge-green {
+  background: #04B404; }
+
+.badge-blue {
+  background: #04B4AE; }
+
+.badge-purple {
+  background: #8904B1; }

@@ -15,19 +15,24 @@ class SongController extends Controller
    * Display all the songs from the database
    * @return \Illuminate\Http\JsonResponse the response
    */
-  public function index(Request $request) {
+  public function index(Request $request)
+  {
     $page = $request->has('page') ? $request->query('page') : 1;
     $totalSongs = Song::all()->count();
 
-    $songs = Cache::remember('CacheSongs_page_' . $page, 20/60, function(){
-        return Song::with('artist')->with('gameVersion')->with('type')->paginate(10);
-    });
+    if ($request->has('page')) {
+        $songs = Cache::remember('CacheSongs_page_' . $page, 20/60, function(){
+            return Song::with('artist')->with('gameVersion')->with('type')->paginate(10)->items();
+        });
+    } else {
+        $songs = Cache::remember('CacheSongs_full', 20/60, function(){
+            return Song::with('artist')->with('gameVersion')->with('type')->get();
+        });
+    }
 
     return response()->json([
       'status'=>'ok',
-      'next'=>$songs->nextPageUrl(),
-      'previous'=>$songs->previousPageUrl(),
-      'data'=>$songs->items(),
+      'data'=>$songs,
       'totalItems'=>$totalSongs
     ], 200);
   }
@@ -37,7 +42,8 @@ class SongController extends Controller
    * @param Request $request the request sent by the client
    * @return Response the response
    */
-  public function store(Request $request) {
+  public function store(Request $request)
+  {
     if (!$request->file('bannerImage') || !$request->input('id') || !$request->input('title') ||
       !$request->input('artist_id') || !$request->input('bpm') ||  !$request->input('game_version_id')) {
       return response([
@@ -52,7 +58,7 @@ class SongController extends Controller
     $imageName = 'PIUapi_'.md5($request->input('id')).'.'.$image->getClientOriginalExtension();
     $imagePath = public_path().'/images/songs/';
     $image->move($imagePath, $imageName);
-    $imageLink = 'http://localhost:8000/images/songs/'.$imageName;
+    $imageLink =  env('BASE_PATH') . 'images/songs/'.$imageName;
 
     $newSong = Song::create([
       'id'=>$request->input('id'),
@@ -64,7 +70,7 @@ class SongController extends Controller
     ]);
 
     $response = Response::make(json_encode(['data' => $newSong]), 201)
-      ->header('Location', 'http://localhost:8000/api/v1.0/songs/'.$newSong->id)
+      ->header('Location', env('BASE_PATH') . 'api/' .env('API_VER') . ' songs/'.$newSong->id)
       ->header('Content-Type', 'application/json');
     return $response;
   }
@@ -74,7 +80,8 @@ class SongController extends Controller
    * @param $id the id of the song
    * @return \Illuminate\Http\JsonResponse the response
    */
-  public function show($id) {
+  public function show($id)
+  {
     $song = Song::with('artist', 'gameVersion', 'levels', 'type', 'channels')->find($id);
 
     if (!$song) {
@@ -98,7 +105,8 @@ class SongController extends Controller
    * @param $id the id of the song to update
    * @return mixed the response
    */
-  public function update(Request $request, $id) {
+  public function update(Request $request, $id)
+  {
     $song = Song::find($id);
 
     if (!$song) {
@@ -180,7 +188,8 @@ class SongController extends Controller
    * @param  [type]  $id      [description]
    * @return [type]           [description]
    */
-  public function image(Request $request, $id) {
+  public function image(Request $request, $id)
+  {
     if (!$request->file('bannerImage')) {
       return response()->json([
         'errors' => array([
@@ -205,7 +214,7 @@ class SongController extends Controller
     $imageName = $id . '_' . md5(time()) . '.' . $image->getClientOriginalExtension();
     $imagePath = public_path().'/images/songs/';
     $image->move($imagePath, $imageName);
-    $imageLink = 'http://localhost:8000/images/songs/'.$imageName;
+    $imageLink = env('BASE_PATH') . 'images/songs/'.$imageName;
 
     $song->bannerImage = $imageLink;
     $song->save();
@@ -221,7 +230,8 @@ class SongController extends Controller
    * @param $id the song's id
    * @return mixed the response
    */
-  public function destroy($id) {
+  public function destroy($id)
+  {
     $song = Song::find($id);
 
     if (!$song) {
@@ -247,7 +257,8 @@ class SongController extends Controller
    * ################################################################################################################
    */
 
-  private function notSongFound($id){
+  private function notSongFound($id)
+  {
     return 'The Song with the id: \''.$id.'\' has not be found';
   }
 }

@@ -18,6 +18,6 @@ gulp.task('sass', function(){
 });
 
 gulp.task('watch', function(){
-  gulp.watch('resources//assets/sass/**.scss', ['sass']);
+  gulp.watch('resources/assets/sass/**.scss', ['sass']);
 });
 

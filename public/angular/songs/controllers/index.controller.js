@@ -23,7 +23,6 @@
 
       vm.getSongs = function() {
         SongsService.get({page: vm.query.page}, function(response){
-          console.log(response.data);
           vm.query.total = response.totalItems;
           vm.songs = response.data;
           vm.isLoading = false;

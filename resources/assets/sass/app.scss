@@ -73,3 +73,30 @@ html {
     	margin: 10px;
     }
 }
+
+.badge {
+	padding: 2px 6px;
+	color: white;
+}
+
+.badge-orange {
+	@extend .badge;
+	background: #B18904;
+}
+
+.badge-green {
+	@extend .badge;
+	background: #04B404;
+}
+
+.badge-blue {
+	@extend .badge;
+	background: #04B4AE;
+}
+
+.badge-purple {
+	@extend .badge;
+	background: #8904B1;
+}
+
+

@@ -16,16 +16,22 @@ class StyleController extends Controller
    */
   public function index(Request $request) {
     $page = $request->has('page') ? $request->query('page') : 1;
+    $totalStyles = Style::all()->count();
 
-    $styles = Cache::remember('CacheStyles_page_' . $page, 16/60, function(){
-        return Style::paginate(5);
-    });
+    if ($request->has('page')) {
+        $styles = Cache::remember('CacheStyles_page_' . $page, 16/60, function(){
+            return Style::paginate(5)->items();
+        });
+    } else {
+        $styles = Cache::remember('CacheStyles_full', 16/60, function(){
+            return Style::all();
+        });
+    }
 
     return response()->json([
       'status'=>'ok',
-      'next'=>$styles->nextPageUrl(),
-      'previous'=>$styles->previousPageUrl(),
-      'data'=>$styles->items()
+      'data'=>$styles,
+      'totalItems'=>$totalStyles
     ], 200);
   }
 
@@ -48,7 +54,7 @@ class StyleController extends Controller
 
     $newStyle = Style::create($request->all());
     $response = Response::make(json_encode(['data' => $newStyle]), 201)
-      ->header('Location', 'http://localhost:8000/api/v1.0/styles/'.$newStyle->id)
+      ->header('Location', env('BASE_PATH') . 'api/' . env('API_VER') . 'styles/'.$newStyle->id)
       ->header('Content-Type', 'application/json');
     return $response;
   }

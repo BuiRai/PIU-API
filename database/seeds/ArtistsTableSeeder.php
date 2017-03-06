@@ -35,7 +35,6 @@ class ArtistsTableSeeder extends Seeder
     Artist::create([ 'name' => 'Big metra']);
     Artist::create([ 'name' => 'Nina Pilots']);
     Artist::create([ 'name' => 'PXNDX']);
-    Artist::create([ 'name' => 'Big metra']);
     Artist::create([ 'name' => 'msgoon']);
     Artist::create([ 'name' => 'Banya Production']);
     Artist::create([ 'name' => 'Nina Pilots & PXNDX']);
@@ -105,7 +104,6 @@ class ArtistsTableSeeder extends Seeder
     Artist::create([ 'name' => 'Memme']);
     Artist::create([ 'name' => 'Banya & Warak']);
     Artist::create([ 'name' => 'MAZO']);
-    Artist::create([ 'name' => 'AKB48 (Cover)']);
     Artist::create([ 'name' => 'Miura Daichi (Cover)']);
     Artist::create([ 'name' => 'void']);
     Artist::create([ 'name' => 'ETIA.']);

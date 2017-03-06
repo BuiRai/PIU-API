@@ -13,18 +13,25 @@ class StepmakerController extends Controller
    * Display all the stepmakers
    * @return \Illuminate\Http\JsonResponse
    */
-  public function index(Request $request) {
+  public function index(Request $request)
+  {
     $page = $request->has('page') ? $request->query('page') : 1;
+    $totalStepmakers = Stepmaker::all()->count();
 
-    $stepmakers = Cache::remember('CacheStepmakers_page_' . $page, 20/60, function(){
-        return Stepmaker::with('levels')->paginate(10);
-    });
+    if ($request->has('page')) {
+        $stepmakers = Cache::remember('CacheStepmakers_page_' . $page, 20/60, function(){
+            return Stepmaker::with('levels')->paginate(10)->items();
+        });
+    } else {
+        $stepmakers = Cache::remember('CacheStepmakers_full', 20/60, function(){
+            return Stepmaker::with('levels')->get();
+        });
+    }
 
     return response()->json([
       'status'=>'ok',
-      'next'=>$stepmakers->nextPageUrl(),
-      'previous'=>$stepmakers->previousPageUrl(),
-      'data'=>$stepmakers->items()
+      'data'=>$stepmakers,
+      'totalItems'=>$totalStepmakers
     ], 200);
   }
 
@@ -33,7 +40,8 @@ class StepmakerController extends Controller
    * @param Request $request Request $request the request sent by the client
    * @return Response The response
    */
-  public function store(Request $request) {
+  public function store(Request $request)
+  {
     // Verify is all the fields are on the user's request
     if (!$request->input('username')){
       return response([
@@ -46,7 +54,7 @@ class StepmakerController extends Controller
 
     $newStepmaker = Stepmaker::create($request->all());
     $response = Response::make(json_encode(['data' => $newStepmaker]), 201)
-      ->header('Location', 'http://localhost:8000/api/v1.0/stepmakers/'.$newStepmaker->id)
+      ->header('Location', env('BASE_PATH') . 'api/' . env('API_VER') . 'stepmakers/'.$newStepmaker->id)
       ->header('Content-Type', 'application/json');
     return $response;
   }
@@ -56,7 +64,8 @@ class StepmakerController extends Controller
    * @param $id the id of the artist
    * @return mixed the response
    */
-  public function show($id) {
+  public function show($id)
+  {
     $stepmaker = Stepmaker::with('levels.song', 'levels.style')->find($id);
 
     if (!$stepmaker) {
@@ -80,7 +89,8 @@ class StepmakerController extends Controller
    * @param $id id of the artist to update
    * @return mixed the response
    */
-  public function update(Request $request, $id) {
+  public function update(Request $request, $id)
+  {
     $stepmaker = Stepmaker::find($id);
 
     if (!$stepmaker) {
@@ -142,7 +152,8 @@ class StepmakerController extends Controller
    * @param  $id The stepmaker's id
    * @return Response the response
    */
-  public function destroy($id){
+  public function destroy($id)
+  {
     $stepmaker = Stepmaker::find($id);
 
     if (!$stepmaker) {
@@ -167,7 +178,8 @@ class StepmakerController extends Controller
    * ################################################################################################################
    */
 
-  private function notStepmakerFound($id){
+  private function notStepmakerFound($id)
+  {
     return 'The Stepmaker with the id: \''.$id.'\' has not be found';
   }
 }

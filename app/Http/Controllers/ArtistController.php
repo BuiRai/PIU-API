@@ -13,19 +13,24 @@ class ArtistController extends Controller
    * Display all the artists
    * @return \Illuminate\Http\JsonResponse
    */
-  public function index(Request $request) {
+  public function index(Request $request)
+  {
     $page = $request->has('page') ? $request->query('page') : 1;
     $totalArtists = Artist::all()->count();
 
-    $artists = Cache::remember('CacheArtists_page_' . $page, 20/60, function(){
-      return Artist::with('songs')->paginate(10);
-    });
+    if ($request->has('page')) {
+        $artists = Cache::remember('CacheArtists_page_' . $page, 20/60, function(){
+            return Artist::with('songs')->paginate(10)->items();
+        });
+    } else {
+        $artists = Cache::remember('CacheArtists_full_' . $page, 20/60, function(){
+            return Artist::with('songs')->get();
+        });
+    }
 
     return response()->json([
       'status'=>'ok',
-      'next'=>$artists->nextPageUrl(),
-      'previous'=>$artists->previousPageUrl(),
-      'data'=>$artists->items(),
+      'data'=>$artists,
       'totalItems'=>$totalArtists
     ], 200);
   }
@@ -35,7 +40,8 @@ class ArtistController extends Controller
    * @param Request $request Request $request the request sent by the client
    * @return Response The response
    */
-  public function store(Request $request) {
+  public function store(Request $request)
+  {
     // Verify is all the fields are on the user's request
     if (!$request->input('name')){
       return response([
@@ -48,7 +54,7 @@ class ArtistController extends Controller
 
     $newArtist = Artist::create($request->all());
     $response = Response::make(json_encode(['data' => $newArtist]), 201)
-      ->header('Location', 'http://localhost:8000/api/v1.0/artists/'.$newArtist->id)
+      ->header('Location', env('BASE_PATH') . 'api/' . env('API_VER') . 'artists/'.$newArtist->id)
       ->header('Content-Type', 'application/json');
     return $response;
   }
@@ -58,7 +64,8 @@ class ArtistController extends Controller
    * @param $id the id of the artist
    * @return mixed the response
    */
-  public function show($id) {
+  public function show($id)
+  {
     $artist = Artist::with('songs.gameVersion')->find($id);
 
     if (!$artist) {
@@ -83,7 +90,8 @@ class ArtistController extends Controller
    * @param $id id of the artist to update
    * @return mixed the response
    */
-  public function update(Request $request, $id) {
+  public function update(Request $request, $id)
+  {
     $artist = Artist::find($id);
 
     if (!$artist) {
@@ -140,7 +148,8 @@ class ArtistController extends Controller
     ], 202);
   }
 
-  public function destroy($id){
+  public function destroy($id)
+  {
     $artist = Artist::find($id);
 
     if (!$artist) {
@@ -165,7 +174,8 @@ class ArtistController extends Controller
    * ################################################################################################################
    */
 
-  private function notArtistFound($id){
+  private function notArtistFound($id)
+  {
     return 'The Artist with the id: \''.$id.'\' has not be found';
   }
 }

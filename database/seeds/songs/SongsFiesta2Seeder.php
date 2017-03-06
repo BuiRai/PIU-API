@@ -206,54 +206,54 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'160',
             'artist_id'=>$jJMiMidiDFtHannaStockzell->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_id'=>$shortType->id
         ]);
-        $song->channels()->attach([7]);
+        $song->channels()->attach([7, 12]);
         $song = Song::create([
             'id'=>'13E1',
             'title'=>'Passacaglia',
             'bpm'=>'160',
             'artist_id'=>$synthWulf->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_id'=>$shortType->id
         ]);
-        $song->channels()->attach([7]);
+        $song->channels()->attach([7, 12]);
         $song = Song::create([
             'id'=>'13E2',
             'title'=>'Ignis Fatuus (DM Ashura Mix)',
             'bpm'=>'220',
             'artist_id'=>$banYaDMAshura->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_id'=>$shortType->id
         ]);
-        $song->channels()->attach([7]);
+        $song->channels()->attach([7, 12]);
         $song = Song::create([
             'id'=>'13E3',
             'title'=>'FFF (Flew Far Faster) ',
             'bpm'=>'200',
             'artist_id'=>$doin->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_id'=>$shortType->id
         ]);
-        $song->channels()->attach([7]);
+        $song->channels()->attach([7, 12]);
         $song = Song::create([
             'id'=>'13E4',
             'title'=>'Unique ',
             'bpm'=>'145',
             'artist_id'=>$shk->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_id'=>$shortType->id
         ]);
-        $song->channels()->attach([7]);
+        $song->channels()->attach([7, 12]);
         $song = Song::create([
             'id'=>'13E5',
             'title'=>'U Got Me Rocking ',
             'bpm'=>'128',
             'artist_id'=>$max->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_id'=>$shortType->id
         ]);
-        $song->channels()->attach([7]);
+        $song->channels()->attach([7, 12]);
 
         // FALTAN LAS DE LA PRO Y PRO 2
     }

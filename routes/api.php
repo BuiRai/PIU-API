@@ -26,4 +26,6 @@ Route::group(['prefix' => 'v1.0', 'middleware' => 'cors'], function (){
     Route::resource('stepmakers', 'StepmakerController', ['except' => ['create', 'edit']]);
     Route::resource('styles', 'StyleController', ['except' => ['create', 'edit']]);
     Route::resource('levels', 'LevelController', ['except' => ['create', 'edit']]);
+    Route::resource('types', 'TypeController', ['except' => ['create', 'edit']]);
+    Route::resource('channels', 'ChannelController', ['except' => ['create', 'edit']]);
 });

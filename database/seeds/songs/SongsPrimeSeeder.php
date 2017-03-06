@@ -43,7 +43,6 @@ class SongsPrimeSeeder extends Seeder
         $memme = Artist::where('name', 'Memme')->first();
         $banyaWarak = Artist::where('name', 'Banya & Warak')->first();
         $mazo = Artist::where('name', 'MAZO')->first();
-        $aKB48Cover = Artist::where('name', 'AKB48 (Cover)')->first();
         $miuraDaichiCover = Artist::where('name', 'Miura Daichi (Cover)')->first();
         $void = Artist::where('name', 'void')->first();
         $etia = Artist::where('name', 'ETIA.')->first();

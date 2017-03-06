@@ -178,7 +178,7 @@ class SongsNX2Seeder extends Seeder
         $song = Song::create([
             'id'=>'E928',
             'title'=>'Extra BanYa Remix',
-            'bpm'=>'',
+            'bpm'=>'200',
             'artist_id'=>$banya->id,
             'game_version_id'=>$nx2->id,
             'type_id'=>$remixType->id
