@@ -55,15 +55,15 @@ class SongsFiestaExSeeder extends Seeder
         // Game versions
         $fiestaEx = GameVersion::where('name', 'Fiesta Ex')->first();
 
-        // $song = Song::create([
-        //     'id'=>'1101',
-        //     'title'=>'Cleaner',
-        //     'bpm'=>'203',
-        //     'artist_id'=>$doin->id,
-        //     'game_version_id'=>$fiestaEx->id,
-        //     'type_id'=>$normalType->id
-        // ]);
-        // $song->channels()->attach([6]);
+        $song = Song::create([
+            'id'=>'1101',
+            'title'=>'Cleaner',
+            'bpm'=>'203',
+            'artist_id'=>$doin->id,
+            'game_version_id'=>$fiestaEx->id,
+            'type_id'=>$normalType->id
+        ]);
+        $song->channels()->attach([6]);
         // $song = Song::create([
         //     'id'=>'1102',
         //     'title'=>'Interference',

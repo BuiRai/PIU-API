@@ -23,7 +23,6 @@
 
     vm.getTypes = function() {
       TypesService.get({page: vm.query.page}, function(response){
-        console.log(response.data)
         vm.query.total = response.totalItems;
         vm.types = response.data;
         vm.isLoading = false;

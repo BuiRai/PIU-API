@@ -56,6 +56,9 @@
                                     <md-menu-item>
                                             <md-button ng-href="/#!/types">Types</md-button>
                                     </md-menu-item>
+                                    <md-menu-item>
+                                            <md-button ng-href="/#!/channels">Channels</md-button>
+                                    </md-menu-item>
                                 </md-menu-content>
                             </md-menu>
                         </menu-bar>
@@ -112,6 +115,11 @@
         <script src="{{ URL::asset('angular/artists/config/artists.routes.js') }}"></script>
         <script src="{{ URL::asset('angular/artists/services/artists.service.js') }}"></script>
         <script src="{{ URL::asset('angular/artists/controllers/index.controller.js') }}"></script>
+        <!-- Channels -->
+        <script src="{{ URL::asset('angular/channels/channels.module.js') }}"></script>
+        <script src="{{ URL::asset('angular/channels/config/channels.routes.js') }}"></script>
+        <script src="{{ URL::asset('angular/channels/services/channels.service.js') }}"></script>
+        <script src="{{ URL::asset('angular/channels/controllers/index.controller.js') }}"></script>
         <!-- Game Versions -->
         <script src="{{ URL::asset('angular/gameVersions/gameVersions.module.js') }}"></script>
         <script src="{{ URL::asset('angular/gameVersions/config/gameVersions.routes.js') }}"></script>
