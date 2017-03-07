@@ -26,7 +26,7 @@ class SongsNX2Seeder extends Seeder
         $bigMetra = Artist::where('name', 'Big metra')->first();
         $msgoon = Artist::where('name', 'msgoon')->first();
         $banyaProduction = Artist::where('name', 'Banya Production')->first();
-        $banya = Artist::where('name', 'Banya')->first();
+        $banya = Artist::where('name', 'BanYa')->first();
         $ninaPilotsPXNDX = Artist::where('name', 'Nina Pilots & PXNDX')->first();
         $vassline = Artist::where('name', 'Vassline')->first();
         $yahpp = Artist::where('name', 'Yahpp')->first();
