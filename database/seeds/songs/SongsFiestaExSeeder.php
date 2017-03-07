@@ -16,20 +16,35 @@ class SongsFiestaExSeeder extends Seeder
      */
     public function run()
     {
-        $max = Artist::where('name', 'MAX')->first();
-        $banyaProduction = Artist::where('name', 'Banya Production')->first();
-        $doin = Artist::where('name', 'Doin')->first();
-        $shk = Artist::where('name', 'SHK')->first();
-        $dMAshuraFeatMCJayVeronica = Artist::where('name', 'DM Ashura feat. MC Jay & Veronica')->first();
-        $dMAshura = Artist::where('name', 'DM Ashura')->first();
-        $zircon = Artist::where('name', 'Zircon')->first();
-        $vospi = Artist::where('name', 'Vospi')->first();
-        $sanxion7 = Artist::where('name', 'Sanxion7')->first();
-        $throwdown = Artist::where('name', 'Throwdown')->first();
-        $crash = Artist::where('name', 'Crash')->first();
-        $mAXSeorryangSIDSOUND = Artist::where('name', 'MAX & Seorryang (SID-SOUND)')->first();
-        $vA = Artist::where('name', 'V.A.')->first();
-        $mAXRorychesellSIDSOUND = Artist::where('name', 'MAX & Rorychesell (SID-SOUND)')->first();
+        // $max = Artist::where('name', 'MAX')->first();
+        // $banyaProduction = Artist::where('name', 'Banya Production')->first();
+        // $doin = Artist::where('name', 'Doin')->first();
+        // $shk = Artist::where('name', 'SHK')->first();
+        // $dMAshuraFeatMCJayVeronica = Artist::where('name', 'DM Ashura feat. MC Jay & Veronica')->first();
+        // $dMAshura = Artist::where('name', 'DM Ashura')->first();
+        // $zircon = Artist::where('name', 'Zircon')->first();
+        // $vospi = Artist::where('name', 'Vospi')->first();
+        // $sanxion7 = Artist::where('name', 'Sanxion7')->first();
+        // $throwdown = Artist::where('name', 'Throwdown')->first();
+        // $crash = Artist::where('name', 'Crash')->first();
+        // $mAXSeorryangSIDSOUND = Artist::where('name', 'MAX & Seorryang (SID-SOUND)')->first();
+        // $vA = Artist::where('name', 'V.A.')->first();
+        // $mAXRorychesellSIDSOUND = Artist::where('name', 'MAX & Rorychesell (SID-SOUND)')->first();
+
+        $max = Artist::find(22);
+        $banyaProduction = Artist::find(16);
+        $doin = Artist::find(20);
+        $shk = Artist::find(21);
+        $dMAshuraFeatMCJayVeronica = Artist::find(23);
+        $dMAshura = Artist::find(24);
+        $zircon = Artist::find(25);
+        $vospi = Artist::find(26);
+        $sanxion7 = Artist::find(27);
+        $throwdown = Artist::find(28);
+        $crash = Artist::find(29);
+        $mAXSeorryangSIDSOUND = Artist::find(30);
+        $vA = Artist::find(31);
+        $mAXRorychesellSIDSOUND = Artist::find(32);
 
         // Types
         $shortType = Type::find(1);

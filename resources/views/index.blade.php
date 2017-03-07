@@ -111,11 +111,26 @@
         <script src="{{ URL::asset('angular/artists/config/artists.routes.js') }}"></script>
         <script src="{{ URL::asset('angular/artists/services/artists.service.js') }}"></script>
         <script src="{{ URL::asset('angular/artists/controllers/index.controller.js') }}"></script>
+        <!-- Game Versions -->
+        <script src="{{ URL::asset('angular/gameVersions/gameVersions.module.js') }}"></script>
+        <script src="{{ URL::asset('angular/gameVersions/config/gameVersions.routes.js') }}"></script>
+        <script src="{{ URL::asset('angular/gameVersions/services/gameVersions.service.js') }}"></script>
+        <script src="{{ URL::asset('angular/gameVersions/controllers/index.controller.js') }}"></script>
         <!-- Songs -->
         <script src="{{ URL::asset('angular/songs/songs.module.js') }}"></script>
         <script src="{{ URL::asset('angular/songs/config/songs.routes.js') }}"></script>
         <script src="{{ URL::asset('angular/songs/services/songs.service.js') }}"></script>
         <script src="{{ URL::asset('angular/songs/controllers/index.controller.js') }}"></script>
+        <!-- Stepmakers -->
+        <script src="{{ URL::asset('angular/stepmakers/stepmakers.module.js') }}"></script>
+        <script src="{{ URL::asset('angular/stepmakers/config/stepmakers.routes.js') }}"></script>
+        <script src="{{ URL::asset('angular/stepmakers/services/stepmakers.service.js') }}"></script>
+        <script src="{{ URL::asset('angular/stepmakers/controllers/index.controller.js') }}"></script>
+        <!-- Styles -->
+        <script src="{{ URL::asset('angular/styles/styles.module.js') }}"></script>
+        <script src="{{ URL::asset('angular/styles/config/styles.routes.js') }}"></script>
+        <script src="{{ URL::asset('angular/styles/services/styles.service.js') }}"></script>
+        <script src="{{ URL::asset('angular/styles/controllers/index.controller.js') }}"></script>
 
     </body>
 </html>
