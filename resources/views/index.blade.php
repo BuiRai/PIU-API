@@ -53,27 +53,28 @@
                                     <md-menu-item>
                                             <md-button ng-href="/#!/gameVersions">Game Versions</md-button>
                                     </md-menu-item>
+                                    <md-menu-item>
+                                            <md-button ng-href="/#!/types">Types</md-button>
+                                    </md-menu-item>
                                 </md-menu-content>
                             </md-menu>
                         </menu-bar>
                     </div>
                 <!-- </div> -->
                 <md-divider></md-divider>
-
-
             </md-toolbar>
         </div>
 
         <div>
-                    <header class="header">
-                        <h1>PIU - API</h1>
-                        <h2>The RESTful Pump It Up API</h2>
-                        <p>Version Alpha.</p>
-                    </header>
-                </div>
-                <md-content flex layout-padding>
-                    <div ng-view=""></div>
-                </md-content>
+            <header class="header">
+                <h1>PIU - API</h1>
+                <h2>The RESTful Pump It Up API</h2>
+                <p>Version Alpha.</p>
+            </header>
+        </div>
+        <md-content flex layout-padding>
+            <div ng-view=""></div>
+        </md-content>
 
         <footer class="green-dark footer">
             <div layout="row" layout-align="center center">
@@ -131,6 +132,11 @@
         <script src="{{ URL::asset('angular/styles/config/styles.routes.js') }}"></script>
         <script src="{{ URL::asset('angular/styles/services/styles.service.js') }}"></script>
         <script src="{{ URL::asset('angular/styles/controllers/index.controller.js') }}"></script>
+        <!-- Types -->
+        <script src="{{ URL::asset('angular/types/types.module.js') }}"></script>
+        <script src="{{ URL::asset('angular/types/config/types.routes.js') }}"></script>
+        <script src="{{ URL::asset('angular/types/services/types.service.js') }}"></script>
+        <script src="{{ URL::asset('angular/types/controllers/index.controller.js') }}"></script>
 
     </body>
 </html>

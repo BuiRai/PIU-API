@@ -23,7 +23,6 @@
 
     vm.getStyles = function() {
       StylesService.get({page: vm.query.page}, function(response){
-        console.log(response.data)
         vm.query.total = response.totalItems;
         vm.styles = response.data;
         vm.isLoading = false;
