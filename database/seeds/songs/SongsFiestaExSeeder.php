@@ -63,7 +63,7 @@ class SongsFiestaExSeeder extends Seeder
             'game_version_id'=>$fiestaEx->id,
             'type_id'=>$normalType->id
         ]);
-        $song->channels()->attach([6]);
+        // $song->channels()->attach([6]);
         $song = Song::create([
             'id'=>'1102',
             'title'=>'Interference',
@@ -72,7 +72,7 @@ class SongsFiestaExSeeder extends Seeder
             'game_version_id'=>$fiestaEx->id,
             'type_id'=>$normalType->id
         ]);
-        $song->channels()->attach([6]);
+        // $song->channels()->attach([6]);
         $song = Song::create([
             'id'=>'1103',
             'title'=>'Reality',
@@ -81,7 +81,7 @@ class SongsFiestaExSeeder extends Seeder
             'game_version_id'=>$fiestaEx->id,
             'type_id'=>$normalType->id
         ]);
-        $song->channels()->attach([6]);
+        // $song->channels()->attach([6]);
         $song = Song::create([
             'id'=>'1104',
             'title'=>'Take Out',
@@ -90,7 +90,7 @@ class SongsFiestaExSeeder extends Seeder
             'game_version_id'=>$fiestaEx->id,
             'type_id'=>$normalType->id
         ]);
-        $song->channels()->attach([6]);
+        // $song->channels()->attach([6]);
         $song = Song::create([
             'id'=>'1105',
             'title'=>'Butterfly',
@@ -99,7 +99,7 @@ class SongsFiestaExSeeder extends Seeder
             'game_version_id'=>$fiestaEx->id,
             'type_id'=>$normalType->id
         ]);
-        $song->channels()->attach([6]);
+        // $song->channels()->attach([6]);
         $song = Song::create([
             'id'=>'1106',
             'title'=>'Overblow',
