@@ -28,4 +28,5 @@ Route::group(['prefix' => 'v1.0', 'middleware' => 'cors'], function (){
     Route::resource('levels', 'LevelController', ['except' => ['create', 'edit']]);
     Route::resource('types', 'TypeController', ['except' => ['create', 'edit']]);
     Route::resource('channels', 'ChannelController', ['except' => ['create', 'edit']]);
+    Route::resource('chartTypes', 'ChartTypeController', ['except' => ['create', 'edit']]);
 });

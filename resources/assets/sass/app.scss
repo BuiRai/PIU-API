@@ -9,12 +9,18 @@
 // Bootstrap
 //@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+.center {
+	text-align: center;
+	margin:auto;
+}
+
 html {
 	font-family: GillSans, Calibri, Trebuchet, sans-serif;
 }
 
 .green {
   background: $color_primary !important;
+  color: $color_white !important;
 }
 
 .green-light {
@@ -42,36 +48,36 @@ html {
 }
 
 .json-preview {
-    width: 70%;
-    margin: auto;
-    padding: 15px 5px;
-    background: $color_gray_light;
-    border: 1px solid $color_gray;
-    font-size: 13px;
-    overflow:scroll;
-    height: 600px;
+	width: 70%;
+	margin: auto;
+	padding: 15px 5px;
+	background: $color_gray_light;
+	border: 1px solid $color_gray;
+	font-size: 13px;
+	overflow:scroll;
+	height: 600px;
 }
 
 .header {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin: auto;
-    text-align: center;
-    width: 100%;
-    margin: 0px;
-    background: $color_secondary;
-    color: $color_tertiary;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin: auto;
+	text-align: center;
+	width: 100%;
+	margin: 0px;
+	background: $color_secondary;
+	color: $color_tertiary;
 
-    & h1 {
-    	font-weight: 900;
-    	font-size: 45px;
-    	margin: 10px;
-    }
+	& h1 {
+		font-weight: 900;
+		font-size: 45px;
+		margin: 10px;
+	}
 
-    & h2 {
-    	font-size: 30px;
-    	margin: 10px;
-    }
+	& h2 {
+		font-size: 30px;
+		margin: 10px;
+	}
 }
 
 .badge {

@@ -1,18 +1,19 @@
-(function(){
+(function () {
 	'use strict';
 
 	function routeConfig($routeProvider) {
 		$routeProvider
-			.when('/', {
-				templateUrl: 'angular/main/views/index.view.html',
-				controller: 'MainCtrl',
+			.when('/levels', {
+				templateUrl: 'angular/levels/views/index.view.html',
+				controller: 'IndexLevelsCtrl',
 				controllerAs: 'vm'
 			});
 	}
 
 	angular
-		.module('main')
+		.module('levels')
 		.config(routeConfig);
 
 	routeConfig.$inject = ['$routeProvider'];
+
 }());

@@ -10,7 +10,7 @@
     function IndexSongsCtrl(SongsService) {
       var vm = this;
       vm.songs = [];
-      vm.isLOading = true;
+      vm.isLoading = true;
       vm.query = {
         limit: 10,
         page: 1,
@@ -23,6 +23,8 @@
 
       vm.getSongs = function() {
         SongsService.get({page: vm.query.page}, function(response){
+          console.log(response);
+          console.log(vm.query);
           vm.query.total = response.totalItems;
           vm.songs = response.data;
           vm.isLoading = false;

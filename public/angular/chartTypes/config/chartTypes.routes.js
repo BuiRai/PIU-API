@@ -1,18 +1,19 @@
-(function(){
+(function () {
 	'use strict';
 
 	function routeConfig($routeProvider) {
 		$routeProvider
-			.when('/', {
-				templateUrl: 'angular/main/views/index.view.html',
-				controller: 'MainCtrl',
+			.when('/chartTypes', {
+				templateUrl: 'angular/chartTypes/views/index.view.html',
+				controller: 'IndexChartTypesCtrl',
 				controllerAs: 'vm'
 			});
 	}
 
 	angular
-		.module('main')
+		.module('chartTypes')
 		.config(routeConfig);
 
 	routeConfig.$inject = ['$routeProvider'];
+
 }());

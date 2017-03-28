@@ -16,6 +16,7 @@ class StylesTableSeeder extends Seeder
     Style::create(['style'=>'double']);
     Style::create(['style'=>'single perfomance']);
     Style::create(['style'=>'double perfomance']);
+    Style::create(['style'=>'Co-Op']);
     Style::create(['style'=>'half double']);
   }
 }

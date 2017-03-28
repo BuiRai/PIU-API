@@ -21,11 +21,8 @@
     </div>
 </form>
 
-
 <div class="json-preview">
 	<md-subheader class="md-no-sticky"><h3>Result</h3></md-subheader>
 	<pre ng-if="vm.result == undefined"><p>No results yet</p></pre>
-  <pre ng-if="vm.result !== undefined">
-    {{ vm.result | json }}
-	</pre>
+  <pre ng-if="vm.result !== undefined">{{ vm.result | json }}</pre>
 </div>

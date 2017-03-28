@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SongsTableSeeder::class);
         $this->call(StepmakerTableSeeder::class);
         $this->call(StylesTableSeeder::class);
+        $this->call(ChartTypesTableSeeder::class);
         $this->call(LevelsTableSeeder::class);
     }
 }

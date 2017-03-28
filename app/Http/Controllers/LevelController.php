@@ -43,7 +43,7 @@ class LevelController extends Controller
   public function store(Request $request)
   {
     // Verify is all the fields are on the user's request
-    if (!$request->input('level') || !$request->input('song_id') || !$request->input('stepmaker_id') || !$request->input('style_id')){
+    if (!$request->input('value') || !$request->input('song_id') || !$request->input('stepmaker_id') || !$request->input('style_id') || !$request->input('chart_type_id')){
       return response([
         'errors' => array([
           'code' => 422,
@@ -77,10 +77,6 @@ class LevelController extends Controller
       ], 404);
     }
 
-    $level->song;
-    $level->stepmaker;
-    $level->style;
-
     return response()->json([
       'status'=>'ok',
       'data'=>$level
@@ -106,7 +102,7 @@ class LevelController extends Controller
       ], 404);
     }
 
-    $level_value = $request->input('level');
+    $value = $request->input('value');
     $song_id = $request->input('song_id');
     $stepmaker_id = $request->input('stepmaker_id');
     $style_id = $request->input('style_id');
@@ -114,8 +110,8 @@ class LevelController extends Controller
     // If is a PARCH request, then
     if ($request->method() === 'PATCH') {
       $band = false; // Band to control if the level has been modified
-      if ($level_value) {
-        $level->level = $level_value;
+      if ($value) {
+        $level->level = $value;
         $band = true;
       }
 
@@ -152,7 +148,7 @@ class LevelController extends Controller
     }
 
     // If the request is no PATCH, then is a PUT, so
-    if (!$level_value || !$song_id || !$stepmaker_id || !$style_id) {
+    if (!$value || !$song_id || !$stepmaker_id || !$style_id) {
       return response()->json([
         'errors' => array([
           'code' => 422,
@@ -161,7 +157,7 @@ class LevelController extends Controller
       ], 422);
     }
 
-    $level->level = $level_value;
+    $level->value = $value;
     $level->song_id = $song_id;
     $level->stepmaker_id = $stepmaker_id;
     $level->style_id = $style_id;

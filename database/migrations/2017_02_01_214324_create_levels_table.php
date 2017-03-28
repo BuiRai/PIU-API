@@ -15,8 +15,9 @@ class CreateLevelsTable extends Migration
     {
         Schema::create('levels', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('level');
-            $table->string('song_id')->default('test');
+            $table->integer('value');
+            $table->integer('players')->default(1);
+            $table->string('song_id');
             $table->integer('stepmaker_id')->unsigned();
             $table->integer('style_id')->unsigned();
 
@@ -35,7 +36,6 @@ class CreateLevelsTable extends Migration
      */
     public function down()
     {
-        
         Schema::dropIfExists('levels', function(Blueprint $table){
             $table->dropForeign(['song_id']);
             $table->dropColumn('song_id');

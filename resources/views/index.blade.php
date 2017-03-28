@@ -26,78 +26,94 @@
 
     </head>
     <body ng-app="piuapp">
-        <div layout="column">
-            <md-toolbar class="green">
-                <!-- <div layout="row"> -->
-                   <!--  <md-toolbar-filler layout layout-align="center center">
-                        <md-icon md-svg-icon="call:chat"></md-icon>
-                    </md-toolbar-filler> -->
-                    <div class="md-toolbar-tools">
-                        <h2 md-truncate flex>PIU</h2>
-                        <menu-bar>
-                            <md-button ng-href="/#!" md-menu-origin>Home</md-button>
-                            <md-button ng-href="/#!/songs" md-menu-origin>Songs</md-button>
-                            <md-button ng-href="/#!/levels" md-menu-origin>Levels</md-button>
-                            <md-menu>
-                                <md-button md-menu-origin ng-click="$mdOpenMenu()">Extras</md-button>
-                                <md-menu-content>
-                                    <md-menu-item>
-                                            <md-button ng-href="/#!/artists">Artists</md-button>
-                                    </md-menu-item>
-                                    <md-menu-item>
-                                            <md-button ng-href="/#!/stepmakers">Stepmakers</md-button>
-                                    </md-menu-item>
-                                    <md-menu-item>
-                                            <md-button ng-href="/#!/styles">Styles</md-button>
-                                    </md-menu-item>
-                                    <md-menu-item>
-                                            <md-button ng-href="/#!/gameVersions">Game Versions</md-button>
-                                    </md-menu-item>
-                                    <md-menu-item>
-                                            <md-button ng-href="/#!/types">Types</md-button>
-                                    </md-menu-item>
-                                    <md-menu-item>
-                                            <md-button ng-href="/#!/channels">Channels</md-button>
-                                    </md-menu-item>
-                                </md-menu-content>
-                            </md-menu>
-                        </menu-bar>
-                    </div>
-                <!-- </div> -->
-                <md-divider></md-divider>
-            </md-toolbar>
-        </div>
 
-        <div>
-            <header class="header">
-                <h1>PIU - API</h1>
-                <h2>The RESTful Pump It Up API</h2>
-                <p>Version Alpha.</p>
-            </header>
+        <div ng-controller="SidenavCtrl" layout="column" ng-cloak>
+            <section layout="row" flex>
+                <md-sidenav
+                    class="md-sidenav-left"
+                    md-component-id="left"
+                    md-is-locked-open="$mdMedia('gt-sm')"
+                    md-whiteframe="4">
+                    <md-toolbar class="md-theme-indigo green">
+                        <h1 class="md-toolbar-tools">Sidenav Left</h1>
+                    </md-toolbar>
+                    <md-content>
+                        <section>
+                            <md-list>
+                                <md-subheader class="md-no-sticky">Main resources</md-subheader>
+                                <md-list-item ng-href="/#!/songs">
+                                    <md-icon class="material-icon">music_note</md-icon>
+                                    <p>Songs</p>
+                                </md-list-item>
+                                <md-list-item ng-href="/#!/levels">
+                                    <md-icon class="material-icon">trending_up</md-icon>
+                                    <p>Levels</p>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-subheader class="md-no-sticky">Secondary resources</md-subheader>
+                                <md-list-item ng-href="/#!/artists">
+                                    <md-icon class="material-icon">account_circle</md-icon>
+                                    <p>Artists</p>
+                                </md-list-item>
+                                <md-list-item ng-href="/#!/stepmakers">
+                                    <md-icon class="material-icon">account_box</md-icon>
+                                    <p>Stepmakers</p>
+                                </md-list-item>
+                                <md-list-item ng-href="/#!/gameVersions">
+                                    <md-icon class="material-icon">zoom_out_map</md-icon>
+                                    <p>Game Versions</p>
+                                </md-list-item>
+                                <md-list-item ng-href="/#!/channels">
+                                    <md-icon class="material-icon">video_label</md-icon>
+                                    <p>Channels</p>
+                                </md-list-item>
+                                <md-divider></md-divider>
+                                <md-subheader class="md-no-sticky">Extras</md-subheader>
+                                <md-list-item ng-href="/#!/types">
+                                    <md-icon class="material-icon">apps</md-icon>
+                                    <p>Song Types</p>
+                                </md-list-item>
+                                <md-list-item ng-href="/#!/chartTypes">
+                                    <md-icon class="material-icon">apps</md-icon>
+                                    <p>Chart Types</p>
+                                </md-list-item>
+                                <md-list-item ng-href="/#!/styles">
+                                    <md-icon class="material-icon">apps</md-icon>
+                                    <p>Styles</p>
+                                </md-list-item>
+                            </md-list>
+                        </section>
+                    </md-content>
+                </md-sidenav>
+                <md-content flex>
+                    <md-toolbar class="green">
+                        <div class="md-toolbar-tools">
+                            <md-button ng-click="toggleLeft()" hide-gt-sm>
+                                <md-icon class="material-icon">menu</md-icon>
+                            </md-button>
+                            <h2 md-truncate flex>PIU</h2>
+                        </div>
+                    </md-toolbar>
+                    <header class="header">
+                        <h1>PIU - API</h1>
+                        <h2>The RESTful Pump It Up API</h2>
+                        <p>Version Alpha.</p>
+                    </header>
+                    <div layout-padding ng-view=""></div>
+              </md-content>
+            </section>
         </div>
-        <md-content flex layout-padding>
-            <div ng-view=""></div>
-        </md-content>
-
-        <footer class="green-dark footer">
-            <div layout="row" layout-align="center center">
-                <a href="https://github.com/BuiRai/PIU-API">
-                  <i class="fa fa-github" aria-hidden="true"></i>
-                  GitHub
-                </a>
-            </div>
-        </footer>
 
         <!-- Scripts -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular-cookies.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular-resource.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular-route.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular-sanitize.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.2/angular-touch.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular-animate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular-aria.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular-cookies.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular-messages.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular-resource.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular-route.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular-sanitize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular-touch.min.js"></script>
         <!-- Angular Material Library -->
         <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 
@@ -110,6 +126,8 @@
         <script src="{{ URL::asset('angular/main/main.module.js') }}"></script>
         <script src="{{ URL::asset('angular/main/config/main.config.js') }}"></script>
         <script src="{{ URL::asset('angular/main/controllers/main.controller.js') }}"></script>
+        <!-- Core -->
+        <script src="{{ URL::asset('angular/core/controllers/sidebar.controller.js') }}"></script>
         <!-- Artists -->
         <script src="{{ URL::asset('angular/artists/artists.module.js') }}"></script>
         <script src="{{ URL::asset('angular/artists/config/artists.routes.js') }}"></script>
@@ -120,16 +138,27 @@
         <script src="{{ URL::asset('angular/channels/config/channels.routes.js') }}"></script>
         <script src="{{ URL::asset('angular/channels/services/channels.service.js') }}"></script>
         <script src="{{ URL::asset('angular/channels/controllers/index.controller.js') }}"></script>
+        <!-- Chart Types -->
+        <script src="{{ URL::asset('angular/chartTypes/chartTypes.module.js') }}"></script>
+        <script src="{{ URL::asset('angular/chartTypes/config/chartTypes.routes.js') }}"></script>
+        <script src="{{ URL::asset('angular/chartTypes/services/chartTypes.service.js') }}"></script>
+        <script src="{{ URL::asset('angular/chartTypes/controllers/index.controller.js') }}"></script>
         <!-- Game Versions -->
         <script src="{{ URL::asset('angular/gameVersions/gameVersions.module.js') }}"></script>
         <script src="{{ URL::asset('angular/gameVersions/config/gameVersions.routes.js') }}"></script>
         <script src="{{ URL::asset('angular/gameVersions/services/gameVersions.service.js') }}"></script>
         <script src="{{ URL::asset('angular/gameVersions/controllers/index.controller.js') }}"></script>
+        <!-- Levels -->
+        <script src="{{ URL::asset('angular/levels/levels.module.js') }}"></script>
+        <script src="{{ URL::asset('angular/levels/config/levels.routes.js') }}"></script>
+        <script src="{{ URL::asset('angular/levels/services/levels.service.js') }}"></script>
+        <script src="{{ URL::asset('angular/levels/controllers/index.controller.js') }}"></script>
         <!-- Songs -->
         <script src="{{ URL::asset('angular/songs/songs.module.js') }}"></script>
         <script src="{{ URL::asset('angular/songs/config/songs.routes.js') }}"></script>
         <script src="{{ URL::asset('angular/songs/services/songs.service.js') }}"></script>
         <script src="{{ URL::asset('angular/songs/controllers/index.controller.js') }}"></script>
+        <script src="{{ URL::asset('angular/songs/controllers/show.controller.js') }}"></script>
         <!-- Stepmakers -->
         <script src="{{ URL::asset('angular/stepmakers/stepmakers.module.js') }}"></script>
         <script src="{{ URL::asset('angular/stepmakers/config/stepmakers.routes.js') }}"></script>
