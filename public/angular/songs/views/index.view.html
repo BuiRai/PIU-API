@@ -1,6 +1,6 @@
 <section ng-init="vm.init()">
 	<md-content layout="row" layout-align="center center">
-		<div flex="70">
+		<div flex="90">
 			<div layout="row" layout-sm="column" layout-align="space-around" ng-if="vm.isLoading">
 				<md-progress-circular md-mode="indeterminate"></md-progress-circular>
 			</div>
@@ -29,7 +29,11 @@
 						<tbody md-body>
 							<tr md-row ng-repeat="song in vm.songs | filter: search">
 								<td md-cell>{{song.id}}</td>
-								<td md-cell>{{song.title}}</td>
+								<td md-cell>
+									<a ng-href="/#!/songs/{{song.id}}">
+										{{song.title}}
+									</a>
+								</td>
 								<td md-cell>{{song.artist.name}}</td>
 								<td md-cell>
 									<span ng-class="{

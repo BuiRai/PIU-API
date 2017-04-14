@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Song;
 use App\Artist;
 use App\GameVersion;
-use App\Type;
+use App\TypeSong;
 use App\Channel;
 
 class Songs3rdSESeeder extends Seeder
@@ -24,10 +24,10 @@ class Songs3rdSESeeder extends Seeder
         $clon = Artist::where('name', 'CLON')->first();
 
         // Types
-        $shortType = Type::find(1);
-        $normalType = Type::find(2);
-        $remixType = Type::find(3);
-        $fullType = Type::find(4);
+        $shortType = TypeSong::find(1);
+        $normalType = TypeSong::find(2);
+        $remixType = TypeSong::find(3);
+        $fullType = TypeSong::find(4);
 
         // Game versions
         $thirdSE = GameVersion::where('name', 'The O.B.G. The Season Evolution Dance Floor')->first();
@@ -38,7 +38,7 @@ class Songs3rdSESeeder extends Seeder
             'bpm'=>'148',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$thirdSE->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -47,7 +47,7 @@ class Songs3rdSESeeder extends Seeder
             'bpm'=>'104',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$thirdSE->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -56,7 +56,7 @@ class Songs3rdSESeeder extends Seeder
             'bpm'=>'92',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$thirdSE->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -65,7 +65,7 @@ class Songs3rdSESeeder extends Seeder
             'bpm'=>'136',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$thirdSE->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -74,7 +74,7 @@ class Songs3rdSESeeder extends Seeder
             'bpm'=>'190',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$thirdSE->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
     }

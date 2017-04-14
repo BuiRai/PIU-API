@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Song;
 use App\Artist;
 use App\GameVersion;
-use App\Type;
+use App\TypeSong;
 use App\Channel;
 
 class SongsPrimeSeeder extends Seeder
@@ -84,10 +84,10 @@ class SongsPrimeSeeder extends Seeder
         $m2u = Artist::where('name', 'M2U')->first();
 
         // Types
-        $shortType = Type::find(1);
-        $normalType = Type::find(2);
-        $remixType = Type::find(3);
-        $fullType = Type::find(4);
+        $shortType = TypeSong::find(1);
+        $normalType = TypeSong::find(2);
+        $remixType = TypeSong::find(3);
+        $fullType = TypeSong::find(4);
 
         // Game versions
         $prime = GameVersion::where('name', 'Prime')->first();
@@ -98,7 +98,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'160',
             'artist_id'=>$m2u->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -107,7 +107,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'180',
             'artist_id'=>$m2u->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -116,7 +116,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'160',
             'artist_id'=>$warak->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -125,7 +125,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'128',
             'artist_id'=>$warak->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -134,7 +134,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'200',
             'artist_id'=>$nato->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -143,7 +143,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'167',
             'artist_id'=>$nato->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -152,7 +152,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'175',
             'artist_id'=>$memme->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -161,7 +161,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'175',
             'artist_id'=>$memme->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -170,7 +170,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'180',
             'artist_id'=>$memme->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -179,7 +179,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'160',
             'artist_id'=>$max->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -188,7 +188,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'128',
             'artist_id'=>$max->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -197,7 +197,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'158',
             'artist_id'=>$max->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -206,7 +206,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'136',
             'artist_id'=>$paulBazooka->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -215,7 +215,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'130',
             'artist_id'=>$paulBazooka->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -224,7 +224,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'150',
             'artist_id'=>$gentleStick->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -233,7 +233,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'155',
             'artist_id'=>$gentleStick->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -242,7 +242,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'120~180',
             'artist_id'=>$doin->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -251,7 +251,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'130',
             'artist_id'=>$doin->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -260,7 +260,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'145',
             'artist_id'=>$shk->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -269,7 +269,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'140',
             'artist_id'=>$shk->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -278,7 +278,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'172',
             'artist_id'=>$yahpp->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -287,7 +287,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'192',
             'artist_id'=>$yahpp->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -296,7 +296,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'170',
             'artist_id'=>$yahpp->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -305,7 +305,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'200',
             'artist_id'=>$slam->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -314,7 +314,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'170',
             'artist_id'=>$max->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -323,7 +323,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'160',
             'artist_id'=>$dMAshura->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -332,7 +332,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'192',
             'artist_id'=>$dMAshura->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -341,7 +341,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'145',
             'artist_id'=>$dMAshuraFeatSkizzoHanna->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -350,7 +350,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'175',
             'artist_id'=>$matduke->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -359,7 +359,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'113',
             'artist_id'=>$r300k->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -368,7 +368,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'170',
             'artist_id'=>$synthWulf->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -377,7 +377,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'170',
             'artist_id'=>$cashew->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -386,7 +386,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'140',
             'artist_id'=>$cashew->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -395,7 +395,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'137',
             'artist_id'=>$cYOStyleHenohenomoheji->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -404,7 +404,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'198',
             'artist_id'=>$cYOStyle->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -413,7 +413,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'136',
             'artist_id'=>$crayonPop->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -422,7 +422,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'119',
             'artist_id'=>$vixx->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -431,7 +431,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'135',
             'artist_id'=>$aoa->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -440,7 +440,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'136',
             'artist_id'=>$blockB->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -449,7 +449,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'131',
             'artist_id'=>$cnblue->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -458,7 +458,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'140',
             'artist_id'=>$kara->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -467,7 +467,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'126',
             'artist_id'=>$shinwha->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -476,7 +476,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'123',
             'artist_id'=>$dalShabet->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -485,7 +485,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'112',
             'artist_id'=>$supremeTeam->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -494,7 +494,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'128',
             'artist_id'=>$tAra->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -503,7 +503,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'162',
             'artist_id'=>$blockB->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -512,7 +512,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'106',
             'artist_id'=>$apink->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -521,7 +521,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'125',
             'artist_id'=>$outsider->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -530,7 +530,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'158',
             'artist_id'=>$cherryFilter->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -539,7 +539,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'170',
             'artist_id'=>$norazo->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -548,7 +548,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'135',
             'artist_id'=>$epikHigh->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -557,7 +557,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'160',
             'artist_id'=>$sidSound->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -566,7 +566,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'128',
             'artist_id'=>$sidSound->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -575,7 +575,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'149',
             'artist_id'=>$sidSound->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -584,7 +584,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'168',
             'artist_id'=>$cranky->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -593,7 +593,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'175',
             'artist_id'=>$threer2->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -602,7 +602,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'175',
             'artist_id'=>$threer2->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -611,7 +611,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'170',
             'artist_id'=>$synthWulf->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -620,7 +620,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'200',
             'artist_id'=>$dAan->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -629,7 +629,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'150~173',
             'artist_id'=>$vesuviaXREDSHiFT->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -638,7 +638,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'198',
             'artist_id'=>$vospi->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -647,7 +647,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'125',
             'artist_id'=>$daddyYankee->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -656,7 +656,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'135',
             'artist_id'=>$lyllooFeatEgas->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -665,7 +665,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'130',
             'artist_id'=>$wisinFtMichelTel->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -674,7 +674,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'130',
             'artist_id'=>$zircon->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -683,7 +683,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'175',
             'artist_id'=>$typeMARS->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -692,7 +692,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'155',
             'artist_id'=>$max->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -701,7 +701,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'158',
             'artist_id'=>$max->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -710,7 +710,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'125',
             'artist_id'=>$bakusuteSotokandaIcchome->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -719,7 +719,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'198',
             'artist_id'=>$bakusuteSotokandaIcchome->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -728,7 +728,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'175',
             'artist_id'=>$sakuzyo->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -737,7 +737,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'152',
             'artist_id'=>$void->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -746,7 +746,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'136',
             'artist_id'=>$etia->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -755,7 +755,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'175',
             'artist_id'=>$you->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -764,7 +764,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'138',
             'artist_id'=>$masayoshiMinoshima->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -773,7 +773,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'163',
             'artist_id'=>$tatshMusicCircle->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -782,7 +782,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'172',
             'artist_id'=>$tatshMusicCircle->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -791,7 +791,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'178',
             'artist_id'=>$tatshMusicCircle->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -800,7 +800,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'152',
             'artist_id'=>$tatshMusicCircle->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -809,7 +809,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'145',
             'artist_id'=>$lastNote->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -818,7 +818,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'230',
             'artist_id'=>$lastNote->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -827,7 +827,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'190',
             'artist_id'=>$lastNote->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -836,7 +836,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'225',
             'artist_id'=>$lastNote->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -845,7 +845,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'165',
             'artist_id'=>$tatsh->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -854,7 +854,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'204',
             'artist_id'=>$hitoshizukuPXYama->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -863,7 +863,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'188',
             'artist_id'=>$etia->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -872,7 +872,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'140',
             'artist_id'=>$void->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -881,7 +881,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'170',
             'artist_id'=>$void->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -890,7 +890,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'128',
             'artist_id'=>$miuraDaichiCover->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -899,7 +899,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'178',
             'artist_id'=>$aKB48Cover->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -908,7 +908,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'176',
             'artist_id'=>$mazo->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -917,7 +917,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'145',
             'artist_id'=>$max->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -926,7 +926,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'155',
             'artist_id'=>$shk->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([8]);
         $song = Song::create([
@@ -935,7 +935,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'170',
             'artist_id'=>$banyaWarak->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([8, 11]);
         $song = Song::create([
@@ -944,7 +944,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'175',
             'artist_id'=>$maxMemme->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([8, 11]);
         $song = Song::create([
@@ -953,7 +953,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'220',
             'artist_id'=>$maxSlamNato->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([8, 11]);
         $song = Song::create([
@@ -962,7 +962,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'136',
             'artist_id'=>$crayonPop->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$fullType->id
+            'type_song_id'=>$fullType->id
         ]);
         $song->channels()->attach([8, 10]);
         $song = Song::create([
@@ -971,7 +971,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'128',
             'artist_id'=>$tAra->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$fullType->id
+            'type_song_id'=>$fullType->id
         ]);
         $song->channels()->attach([8, 10]);
         $song = Song::create([
@@ -980,7 +980,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'106',
             'artist_id'=>$apink->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$fullType->id
+            'type_song_id'=>$fullType->id
         ]);
         $song->channels()->attach([8, 10]);
         $song = Song::create([
@@ -989,7 +989,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'145',
             'artist_id'=>$dMAshuraFeatSkizzoHanna->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$fullType->id
+            'type_song_id'=>$fullType->id
         ]);
         $song->channels()->attach([8, 10]);
         $song = Song::create([
@@ -998,7 +998,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'140',
             'artist_id'=>$kara->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$fullType->id
+            'type_song_id'=>$fullType->id
         ]);
         $song->channels()->attach([8, 10]);
         $song = Song::create([
@@ -1007,7 +1007,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'178',
             'artist_id'=>$tatshMusicCircle->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$fullType->id
+            'type_song_id'=>$fullType->id
         ]);
         $song->channels()->attach([8, 10]);
         $song = Song::create([
@@ -1016,7 +1016,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'138',
             'artist_id'=>$masayoshiMinoshima->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$fullType->id
+            'type_song_id'=>$fullType->id
         ]);
         $song->channels()->attach([8, 10]);
         $song = Song::create([
@@ -1025,7 +1025,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'163',
             'artist_id'=>$tatshMusicCircle->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$fullType->id
+            'type_song_id'=>$fullType->id
         ]);
         $song->channels()->attach([8, 10]);
         $song = Song::create([
@@ -1034,7 +1034,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'145',
             'artist_id'=>$shk->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$shortType->id
+            'type_song_id'=>$shortType->id
         ]);
         $song->channels()->attach([8, 12]);
         $song = Song::create([
@@ -1043,7 +1043,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'200',
             'artist_id'=>$nato->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$shortType->id
+            'type_song_id'=>$shortType->id
         ]);
         $song->channels()->attach([8, 12]);
         $song = Song::create([
@@ -1052,7 +1052,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'167',
             'artist_id'=>$nato->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$shortType->id
+            'type_song_id'=>$shortType->id
         ]);
         $song->channels()->attach([8, 12]);
         $song = Song::create([
@@ -1061,7 +1061,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'175',
             'artist_id'=>$sidSound->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$shortType->id
+            'type_song_id'=>$shortType->id
         ]);
         $song->channels()->attach([8, 12]);
         $song = Song::create([
@@ -1070,7 +1070,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'175',
             'artist_id'=>$matduke->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$shortType->id
+            'type_song_id'=>$shortType->id
         ]);
         $song->channels()->attach([8, 12]);
         $song = Song::create([
@@ -1079,7 +1079,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'145',
             'artist_id'=>$dMAshuraFeatSkizzoHanna->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$shortType->id
+            'type_song_id'=>$shortType->id
         ]);
         $song->channels()->attach([8, 12]);
         $song = Song::create([
@@ -1088,7 +1088,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'128',
             'artist_id'=>$max->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$shortType->id
+            'type_song_id'=>$shortType->id
         ]);
         $song->channels()->attach([8, 12]);
         $song = Song::create([
@@ -1097,7 +1097,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'175',
             'artist_id'=>$typeMARS->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$shortType->id
+            'type_song_id'=>$shortType->id
         ]);
         $song->channels()->attach([8, 12]);
         $song = Song::create([
@@ -1106,7 +1106,7 @@ class SongsPrimeSeeder extends Seeder
             'bpm'=>'178',
             'artist_id'=>$aKB48Cover->id,
             'game_version_id'=>$prime->id,
-            'type_id'=>$shortType->id
+            'type_song_id'=>$shortType->id
         ]);
         $song->channels()->attach([8, 12]);
     }

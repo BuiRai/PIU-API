@@ -13,7 +13,7 @@ class Song extends Model
     protected $table='songs';
 
     // Fillable attributes
-    protected $fillable = array('id', 'title','bpm','bannerImage' , 'artist_id', 'game_version_id');
+    protected $fillable = array('id', 'title','bpm','bannerImage' , 'artist_id', 'game_version_id', 'type_song_id');
 
     protected $visible = ['id', 'title', 'bpm', 'bannerImage', 'artist', 'levels', 'gameVersion', 'type', 'channels', 'type_id', 'artist_id', 'game_version_id'];
 
@@ -40,7 +40,7 @@ class Song extends Model
 
     public function type()
     {
-        return $this->belongsTo('App\Type', 'type_id');
+        return $this->belongsTo('App\TypeSong', 'type_song_id');
     }
 
     public function levels()

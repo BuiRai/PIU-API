@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Song;
 use App\Artist;
 use App\GameVersion;
-use App\Type;
+use App\TypeSong;
 use App\Channel;
 
 class SongsRebirthSeeder extends Seeder
@@ -20,10 +20,10 @@ class SongsRebirthSeeder extends Seeder
         $banya = Artist::where('name', 'BanYa')->first();
 
         // Types
-        $shortType = Type::find(1);
-        $normalType = Type::find(2);
-        $remixType = Type::find(3);
-        $fullType = Type::find(4);
+        $shortType = TypeSong::find(1);
+        $normalType = TypeSong::find(2);
+        $remixType = TypeSong::find(3);
+        $fullType = TypeSong::find(4);
 
         // Gme version
         $rebirth = GameVersion::where('name', 'The Rebirth')->first();
@@ -34,7 +34,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'145',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -43,7 +43,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'150',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -52,7 +52,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'96',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -61,7 +61,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'140',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -70,7 +70,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'136',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -79,7 +79,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'124',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -88,7 +88,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'My Way',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -97,7 +97,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'92',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -106,7 +106,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'124',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -115,7 +115,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'110.72',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -124,7 +124,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'168',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -133,7 +133,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'210',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -142,7 +142,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'140',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -151,7 +151,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'148',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -160,7 +160,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'118',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -169,7 +169,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'111',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -178,7 +178,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'120',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -187,7 +187,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'122',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -196,7 +196,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'184',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -205,7 +205,7 @@ class SongsRebirthSeeder extends Seeder
             'bpm'=>'180',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Song;
 use App\Artist;
 use App\GameVersion;
-use App\Type;
+use App\TypeSong;
 use App\Channel;
 
 class SongsNXASeeder extends Seeder
@@ -32,10 +32,10 @@ class SongsNXASeeder extends Seeder
         $yahpp = Artist::where('name', 'Yahpp')->first();
 
         // Types
-        $shortType = Type::find(1);
-        $normalType = Type::find(2);
-        $remixType = Type::find(3);
-        $fullType = Type::find(4);
+        $shortType = TypeSong::find(1);
+        $normalType = TypeSong::find(2);
+        $remixType = TypeSong::find(3);
+        $fullType = TypeSong::find(4);
 
         // Game Version
         $nxa = GameVersion::where('name', 'NXA / NX Absolute')->first();
@@ -46,7 +46,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'170',
             'artist_id'=>$yahpp->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -55,7 +55,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'185',
             'artist_id'=>$yahpp->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -64,7 +64,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'128',
             'artist_id'=>$yahpp->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -73,7 +73,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'98',
             'artist_id'=>$bigMetra->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -82,7 +82,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'160',
             'artist_id'=>$pxndx->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -91,7 +91,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'162',
             'artist_id'=>$ninaPilots->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -100,7 +100,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'134',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -109,7 +109,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'180',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -118,7 +118,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'156',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -127,7 +127,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'136',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -136,7 +136,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'104',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -145,7 +145,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'???',
             'artist_id'=>$vassline->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -154,7 +154,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'170',
             'artist_id'=>$yahpp->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -163,7 +163,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'134',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([4, 11]);
         $song = Song::create([
@@ -172,7 +172,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'180',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([4, 11]);
         $song = Song::create([
@@ -181,7 +181,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'156',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([4, 11]);
         $song = Song::create([
@@ -190,7 +190,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'160',
             'artist_id'=>$ninaPilotsPXNDX->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([4, 11]);
         $song = Song::create([
@@ -199,7 +199,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'105',
             'artist_id'=>$bigMetra->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([4, 11]);
         $song = Song::create([
@@ -208,7 +208,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'150~162',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([4, 11]);
         $song = Song::create([
@@ -217,7 +217,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'120',
             'artist_id'=>$msgoon->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([4, 11]);
         $song = Song::create([
@@ -226,7 +226,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'168',
             'artist_id'=>$msgoon->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([4, 11]);
         $song = Song::create([
@@ -235,7 +235,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'98',
             'artist_id'=>$bigMetra->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$fullType->id
+            'type_song_id'=>$fullType->id
         ]);
         $song->channels()->attach([4, 10]);
         $song = Song::create([
@@ -244,7 +244,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'160',
             'artist_id'=>$pxndx->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$fullType->id
+            'type_song_id'=>$fullType->id
         ]);
         $song->channels()->attach([4, 10]);
         $song = Song::create([
@@ -253,7 +253,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'162',
             'artist_id'=>$ninaPilots->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$fullType->id
+            'type_song_id'=>$fullType->id
         ]);
         $song->channels()->attach([4, 10]);
         $song = Song::create([
@@ -262,7 +262,7 @@ class SongsNXASeeder extends Seeder
             'bpm'=>'105',
             'artist_id'=>$bigMetra->id,
             'game_version_id'=>$nxa->id,
-            'type_id'=>$fullType->id
+            'type_song_id'=>$fullType->id
         ]);
         $song->channels()->attach([4, 10]);
     }

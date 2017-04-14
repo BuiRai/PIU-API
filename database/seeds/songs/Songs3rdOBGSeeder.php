@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Song;
 use App\Artist;
 use App\GameVersion;
-use App\Type;
+use App\TypeSong;
 use App\Channel;
 
 class Songs3rdOBGSeeder extends Seeder
@@ -25,10 +25,10 @@ class Songs3rdOBGSeeder extends Seeder
         $clon = Artist::where('name', 'CLON')->first();
 
         // Types
-        $shortType = Type::find(1);
-        $normalType = Type::find(2);
-        $remixType = Type::find(3);
-        $fullType = Type::find(4);
+        $shortType = TypeSong::find(1);
+        $normalType = TypeSong::find(2);
+        $remixType = TypeSong::find(3);
+        $fullType = TypeSong::find(4);
 
         // Game versions
         $thirdOBG = GameVersion::where('name', 'The O.B.G. The 3rd Dance Floor')->first();
@@ -39,7 +39,7 @@ class Songs3rdOBGSeeder extends Seeder
             'bpm'=>'130',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$thirdOBG->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -48,7 +48,7 @@ class Songs3rdOBGSeeder extends Seeder
             'bpm'=>'135.5',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$thirdOBG->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -57,7 +57,7 @@ class Songs3rdOBGSeeder extends Seeder
             'bpm'=>'150',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$thirdOBG->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -66,7 +66,7 @@ class Songs3rdOBGSeeder extends Seeder
             'bpm'=>'120',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$thirdOBG->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -75,7 +75,7 @@ class Songs3rdOBGSeeder extends Seeder
             'bpm'=>'105',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$thirdOBG->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -84,7 +84,7 @@ class Songs3rdOBGSeeder extends Seeder
             'bpm'=>'99',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$thirdOBG->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -93,7 +93,7 @@ class Songs3rdOBGSeeder extends Seeder
             'bpm'=>'80',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$thirdOBG->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -102,7 +102,7 @@ class Songs3rdOBGSeeder extends Seeder
             'bpm'=>'229.6',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$thirdOBG->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -111,7 +111,7 @@ class Songs3rdOBGSeeder extends Seeder
             'bpm'=>'135',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$thirdOBG->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -120,7 +120,7 @@ class Songs3rdOBGSeeder extends Seeder
             'bpm'=>'110',
             'artist_id'=>$tashannie->id,
             'game_version_id'=>$thirdOBG->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
     }

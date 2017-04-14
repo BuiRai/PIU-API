@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Type extends Model
+class TypeSong extends Model
 {
     // Name of the table on MySql
-    protected $table = 'types';
+    protected $table = 'types_songs';
 
     // Fillable attributes
     protected $fillable = array('name');

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTypeIdAndChannelIdToSongsTable extends Migration
+class AddTypeSongIdToSongsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,9 @@ class AddTypeIdAndChannelIdToSongsTable extends Migration
     public function up()
     {
         Schema::table('songs', function (Blueprint $table) {
-            $table->integer('type_id')->unsigned();
-            $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
+            $table->integer('type_song_id')->unsigned();
+
+            $table->foreign('type_song_id')->references('id')->on('types_songs')->onDelete('cascade');
         });
     }
 
@@ -27,7 +28,8 @@ class AddTypeIdAndChannelIdToSongsTable extends Migration
     public function down()
     {
         Schema::table('songs', function (Blueprint $table) {
-            $table->dropForeign(['type_id']);
+            $table->dropForeign(['type_song_id']);
+            $table->dropColumn('type_song_id');
         });
     }
 }

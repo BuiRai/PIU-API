@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Song;
 use App\Artist;
 use App\GameVersion;
-use App\Type;
+use App\TypeSong;
 use App\Channel;
 
 class SongsPerfectCollectionSeeder extends Seeder
@@ -24,10 +24,10 @@ class SongsPerfectCollectionSeeder extends Seeder
         $clon = Artist::where('name', 'CLON')->first();
 
         // Types
-        $shortType = Type::find(1);
-        $normalType = Type::find(2);
-        $remixType = Type::find(3);
-        $fullType = Type::find(4);
+        $shortType = TypeSong::find(1);
+        $normalType = TypeSong::find(2);
+        $remixType = TypeSong::find(3);
+        $fullType = TypeSong::find(4);
 
         // Game versions
         $perfectCollection = GameVersion::where('name', 'Perfect Collection')->first();
@@ -38,7 +38,7 @@ class SongsPerfectCollectionSeeder extends Seeder
             'bpm'=>'106',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$perfectCollection->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -47,7 +47,7 @@ class SongsPerfectCollectionSeeder extends Seeder
             'bpm'=>'N',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$perfectCollection->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -56,7 +56,7 @@ class SongsPerfectCollectionSeeder extends Seeder
             'bpm'=>'142',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$perfectCollection->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -65,7 +65,7 @@ class SongsPerfectCollectionSeeder extends Seeder
             'bpm'=>'138',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$perfectCollection->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -74,7 +74,7 @@ class SongsPerfectCollectionSeeder extends Seeder
             'bpm'=>'162',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$perfectCollection->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -83,7 +83,7 @@ class SongsPerfectCollectionSeeder extends Seeder
             'bpm'=>'131.99',
             'artist_id'=>$novasonic->id,
             'game_version_id'=>$perfectCollection->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
     }

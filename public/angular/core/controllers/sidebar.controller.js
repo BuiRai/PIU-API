@@ -5,9 +5,9 @@
     .module('main')
     .controller('SidenavCtrl', SidenavCtrl);
 
-  SidenavCtrl.$inject = ['$scope', '$timeout', '$mdSidenav', '$log'];
+  SidenavCtrl.$inject = ['$scope', '$timeout', '$mdSidenav', '$log', '$mdDialog'];
 
-  function SidenavCtrl($scope, $timeout, $mdSidenav, $log) {
+  function SidenavCtrl($scope, $timeout, $mdSidenav, $log, $mdDialog) {
 
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.toggleRight = buildToggler('right');
@@ -58,5 +58,24 @@
           });
       };
     }
+
+    $scope.showSignInDialog = function(event) {
+      $mdDialog.show({
+        controller: 'AuthCtrl',
+        controllerAs: 'vm',
+        templateUrl: 'angular/auth/views/auth.view.html',
+        parent: angular.element(document.body),
+        targetEvent: event,
+        clickOutsideToClose: true,
+        locals: {
+
+        }
+      })
+      .then(function(){
+
+      }, function(){
+
+      });
+    };
   };
 }())

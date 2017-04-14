@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Song;
 use App\Artist;
 use App\GameVersion;
-use App\Type;
+use App\TypeSong;
 use App\Channel;
 
 class SongsNX2Seeder extends Seeder
@@ -32,10 +32,10 @@ class SongsNX2Seeder extends Seeder
         $yahpp = Artist::where('name', 'Yahpp')->first();
 
         // Types
-        $shortType = Type::find(1);
-        $normalType = Type::find(2);
-        $remixType = Type::find(3);
-        $fullType = Type::find(4);
+        $shortType = TypeSong::find(1);
+        $normalType = TypeSong::find(2);
+        $remixType = TypeSong::find(3);
+        $fullType = TypeSong::find(4);
 
         // Game Version
         $nx2 = GameVersion::where('name', 'NX 2 / Next Xenesis')->first();
@@ -46,7 +46,7 @@ class SongsNX2Seeder extends Seeder
             'bpm'=>'136',
             'artist_id'=>$yahpp->id,
             'game_version_id'=>$nx2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -55,7 +55,7 @@ class SongsNX2Seeder extends Seeder
             'bpm'=>'124',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nx2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -64,7 +64,7 @@ class SongsNX2Seeder extends Seeder
             'bpm'=>'160',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nx2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -73,7 +73,7 @@ class SongsNX2Seeder extends Seeder
             'bpm'=>'130',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nx2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -82,7 +82,7 @@ class SongsNX2Seeder extends Seeder
             'bpm'=>'180',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nx2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -91,7 +91,7 @@ class SongsNX2Seeder extends Seeder
             'bpm'=>'162',
             'artist_id'=>$yahpp->id,
             'game_version_id'=>$nx2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -100,7 +100,7 @@ class SongsNX2Seeder extends Seeder
             'bpm'=>'153',
             'artist_id'=>$yahpp->id,
             'game_version_id'=>$nx2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -109,7 +109,7 @@ class SongsNX2Seeder extends Seeder
             'bpm'=>'120',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nx2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -118,7 +118,7 @@ class SongsNX2Seeder extends Seeder
             'bpm'=>'154',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nx2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -127,7 +127,7 @@ class SongsNX2Seeder extends Seeder
             'bpm'=>'120',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nx2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -136,7 +136,7 @@ class SongsNX2Seeder extends Seeder
             'bpm'=>'140',
             'artist_id'=>$oscillatorX->id,
             'game_version_id'=>$nx2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -145,7 +145,7 @@ class SongsNX2Seeder extends Seeder
             'bpm'=>'130',
             'artist_id'=>$elpis->id,
             'game_version_id'=>$nx2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -154,7 +154,7 @@ class SongsNX2Seeder extends Seeder
             'bpm'=>'151.5',
             'artist_id'=>$ziGZaG->id,
             'game_version_id'=>$nx2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([4]);
         $song = Song::create([
@@ -163,7 +163,7 @@ class SongsNX2Seeder extends Seeder
             'bpm'=>'120',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nx2->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([4, 11]);
         $song = Song::create([
@@ -172,7 +172,7 @@ class SongsNX2Seeder extends Seeder
             'bpm'=>'170',
             'artist_id'=>$banyaProduction->id,
             'game_version_id'=>$nx2->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([4, 11]);
         $song = Song::create([
@@ -181,7 +181,7 @@ class SongsNX2Seeder extends Seeder
             'bpm'=>'200',
             'artist_id'=>$banya->id,
             'game_version_id'=>$nx2->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([4, 11]);
     }

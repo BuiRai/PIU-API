@@ -2,42 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Type;
+use App\TypeSong;
 use Illuminate\Http\Request;
 use Response;
 use Illuminate\Support\Facades\Cache;
 
-class TypeController extends Controller
+class TypeSongController extends Controller
 {
     /**
-   * Display all the types
+   * Display all the typesSongs
    * @return \Illuminate\Http\JsonResponse
    */
     public function index(Request $request)
     {
         $page = $request->has('page') ? $request->query('page') : 1;
-        $totalTypes = Type::all()->count();
+        $totalTypesSongs = TypeSong::all()->count();
 
         if ($request->has('page')) {
-            $types = Cache::remember('CacheType_page_' . $page, 20/60, function(){
-              return Type::paginate(10)->items();
+            $typesSongs = Cache::remember('CacheTypesSong_page_' . $page, 20/60, function(){
+              return TypeSong::paginate(10)->items();
             });
         } else {
-            $types = Cache::remember('CacheType_full', 20/60, function(){
-              return Type::all();
+            $typesSongs = Cache::remember('CacheTypesSong_full', 20/60, function(){
+              return TypeSong::all();
             });
         }
 
 
         return response()->json([
           'status'=>'ok',
-          'data'=>$types,
-          'totalItems'=>$totalTypes
+          'data'=>$typesSongs,
+          'totalItems'=>$totalTypesSongs
         ], 200);
     }
 
     /**
-    * Store a type on the database
+    * Store a typesSong on the database
     * @param Request $request Request $request the request sent by the client
     * @return Response The response
     */
@@ -53,53 +53,53 @@ class TypeController extends Controller
             ], 422);
         }
 
-        $newType = Type::create($request->all());
-        $response = Response::make(json_encode(['data' => $newType]), 201)
-            ->header('Location', env('BASE_PATH') . 'api/' . env('API_VER') . 'types/'.$newType->id)
-            ->header('Content-Type', 'application/json');
+        $newTypesSong = TypeSong::create($request->all());
+        $response = Response::make(json_encode(['data' => $newTypesSong]), 201)
+            ->header('Location', env('BASE_PATH') . 'api/' . env('API_VER') . 'typesSongs/'.$newTypesSong->id)
+            ->header('Content-TypesSong', 'application/json');
     return $response;
   }
 
     /**
-    * Show a type by the id from the database
-    * @param $id the id of the type
+    * Show a typesSong by the id from the database
+    * @param $id the id of the typesSong
     * @return mixed the response
     */
     public function show($id)
     {
-        $type = Type::with('songs')->find($id);
+        $typesSong = TypeSong::with('songs')->find($id);
 
-        if (!$type) {
+        if (!$typesSong) {
             return response()->json([
                 'errors'=>array(
                     'code' => 404,
-                    'message' => $this->notTypeFound($id)
+                    'message' => $this->notTypesSongFound($id)
                 )
             ], 404);
         }
 
-        $type->songs;
+        $typesSong->songs;
         return response()->json([
             'status'=>'ok',
-            'data'=>$type
+            'data'=>$typesSong
         ], 202);
     }
 
     /**
-    * Update an existing type from the database
+    * Update an existing typesSong from the database
     * @param Request $request the request with the fields to update
-    * @param $id id of the type to update
+    * @param $id id of the typesSong to update
     * @return mixed the response
     */
     public function update(Request $request, $id)
     {
-        $type = Type::find($id);
+        $typesSong = TypeSong::find($id);
 
-        if (!$type) {
+        if (!$typesSong) {
             return response()->json([
                 'errors' => array([
                     'code'=>404,
-                    'message' => $this->notTypeFound($id)
+                    'message' => $this->notTypesSongFound($id)
                 ])
             ], 404);
         }
@@ -108,24 +108,24 @@ class TypeController extends Controller
 
         // If is a PATCH request, then
         if ($request->method() === 'PATCH') {
-            $band = false; // Band to control if the type has been modified
+            $band = false; // Band to control if the typesSong has been modified
             if ($name) {
-                $type->name = $name;
+                $typesSong->name = $name;
                 $band = true;
             }
 
-            // If some data was modified, we update the type, and then, save the type object
+            // If some data was modified, we update the typesSong, and then, save the typesSong object
             if ($band) {
-                $type->save();
+                $typesSong->save();
                 return response()->json([
                     'status' => 'ok',
-                    'data' => $type
+                    'data' => $typesSong
                 ], 200);
             } else { // Else, send a message to client
                 return response()->json([
                     'errors' => array([
                         'code' => 304,
-                        'message' => 'No type data has been changed'
+                        'message' => 'No typesSong data has been changed'
                     ])
                 ], 304);
             }
@@ -141,31 +141,31 @@ class TypeController extends Controller
             ], 422);
         }
 
-        $type->name = $name;
-        $type->save();
+        $typesSong->name = $name;
+        $typesSong->save();
         return response()->json([
             'status' => 'ok',
-            'data' => $type
+            'data' => $typesSong
         ], 202);
     }
 
     public function destroy($id)
     {
-        $type = Type::find($id);
+        $typesSong = TypeSong::find($id);
 
-        if (!$type) {
+        if (!$typesSong) {
             return response()->json([
             'errors' => array([
                     'code'=>404,
-                    'message' => $this->notTypeFound($id)
+                    'message' => $this->notTypesSongFound($id)
                 ])
             ], 404);
         }
 
-        $type->delete();
+        $typesSong->delete();
         return response()->json([
             'code' => 204,
-            'message' => 'The type has been removed successfully'
+            'message' => 'The typesSong has been removed successfully'
         ], 204);
     }
 
@@ -175,8 +175,8 @@ class TypeController extends Controller
     * ################################################################################################################
     */
 
-    private function notTypeFound($id)
+    private function notTypesSongFound($id)
     {
-        return 'The Type with the id: \''.$id.'\' has not be found';
+        return 'The TypesSong with the id: \''.$id.'\' has not be found';
     }
 }

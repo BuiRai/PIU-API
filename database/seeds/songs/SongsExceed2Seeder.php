@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Song;
 use App\Artist;
 use App\GameVersion;
-use App\Type;
+use App\TypeSong;
 use App\Channel;
 
 class SongsExceed2Seeder extends Seeder
@@ -23,10 +23,10 @@ class SongsExceed2Seeder extends Seeder
         $banya = Artist::where('name', 'BanYa')->first();
 
         // Types
-        $shortType = Type::find(1);
-        $normalType = Type::find(2);
-        $remixType = Type::find(3);
-        $fullType = Type::find(4);
+        $shortType = TypeSong::find(1);
+        $normalType = TypeSong::find(2);
+        $remixType = TypeSong::find(3);
+        $fullType = TypeSong::find(4);
 
         // Gme version
         $exceed2 = GameVersion::where('name', 'Exceed 2')->first();
@@ -37,7 +37,7 @@ class SongsExceed2Seeder extends Seeder
             'bpm'=>'115',
             'artist_id'=>$som2->id,
             'game_version_id'=>$exceed2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([3]);
         $song = Song::create([
@@ -46,7 +46,7 @@ class SongsExceed2Seeder extends Seeder
             'bpm'=>'164',
             'artist_id'=>$wax->id,
             'game_version_id'=>$exceed2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([3]);
         $song = Song::create([
@@ -55,7 +55,7 @@ class SongsExceed2Seeder extends Seeder
             'bpm'=>'140',
             'artist_id'=>$banya->id,
             'game_version_id'=>$exceed2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([3]);
         $song = Song::create([
@@ -64,7 +64,7 @@ class SongsExceed2Seeder extends Seeder
             'bpm'=>'145',
             'artist_id'=>$banya->id,
             'game_version_id'=>$exceed2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([3]);
         $song = Song::create([
@@ -73,7 +73,7 @@ class SongsExceed2Seeder extends Seeder
             'bpm'=>'136',
             'artist_id'=>$banya->id,
             'game_version_id'=>$exceed2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([3]);
         $song = Song::create([
@@ -82,7 +82,7 @@ class SongsExceed2Seeder extends Seeder
             'bpm'=>'160',
             'artist_id'=>$banya->id,
             'game_version_id'=>$exceed2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([3]);
         $song = Song::create([
@@ -91,7 +91,7 @@ class SongsExceed2Seeder extends Seeder
             'bpm'=>'184~202',
             'artist_id'=>$banya->id,
             'game_version_id'=>$exceed2->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([3, 11]);
         $song = Song::create([
@@ -100,7 +100,7 @@ class SongsExceed2Seeder extends Seeder
             'bpm'=>'162.2',
             'artist_id'=>$banya->id,
             'game_version_id'=>$exceed2->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([3, 11]);
         $song = Song::create([
@@ -109,7 +109,7 @@ class SongsExceed2Seeder extends Seeder
             'bpm'=>'99',
             'artist_id'=>$banya->id,
             'game_version_id'=>$exceed2->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([3, 11]);
         $song = Song::create([
@@ -118,7 +118,7 @@ class SongsExceed2Seeder extends Seeder
             'bpm'=>'160',
             'artist_id'=>$banya->id,
             'game_version_id'=>$exceed2->id,
-            'type_id'=>$fullType->id
+            'type_song_id'=>$fullType->id
         ]);
         $song->channels()->attach([3, 10]);
     }

@@ -1,0 +1,35 @@
+<md-dialog>
+	<form name="vm.loginForm">
+		<md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Sign In</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="vm.cancel()">
+        	<md-icon class="material-icon">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+    	<div class="md-dialog-content">
+    		<md-input-container>
+		      <label>Email</label>
+		      <input type="email" name="email" ng-model="vm.user.email" required />
+		      <div ng-messages="vm.loginForm.email.$error" role="alert" multiple>
+		      	<div ng-message="required" class="my-message">Please enter your email.</div>
+		      </div>
+		    </md-input-container>
+		    <br>
+		    <md-input-container>
+		      <label>Password</label>
+		      <input type="password" name="password" ng-model="vm.user.password" required />
+		      <div ng-messages="vm.loginForm.password.$error" role="alert" multiple>
+		      	<div ng-message="required" class="my-message">Please enter your password.</div>
+		      </div>
+		    </md-input-container>
+		    <div layout="row" layout-align="center center" style="padding-top:20px">
+		      <md-button ng-disabled="!vm.loginForm.$valid" ng-click="vm.submit()" class="md-raised md-primary" style="width: 100%;">Login</md-button>
+		    </div>
+    	</div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

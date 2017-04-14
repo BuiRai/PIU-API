@@ -92,6 +92,31 @@
                                 <md-icon class="material-icon">menu</md-icon>
                             </md-button>
                             <h2 md-truncate flex>PIU</h2>
+                            <md-menu>
+                                <md-button class="md-icon-button" aria-label="Favorite" ng-click="$mdOpenMenu()">
+                                    <md-icon class="material-icon">more_vert</md-icon>
+                                </md-button>
+                                <md-menu-content>
+                                    <md-menu-item>
+                                        <md-button class="md-raised">
+                                            <i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
+                                            <span style="margin-left:1.5em;margin-right: 1.5em;">Sign Up</span>
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button class="md-raised" ng-click="showSignInDialog($event)">
+                                            <i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
+                                            <span style="margin-left:1.5em;margin-right: 1.5em;">Sign In</span>
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button class="md-raised">
+                                            <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
+                                            <span style="margin-left:1.5em;margin-right: 1.5em;">Sign Out</span>
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
                         </div>
                     </md-toolbar>
                     <header class="header">
@@ -120,6 +145,8 @@
         <!-- Bower components -->
         <!-- <script src="{{ URL::asset('vendor/angular-material-data-table/dist/md-data-table.min.js') }}"></script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.10/md-data-table.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/satellizer/0.15.5/satellizer.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/satellizer/0.15.5/satellizer.min.js"></script>
 
         <!-- Main -->
         <script src="{{ URL::asset('angular/app.js') }}"></script>
@@ -133,6 +160,10 @@
         <script src="{{ URL::asset('angular/artists/config/artists.routes.js') }}"></script>
         <script src="{{ URL::asset('angular/artists/services/artists.service.js') }}"></script>
         <script src="{{ URL::asset('angular/artists/controllers/index.controller.js') }}"></script>
+        <!-- Auth -->
+        <script src="{{ URL::asset('angular/auth/auth.module.js') }}"></script>
+        <script src="{{ URL::asset('angular/auth/config/auth.routes.js') }}"></script>
+        <script src="{{ URL::asset('angular/auth/controllers/auth.controller.js') }}"></script>
         <!-- Channels -->
         <script src="{{ URL::asset('angular/channels/channels.module.js') }}"></script>
         <script src="{{ URL::asset('angular/channels/config/channels.routes.js') }}"></script>

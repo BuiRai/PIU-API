@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Song;
 use App\Artist;
 use App\GameVersion;
-use App\Type;
+use App\TypeSong;
 use App\Channel;
 
 class Songs2ndDanceFloorSeeder extends Seeder
@@ -24,10 +24,10 @@ class Songs2ndDanceFloorSeeder extends Seeder
         $clon = Artist::where('name', 'CLON')->first();
 
         // Types
-        $shortType = Type::find(1);
-        $normalType = Type::find(2);
-        $remixType = Type::find(3);
-        $fullType = Type::find(4);
+        $shortType = TypeSong::find(1);
+        $normalType = TypeSong::find(2);
+        $remixType = TypeSong::find(3);
+        $fullType = TypeSong::find(4);
 
         // Game versions
         $secondDF = GameVersion::where('name', 'The 2nd Dance Floor')->first();
@@ -39,7 +39,7 @@ class Songs2ndDanceFloorSeeder extends Seeder
             'bpm'=>'130.5',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$secondDF->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -48,7 +48,7 @@ class Songs2ndDanceFloorSeeder extends Seeder
             'bpm'=>'195',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$secondDF->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -57,7 +57,7 @@ class Songs2ndDanceFloorSeeder extends Seeder
             'bpm'=>'158',
             'artist_id'=>$sechsKies->id,
             'game_version_id'=>$secondDF->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -66,7 +66,7 @@ class Songs2ndDanceFloorSeeder extends Seeder
             'bpm'=>'106',
             'artist_id'=>$sechsKies->id,
             'game_version_id'=>$secondDF->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([1]);
         $song = Song::create([
@@ -75,7 +75,7 @@ class Songs2ndDanceFloorSeeder extends Seeder
             'bpm'=>'150',
             'artist_id'=>$banYa->id,
             'game_version_id'=>$secondDF->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([1, 11]);
 

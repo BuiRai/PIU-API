@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Song;
 use App\Artist;
 use App\GameVersion;
-use App\Type;
+use App\TypeSong;
 use App\Channel;
 
 class SongsFiesta2Seeder extends Seeder
@@ -48,10 +48,10 @@ class SongsFiesta2Seeder extends Seeder
         $nightmare = Artist::where('name', 'Nightmare')->first();
 
         // Types
-        $shortType = Type::find(1);
-        $normalType = Type::find(2);
-        $remixType = Type::find(3);
-        $fullType = Type::find(4);
+        $shortType = TypeSong::find(1);
+        $normalType = TypeSong::find(2);
+        $remixType = TypeSong::find(3);
+        $fullType = TypeSong::find(4);
 
         // Game versions
         $fiesta2 = GameVersion::where('name', 'Fiesta 2')->first();
@@ -62,7 +62,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'200',
             'artist_id'=>$doin->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([7]);
         $song = Song::create([
@@ -71,7 +71,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'145',
             'artist_id'=>$shk->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([7]);
         $song = Song::create([
@@ -80,7 +80,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'183',
             'artist_id'=>$max->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([7]);
         $song = Song::create([
@@ -89,7 +89,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'180',
             'artist_id'=>$max->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([7]);
         $song = Song::create([
@@ -98,7 +98,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'128',
             'artist_id'=>$max->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([7]);
         $song = Song::create([
@@ -107,7 +107,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'40~190',
             'artist_id'=>$yakWon->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([7]);
         $song = Song::create([
@@ -116,7 +116,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'147',
             'artist_id'=>$ayuTingTing->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([7]);
         $song = Song::create([
@@ -125,7 +125,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'118',
             'artist_id'=>$saykoji->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([7]);
         $song = Song::create([
@@ -134,7 +134,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'141',
             'artist_id'=>$benChalatit->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([7]);
         $song = Song::create([
@@ -143,7 +143,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'122',
             'artist_id'=>$sugarEyes->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([7]);
         $song = Song::create([
@@ -152,7 +152,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'140',
             'artist_id'=>$shk->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([7]);
         $song = Song::create([
@@ -161,7 +161,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'246',
             'artist_id'=>$yakWon->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([7]);
         $song = Song::create([
@@ -170,7 +170,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'155',
             'artist_id'=>$shk->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([7]);
         $song = Song::create([
@@ -179,7 +179,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'120~140',
             'artist_id'=>$squar->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([7]);
         $song = Song::create([
@@ -188,7 +188,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'175',
             'artist_id'=>$synthWulfMAX->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([7, 11]);
         $song = Song::create([
@@ -197,7 +197,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'200',
             'artist_id'=>$doinMAX->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$remixType->id
+            'type_song_id'=>$remixType->id
         ]);
         $song->channels()->attach([7, 11]);
         $song = Song::create([
@@ -206,7 +206,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'160',
             'artist_id'=>$jJMiMidiDFtHannaStockzell->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$shortType->id
+            'type_song_id'=>$shortType->id
         ]);
         $song->channels()->attach([7, 12]);
         $song = Song::create([
@@ -215,7 +215,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'160',
             'artist_id'=>$synthWulf->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$shortType->id
+            'type_song_id'=>$shortType->id
         ]);
         $song->channels()->attach([7, 12]);
         $song = Song::create([
@@ -224,7 +224,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'220',
             'artist_id'=>$banYaDMAshura->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$shortType->id
+            'type_song_id'=>$shortType->id
         ]);
         $song->channels()->attach([7, 12]);
         $song = Song::create([
@@ -233,7 +233,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'200',
             'artist_id'=>$doin->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$shortType->id
+            'type_song_id'=>$shortType->id
         ]);
         $song->channels()->attach([7, 12]);
         $song = Song::create([
@@ -242,7 +242,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'145',
             'artist_id'=>$shk->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$shortType->id
+            'type_song_id'=>$shortType->id
         ]);
         $song->channels()->attach([7, 12]);
         $song = Song::create([
@@ -251,7 +251,7 @@ class SongsFiesta2Seeder extends Seeder
             'bpm'=>'128',
             'artist_id'=>$max->id,
             'game_version_id'=>$fiesta2->id,
-            'type_id'=>$shortType->id
+            'type_song_id'=>$shortType->id
         ]);
         $song->channels()->attach([7, 12]);
 

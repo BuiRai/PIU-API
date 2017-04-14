@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Song;
 use App\Artist;
 use App\GameVersion;
-use App\Type;
+use App\TypeSong;
 use App\Channel;
 
 class SongsPremiere3Seeder extends Seeder
@@ -20,10 +20,10 @@ class SongsPremiere3Seeder extends Seeder
         $banya = Artist::where('name', 'BanYa')->first();
 
         // Types
-        $shortType = Type::find(1);
-        $normalType = Type::find(2);
-        $remixType = Type::find(3);
-        $fullType = Type::find(4);
+        $shortType = TypeSong::find(1);
+        $normalType = TypeSong::find(2);
+        $remixType = TypeSong::find(3);
+        $fullType = TypeSong::find(4);
 
         // Gme version
         $premiere3 = GameVersion::where('name', 'The Premiere 3')->first();
@@ -34,7 +34,7 @@ class SongsPremiere3Seeder extends Seeder
             'bpm'=>'160',
             'artist_id'=>$banya->id,
             'game_version_id'=>$premiere3->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -43,7 +43,7 @@ class SongsPremiere3Seeder extends Seeder
             'bpm'=>'150',
             'artist_id'=>$banya->id,
             'game_version_id'=>$premiere3->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -52,7 +52,7 @@ class SongsPremiere3Seeder extends Seeder
             'bpm'=>'140',
             'artist_id'=>$banya->id,
             'game_version_id'=>$premiere3->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -61,7 +61,7 @@ class SongsPremiere3Seeder extends Seeder
             'bpm'=>'140~202',
             'artist_id'=>$banya->id,
             'game_version_id'=>$premiere3->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
         $song = Song::create([
@@ -70,7 +70,7 @@ class SongsPremiere3Seeder extends Seeder
             'bpm'=>'100~107',
             'artist_id'=>$banya->id,
             'game_version_id'=>$premiere3->id,
-            'type_id'=>$normalType->id
+            'type_song_id'=>$normalType->id
         ]);
         $song->channels()->attach([2]);
     }
