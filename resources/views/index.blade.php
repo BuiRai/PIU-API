@@ -110,7 +110,7 @@
                                         </md-button>
                                     </md-menu-item>
                                     <md-menu-item>
-                                        <md-button class="md-raised">
+                                        <md-button class="md-raised" ng-click="logout()">
                                             <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
                                             <span style="margin-left:1.5em;margin-right: 1.5em;">Sign Out</span>
                                         </md-button>
@@ -162,6 +162,7 @@
         <script src="{{ URL::asset('angular/artists/controllers/index.controller.js') }}"></script>
         <!-- Auth -->
         <script src="{{ URL::asset('angular/auth/auth.module.js') }}"></script>
+        <script src="{{ URL::asset('angular/auth/config/auth.config.js') }}"></script>
         <script src="{{ URL::asset('angular/auth/config/auth.routes.js') }}"></script>
         <script src="{{ URL::asset('angular/auth/controllers/auth.controller.js') }}"></script>
         <!-- Channels -->

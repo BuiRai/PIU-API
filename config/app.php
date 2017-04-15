@@ -168,7 +168,7 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        // Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         // Zizaco\Entrust\EntrustServiceProvider::class,
         // Irazasyed\JwtAuthGuard\JwtAuthGuardServiceProvider::class,
 

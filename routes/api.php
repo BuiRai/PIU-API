@@ -13,9 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::group(['prefix'=>'v1.0'], function(){
+    Route::post('authenticate', 'Auth\LoginController@login');
+});
+
+Route::group(['prefix'=>'restricted', 'middleware' => 'auth:api'], function(){
+    Route::get('logout', 'Auth\LoginController@logout');
+    Route::get('/test', function () {
+        return 'authenticated';
+    });
+});
 
 // Route::group(['prefix' => 'v1.0', 'middleware' => ['cors']], function (){
-Route::group(['prefix' => 'v1.0', 'middleware' => 'cors'], function (){
+Route::group(['prefix' => 'v1.0', 'middleware' => ['cors', 'auth:api']], function (){
     Route::resource('songs', 'SongController', ['except' => ['create', 'edit']]);
     Route::post('songs/image/{id}', 'SongController@image');
     Route::resource('artists', 'ArtistController', ['except' => ['create', 'edit']]);

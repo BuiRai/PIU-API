@@ -5,9 +5,17 @@
     .module('main')
     .controller('SidenavCtrl', SidenavCtrl);
 
-  SidenavCtrl.$inject = ['$scope', '$timeout', '$mdSidenav', '$log', '$mdDialog'];
+  SidenavCtrl.$inject = [
+    '$scope',
+    '$timeout',
+    '$mdSidenav',
+    '$log',
+    '$location',
+    '$auth',
+    '$mdDialog'
+  ];
 
-  function SidenavCtrl($scope, $timeout, $mdSidenav, $log, $mdDialog) {
+  function SidenavCtrl($scope, $timeout, $mdSidenav, $log, $location, $auth, $mdDialog) {
 
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.toggleRight = buildToggler('right');
@@ -67,15 +75,19 @@
         parent: angular.element(document.body),
         targetEvent: event,
         clickOutsideToClose: true,
-        locals: {
-
-        }
+        locals: {}
       })
       .then(function(){
 
       }, function(){
 
       });
+    };
+
+    $scope.logout = function() {
+      console.info('Logout!!');
+      $auth.logout();
+      $location.path('/');
     };
   };
 }())
