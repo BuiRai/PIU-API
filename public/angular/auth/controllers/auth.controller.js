@@ -26,6 +26,7 @@
       if (vm.loginForm.$valid) {
         $auth.login(vm.user)
           .then(function(response){
+            console.log(response);
             vm.cancel();
             $location.path('/songs');
           })

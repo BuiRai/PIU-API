@@ -25,7 +25,8 @@ Route::group(['prefix'=>'restricted', 'middleware' => 'auth:api'], function(){
 });
 
 // Route::group(['prefix' => 'v1.0', 'middleware' => ['cors']], function (){
-Route::group(['prefix' => 'v1.0', 'middleware' => ['cors']], function (){
+Route::group(['prefix' => 'v1.0', 'middleware' => ['cors']], function ()
+{
     Route::resource('songs', 'SongController', ['except' => ['create', 'edit']]);
     Route::post('songs/image/{id}', 'SongController@image');
     Route::resource('artists', 'ArtistController', ['except' => ['create', 'edit']]);
@@ -39,11 +40,18 @@ Route::group(['prefix' => 'v1.0', 'middleware' => ['cors']], function (){
     Route::resource('chartTypes', 'ChartTypeController', ['except' => ['create', 'edit']]);
 
     // // Route to create a new role
-    Route::post('role', 'SecurityController@createRole');
+    Route::post('roles', 'SecurityController@createRole');
     // // Route to create a new permission
-    Route::post('permission', 'SecurityController@createPermission');
+    Route::post('permissions', 'SecurityController@createPermission');
     // // Route to assign role to user
     Route::post('assign-role', 'SecurityController@assignRole');
     // // Route to attache permission to a role
     Route::post('attach-permission', 'SecurityController@attachPermission');
+});
+
+// Route::group(['prefix' => 'v1.0', 'middleware' => ['ability:Administrator,query-users']], function()
+Route::group(['prefix' => 'v1.0'], function()
+{
+    Route::get('users', 'SecurityController@index');
+
 });

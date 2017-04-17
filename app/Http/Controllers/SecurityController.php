@@ -9,20 +9,28 @@ use App\User;
 
 class SecurityController extends Controller
 {
+    public function index(Request $request)
+    {
+        $users = User::all();
+        return response()->json($users);
+    }
+
     public function createRole(Request $request)
     {
-        $role = new Role();
-        $role->name = $request->input('name');
-        $role->save();
+        Role::create($request->all());
+        // $role = new Role();
+        // $role->name = $request->input('name');
+        // $role->save();
 
         return response()->json("created");
     }
 
     public function createPermission(Request $request)
     {
-        $viewUsers = new Permission();
-        $viewUsers->name = $request->input('name');
-        $viewUsers->save();
+        Permission::create($request->all());
+        // $viewUsers = new Permission();
+        // $viewUsers->name = $request->input('name');
+        // $viewUsers->save();
 
         return response()->json("created");
     }
@@ -41,7 +49,7 @@ class SecurityController extends Controller
     public function attachPermission(Request $request)
     {
         $role = Role::where('name', '=', $request->input('role'))->first();
-        $permission = Permission::where('name', '=', $request->input('name'))->first();
+        $permission = Permission::where('name', '=', $request->input('permission'))->first();
         $role->attachPermission($permission);
 
         return response()->json("created");

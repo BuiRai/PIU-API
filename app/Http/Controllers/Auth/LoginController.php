@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 class LoginController extends Controller
@@ -64,7 +65,6 @@ class LoginController extends Controller
 
     protected function sendLoginResponse(Request $request, string $token)
     {
-        error_log('sendLoginResponse method.');
         $this->clearLoginAttempts($request);
 
         return $this->authenticated($request, $this->guard()->user(), $token);
@@ -72,15 +72,14 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user, string $token)
     {
-        error_log('authenticated method.');
         return response()->json([
             'token' => $token,
+            'user' => $user,
         ]);
     }
 
     protected function sendFailedLoginResponse(Request $request)
     {
-        error_log('sendFailedLoginResponse method.');
         return response()->json([
             'message' => Lang::get('auth.failed'),
         ], 401);
