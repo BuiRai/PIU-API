@@ -9,10 +9,16 @@ use Illuminate\Support\Facades\Cache;
 
 class LevelController extends Controller
 {
-/**
- * Display all the levels
- * @return \Illuminate\Http\JsonResponse
- */
+
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except(['index','show']);
+    }
+
+  /**
+   * Display all the levels
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function index(Request $request)
   {
     $page = $request->has('page') ? $request->query('page') : 1;

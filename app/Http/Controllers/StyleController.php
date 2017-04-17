@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Cache;
 
 class StyleController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except(['index','show']);
+    }
+
   /**
    * Display all the styles
    * @return \Illuminate\Http\JsonResponse

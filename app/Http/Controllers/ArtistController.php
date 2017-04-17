@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Cache;
 
 class ArtistController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except(['index','show']);
+    }
+
   /**
    * Display all the artists
    * @return \Illuminate\Http\JsonResponse
