@@ -11,5 +11,5 @@ class Permission extends EntrustPermission
     protected $table = 'permissions';
 
     // Fillable attributes
-    protected $fillable = array('name', 'display_name', 'description');
+    protected $fillable = array('name', 'guard_name', 'description');
 }

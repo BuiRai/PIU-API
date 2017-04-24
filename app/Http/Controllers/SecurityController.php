@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Role;
-use App\Permission;
+// use App\Role;
+// use App\Permission;
 use App\User;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class SecurityController extends Controller
 {
@@ -41,7 +43,9 @@ class SecurityController extends Controller
 
         $role = Role::where('name', '=', $request->input('role'))->first();
         //$user->attachRole($request->input('role'));
-        $user->roles()->attach($role->id);
+        // $user->roles()->attach($role->id);
+
+        $user->assignRole($role->name);
 
         return response()->json("created");
     }
