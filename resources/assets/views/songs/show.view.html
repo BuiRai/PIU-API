@@ -1,0 +1,100 @@
+<section ng-init="vm.init()">
+	<md-subheader class="center">
+		<h2>Song: {{vm.song.title}}</h2>
+	</md-subheader>
+	<section layout="row" layout-padding>
+		<div flex>
+			<md-subheader class="center"><h3>Song info</h3></md-subheader>
+			<md-card>
+				<md-card-header>
+					<md-card-header-text>
+						<md-title class="md-title center">Song title: {{vm.song.title}}</md-title>
+					</md-card-header-text>
+				</md-card-header>
+				<img ng-src="{{vm.song.bannerImage}}" class="md-card-image" alt="{{vm.song.title}}">
+				<md-card-title>
+					<md-card-title-text class="md-headline">General information</md-card-title-text>
+				</md-card-title>
+				<md-card-content>
+					<div layout="row">
+						<span flex class="center">Artist: {{vm.song.artist.name}}</span>
+						<span flex class="center">Song type: {{vm.song.type.name}}</span>
+					</div>
+					<p>
+						Launch in {{vm.song.game_version.name}} version. This versions was lanuched on {{vm.song.game_version.launch_year|date}}. This song can be found on the next channels:
+						<md-list>
+							<md-subheader class="md-no-sticky">Channels:</md-subheader>
+							<md-list-item ng-repeat="channel in vm.song.channels" ng-click="null">{{channel.name}}</md-list-item>
+						</md-list>
+						This are the levels of the song by the moment:
+						<md-list>
+							<md-subheader class="md-no-sticky">Levels:</md-subheader>
+							<md-list-item ng-repeat="level in vm.song.levels" ng-click="null">{{level.value}}</md-list-item>
+						</md-list>
+					</p>
+				</md-card-content>
+			</md-card>
+		</div>
+		<div flex>
+			<md-subheader class="center"><h3>Add new level</h3></md-subheader>
+			<md-content layout-padding>
+				<md-progress-linear ng-if="vm.loadingPercentage < 100" md-mode="determinate" value="{{vm.loadingPercentage}}"></md-progress-linear>
+				<form name="vm.levelForm" ng-if="vm.loadingPercentage >= 100" ng-submit="vm.addLevelToSong()">
+					<md-input-container class="md-block">
+						<label>level</label>
+						<input type="number" min="1" max="30" required md-no-asterisk name="value" ng-model="vm.level.value">
+						<div ng-messages="vm.levelForm.value.$error">
+							<div ng-message="required">This is required</div>
+							<div ng-message="min">Level lees than 1 is not allowed</div>
+							<div ng-message="max">Level more than 30 is not allowed</div>
+						</div>
+					</md-input-container>
+					<md-input-container class="md-block">
+						<label>Stepmaker</label>
+						<md-select ng-model="vm.level.stepmaker_id" required md-no-asterisk name="stepmaker_id">
+							<md-option ng-repeat="stepmaker in vm.stepmakers" value="{{stepmaker.id}}">
+								{{ stepmaker.username }}
+							</md-option>
+						</md-select>
+						<div ng-messages="songForm.stepmaker_id.$error">
+							<div ng-message="required">This is required.</div>
+						</div>
+					</md-input-container>
+					<md-input-container class="md-block">
+						<label>Style</label>
+						<md-select ng-model="vm.level.style_id" required md-no-asterisk name="style_id">
+							<md-option ng-repeat="style in vm.styles" value="{{style.id}}">
+								{{ style.style }}
+							</md-option>
+						</md-select>
+						<div ng-messages="songForm.style_id.$error">
+							<div ng-message="required">This is required.</div>
+						</div>
+					</md-input-container>
+					<md-input-container class="md-block">
+						<label>Chart Type</label>
+						<md-select ng-model="vm.level.chart_type_id" required md-no-asterisk name="chart_type_id">
+							<md-option ng-repeat="chartType in vm.chartTypes" value="{{chartType.id}}">
+								{{ chartType.name }}
+							</md-option>
+						</md-select>
+						<div ng-messages="songForm.chart_type_id.$error">
+							<div ng-message="required">This is required.</div>
+						</div>
+					</md-input-container>
+					<md-input-container class="md-block">
+						<label>Players</label>
+						<input type="number" min="1" max="10" name="players" ng-model="vm.level.players" ng-disabled="vm.level.style_id !== '5'">
+						<div ng-messages="vm.levelForm.players.$error">
+							<div ng-message="min">Level lees than 1 is not allowed</div>
+							<div ng-message="max">Level more than 10 is not allowed</div>
+						</div>
+					</md-input-container>
+					<div>
+		        <md-button type="submit" class="green">Submit</md-button>
+		      </div>
+				</form>
+			</md-content>
+		</div>
+	</section>
+</section>

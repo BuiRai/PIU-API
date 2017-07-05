@@ -1,0 +1,28 @@
+<div md-whiteframe="-1" layout layout-align="center center" class="green-light">
+	<p layout-padding>
+		Try to GET a Resource from the Pump It Up API. The result is displaying below the search input, on the result section.
+	</p>
+</div>
+
+<form layout layout-align="center" layout-padding>
+    <div layout="row" flex>
+        <md-input-container flex class="md-icon-float md-block md-title">
+            <label>search...</label>
+            <!-- below is the material icons -->
+            <md-icon class="material-icons">search</md-icon>
+            <input type="text" ng-model="vm.apiSource">
+        </md-input-container>
+        <div>
+            <md-button type="submit" class="md-raised" ng-click="vm.search()">
+            <!-- below is the material icons -->
+                submit
+            </md-button>
+        </div>
+    </div>
+</form>
+
+<div class="json-preview">
+	<md-subheader class="md-no-sticky"><h3>Result</h3></md-subheader>
+	<pre ng-if="vm.result == undefined"><p>No results yet</p></pre>
+  <pre ng-if="vm.result !== undefined">{{ vm.result | json }}</pre>
+</div>

@@ -148,63 +148,7 @@
         <script src="https://cdn.jsdelivr.net/satellizer/0.15.5/satellizer.min.js"></script>
         <script src="https://cdn.jsdelivr.net/satellizer/0.15.5/satellizer.min.js"></script>
 
-        <!-- Main -->
-        <script src="{{ URL::asset('angular/app.js') }}"></script>
-        <script src="{{ URL::asset('angular/main/main.module.js') }}"></script>
-        <script src="{{ URL::asset('angular/main/config/main.config.js') }}"></script>
-        <script src="{{ URL::asset('angular/main/controllers/main.controller.js') }}"></script>
-        <!-- Core -->
-        <script src="{{ URL::asset('angular/core/controllers/sidebar.controller.js') }}"></script>
-        <!-- Artists -->
-        <script src="{{ URL::asset('angular/artists/artists.module.js') }}"></script>
-        <script src="{{ URL::asset('angular/artists/config/artists.routes.js') }}"></script>
-        <script src="{{ URL::asset('angular/artists/services/artists.service.js') }}"></script>
-        <script src="{{ URL::asset('angular/artists/controllers/index.controller.js') }}"></script>
-        <!-- Auth -->
-        <script src="{{ URL::asset('angular/auth/auth.module.js') }}"></script>
-        <script src="{{ URL::asset('angular/auth/config/auth.routes.js') }}"></script>
-        <script src="{{ URL::asset('angular/auth/controllers/auth.controller.js') }}"></script>
-        <!-- Channels -->
-        <script src="{{ URL::asset('angular/channels/channels.module.js') }}"></script>
-        <script src="{{ URL::asset('angular/channels/config/channels.routes.js') }}"></script>
-        <script src="{{ URL::asset('angular/channels/services/channels.service.js') }}"></script>
-        <script src="{{ URL::asset('angular/channels/controllers/index.controller.js') }}"></script>
-        <!-- Chart Types -->
-        <script src="{{ URL::asset('angular/chartTypes/chartTypes.module.js') }}"></script>
-        <script src="{{ URL::asset('angular/chartTypes/config/chartTypes.routes.js') }}"></script>
-        <script src="{{ URL::asset('angular/chartTypes/services/chartTypes.service.js') }}"></script>
-        <script src="{{ URL::asset('angular/chartTypes/controllers/index.controller.js') }}"></script>
-        <!-- Game Versions -->
-        <script src="{{ URL::asset('angular/gameVersions/gameVersions.module.js') }}"></script>
-        <script src="{{ URL::asset('angular/gameVersions/config/gameVersions.routes.js') }}"></script>
-        <script src="{{ URL::asset('angular/gameVersions/services/gameVersions.service.js') }}"></script>
-        <script src="{{ URL::asset('angular/gameVersions/controllers/index.controller.js') }}"></script>
-        <!-- Levels -->
-        <script src="{{ URL::asset('angular/levels/levels.module.js') }}"></script>
-        <script src="{{ URL::asset('angular/levels/config/levels.routes.js') }}"></script>
-        <script src="{{ URL::asset('angular/levels/services/levels.service.js') }}"></script>
-        <script src="{{ URL::asset('angular/levels/controllers/index.controller.js') }}"></script>
-        <!-- Songs -->
-        <script src="{{ URL::asset('angular/songs/songs.module.js') }}"></script>
-        <script src="{{ URL::asset('angular/songs/config/songs.routes.js') }}"></script>
-        <script src="{{ URL::asset('angular/songs/services/songs.service.js') }}"></script>
-        <script src="{{ URL::asset('angular/songs/controllers/index.controller.js') }}"></script>
-        <script src="{{ URL::asset('angular/songs/controllers/show.controller.js') }}"></script>
-        <!-- Stepmakers -->
-        <script src="{{ URL::asset('angular/stepmakers/stepmakers.module.js') }}"></script>
-        <script src="{{ URL::asset('angular/stepmakers/config/stepmakers.routes.js') }}"></script>
-        <script src="{{ URL::asset('angular/stepmakers/services/stepmakers.service.js') }}"></script>
-        <script src="{{ URL::asset('angular/stepmakers/controllers/index.controller.js') }}"></script>
-        <!-- Styles -->
-        <script src="{{ URL::asset('angular/styles/styles.module.js') }}"></script>
-        <script src="{{ URL::asset('angular/styles/config/styles.routes.js') }}"></script>
-        <script src="{{ URL::asset('angular/styles/services/styles.service.js') }}"></script>
-        <script src="{{ URL::asset('angular/styles/controllers/index.controller.js') }}"></script>
-        <!-- Types -->
-        <script src="{{ URL::asset('angular/types/types.module.js') }}"></script>
-        <script src="{{ URL::asset('angular/types/config/types.routes.js') }}"></script>
-        <script src="{{ URL::asset('angular/types/services/types.service.js') }}"></script>
-        <script src="{{ URL::asset('angular/types/controllers/index.controller.js') }}"></script>
+        <script src="{{ URL::asset('dist/js/app.min.js') }}"></script>
 
     </body>
 </html>
