@@ -29,7 +29,7 @@
 						This are the levels of the song by the moment:
 						<md-list>
 							<md-subheader class="md-no-sticky">Levels:</md-subheader>
-							<md-list-item ng-repeat="level in vm.song.levels" ng-click="null">{{level.value}}</md-list-item>
+							<md-list-item ng-repeat="level in vm.song.levels" ng-click="null">{{level.style.style}} {{level.value}}</md-list-item>
 						</md-list>
 					</p>
 				</md-card-content>
