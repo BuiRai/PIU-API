@@ -140,9 +140,9 @@
 		.module('artists')
 		.controller('IndexArtistsCtrl', IndexArtistsCtrl);
 
-	IndexArtistsCtrl.$inject = ['ArtistsService'];
+	IndexArtistsCtrl.$inject = ['Artist'];
 
-	function IndexArtistsCtrl(ArtistsService) {
+	function IndexArtistsCtrl(Artist) {
 		var vm = this;
 		vm.artists = [];
     vm.isLoading = true;
@@ -157,7 +157,7 @@
 		};
 
     vm.getArtists = function() {
-      ArtistsService.get({page: vm.query.page}, function(response){
+      Artist.get({page: vm.query.page}, function(response){
         vm.query.total = response.totalItems;
         vm.artists = response.data;
         vm.isLoading = false;
@@ -174,11 +174,11 @@
 
 	angular
 		.module('artists')
-		.factory('ArtistsService', ArtistsService);
+		.factory('Artist', Artist);
 
-	ArtistsService.$inject = ['$resource'];
+	Artist.$inject = ['$resource'];
 
-	function ArtistsService($resource){
+	function Artist($resource){
 		var Artist = $resource('/api/v1.0/artists/:artist_id', {
 			'artist_id': '@id'
 		}, {
@@ -281,9 +281,9 @@
 		.module('channels')
 		.controller('IndexChannelsCtrl', IndexChannelsCtrl);
 
-	IndexChannelsCtrl.$inject = ['ChannelsService'];
+	IndexChannelsCtrl.$inject = ['Channel'];
 
-	function IndexChannelsCtrl(ChannelsService) {
+	function IndexChannelsCtrl(Channel) {
 		var vm = this;
 		vm.channels = [];
     vm.isLoading = true;
@@ -298,7 +298,7 @@
 		};
 
     vm.getChannels = function() {
-      ChannelsService.get({page: vm.query.page}, function(response){
+      Channel.get({page: vm.query.page}, function(response){
         console.log(response.data);
         vm.query.total = response.totalItems;
         vm.channels = response.data;
@@ -316,11 +316,11 @@
 
 	angular
 		.module('channels')
-		.factory('ChannelsService', ChannelsService);
+		.factory('Channel', Channel);
 
-	ChannelsService.$inject = ['$resource'];
+	Channel.$inject = ['$resource'];
 
-	function ChannelsService($resource){
+	function Channel($resource){
 		var Channel = $resource('/api/v1.0/channels/:channel_id', {
 			'channel_id': '@id'
 		}, {
@@ -360,9 +360,9 @@
 		.module('chartTypes')
 		.controller('IndexChartTypesCtrl', IndexChartTypesCtrl);
 
-	IndexChartTypesCtrl.$inject = ['ChartTypesService'];
+	IndexChartTypesCtrl.$inject = ['ChartType'];
 
-	function IndexChartTypesCtrl(ChartTypesService) {
+	function IndexChartTypesCtrl(ChartType) {
 		var vm = this;
 		vm.chartTypes = [];
     vm.isLoading = true;
@@ -377,7 +377,7 @@
 		};
 
     vm.getChartTypes = function() {
-      ChartTypesService.get({page: vm.query.page}, function(response){
+      ChartType.get({page: vm.query.page}, function(response){
         console.log(response.data);
         vm.query.total = response.totalItems;
         vm.chartTypes = response.data;
@@ -395,11 +395,11 @@
 
 	angular
 		.module('chartTypes')
-		.factory('ChartTypesService', ChartTypesService);
+		.factory('ChartType', ChartType);
 
-	ChartTypesService.$inject = ['$resource'];
+	ChartType.$inject = ['$resource'];
 
-	function ChartTypesService($resource){
+	function ChartType($resource){
 		var ChartType = $resource('/api/v1.0/chartTypes/:chartType_id', {
 			'chartType_id': '@id'
 		}, {
@@ -521,9 +521,9 @@
 		.module('gameVersions')
 		.controller('IndexGameVersionsCtrl', IndexArtistsCtrl);
 
-	IndexArtistsCtrl.$inject = ['GameVersionsService'];
+	IndexArtistsCtrl.$inject = ['GameVersion'];
 
-	function IndexArtistsCtrl(ArtistsService) {
+	function IndexArtistsCtrl(GameVersion) {
 		var vm = this;
 		vm.gameVersions = [];
     vm.isLoading = true;
@@ -538,7 +538,7 @@
 		};
 
     vm.getGameVersions = function() {
-      ArtistsService.get({page: vm.query.page}, function(response){
+      GameVersion.get({page: vm.query.page}, function(response){
         vm.query.total = response.totalItems;
         vm.gameVersions = response.data;
         vm.isLoading = false;
@@ -555,11 +555,11 @@
 
 	angular
 		.module('gameVersions')
-		.factory('GameVersionsService', GameVersionsService);
+		.factory('GameVersion', GameVersion);
 
-	GameVersionsService.$inject = ['$resource'];
+	GameVersion.$inject = ['$resource'];
 
-	function GameVersionsService($resource){
+	function GameVersion($resource){
 		var GameVersion = $resource('/api/v1.0/gameVersions/:gameVersion_id', {
 			'gameVersion_id': '@id'
 		}, {
@@ -599,9 +599,9 @@
 		.module('levels')
 		.controller('IndexLevelsCtrl', IndexLevelsCtrl);
 
-	IndexLevelsCtrl.$inject = ['LevelsService'];
+	IndexLevelsCtrl.$inject = ['Level'];
 
-	function IndexLevelsCtrl(LevelsService) {
+	function IndexLevelsCtrl(Level) {
 		var vm = this;
 		vm.levels = [];
     vm.isLoading = true;
@@ -616,7 +616,7 @@
 		};
 
     vm.getLevels = function() {
-      LevelsService.get({page: vm.query.page}, function(response){
+      Level.get({page: vm.query.page}, function(response){
         console.log(response.data);
         vm.query.total = response.totalItems;
         vm.levels = response.data;
@@ -634,11 +634,11 @@
 
 	angular
 		.module('levels')
-		.factory('LevelsService', LevelsService);
+		.factory('Level', Level);
 
-	LevelsService.$inject = ['$resource'];
+	Level.$inject = ['$resource'];
 
-	function LevelsService($resource){
+	function Level($resource){
 		var Level = $resource('/api/v1.0/levels/:level_id', {
 			'level_id': '@id'
 		}, {
@@ -725,11 +725,11 @@
 
   routeConfig.$inject = ['$routeProvider'];
 
-  getSong.$inject = ['$route', 'SongsService'];
+  getSong.$inject = ['$route', 'Song'];
 
-  function getSong($route, SongsService) {
+  function getSong($route, Song) {
     console.log($route.current.params.songId);
-    return SongsService.get({song_id: $route.current.params.songId}).$promise;
+    return Song.get({song_id: $route.current.params.songId}).$promise;
   }
 
 })();
@@ -741,29 +741,38 @@
     .module('songs')
     .controller('IndexSongsCtrl', IndexSongsCtrl);
 
-    IndexSongsCtrl.$inject = ['SongsService'];
+    IndexSongsCtrl.$inject = ['Song'];
 
-    function IndexSongsCtrl(SongsService) {
+    function IndexSongsCtrl(Song) {
       var vm = this;
       vm.songs = [];
       vm.isLoading = true;
-      vm.query = {
-        limit: 10,
-        page: 1,
-        total: 0
-      };
+      vm.query = { limit: 10, page: 1, total: 0 };
 
       vm.init = function() {
         vm.getSongs();
       };
 
       vm.getSongs = function() {
-        SongsService.get({page: vm.query.page}, function(response){
+        Song.get({page: vm.query.page}, function(response){
           console.log(response);
           console.log(vm.query);
           vm.query.total = response.totalItems;
           vm.songs = response.data;
           vm.isLoading = false;
+        }, function(err){
+          console.log(err);
+        });
+      };
+
+      vm.getSongsByName = function() {
+        // vm.isLoading = true;
+        Song.get({page: vm.query.page, search: vm.search}, function(response){
+          console.log(response);
+          console.log(vm.query);
+          vm.query.total = response.totalItems;
+          vm.songs = response.data;
+          // vm.isLoading = false;
         }, function(err){
           console.log(err);
         });
@@ -778,9 +787,9 @@
     .module('songs')
     .controller('ShowSongCtrl', ShowSongCtrl);
 
-    ShowSongCtrl.$inject = ['SongsService', 'ChartTypesService',  'StepmakersService', 'StylesService', '$routeParams', 'LevelsService', 'song', '$q', '$mdToast'];
+    ShowSongCtrl.$inject = ['Song', 'ChartType',  'Stepmaker', 'Style', '$routeParams', 'Level', 'song', '$q', '$mdToast'];
 
-    function ShowSongCtrl(SongsService, ChartTypesService, StepmakersService, StylesService, $routeParams, LevelsService, song, $q, $mdToast) {
+    function ShowSongCtrl(Song, ChartType, Stepmaker, Style, $routeParams, Level, song, $q, $mdToast) {
       var vm = this;
       vm.song = song.data || {};
       vm.level = {};
@@ -813,7 +822,7 @@
 
       vm.getStepmakers = function(){
         var deferred = $q.defer();
-        StepmakersService.get(function(response){
+        Stepmaker.get(function(response){
           deferred.resolve(response.data);
         }, function(err){
           deferred.reject(err);
@@ -823,7 +832,7 @@
 
       vm.getStyles = function(){
         var deferred = $q.defer();
-        StylesService.get(function(response){
+        Style.get(function(response){
           deferred.resolve(response.data);
         }, function(err){
           deferred.reject(err);
@@ -833,7 +842,7 @@
 
       vm.getChartTypes = function(){
         var deferred = $q.defer();
-        ChartTypesService.get(function(response){
+        ChartType.get(function(response){
           deferred.resolve(response.data);
         }, function(err){
           deferred.reject(err);
@@ -845,7 +854,7 @@
         console.log('level:',vm.level);
         if (vm.levelForm.$valid) {
           vm.level.song_id = vm.song.id;
-          LevelsService.save(vm.level, function(response){
+          Level.save(vm.level, function(response){
             vm.song.levels.push(response.data);
             vm.showToast('Level created successfully');
           });
@@ -870,11 +879,11 @@
 
   angular
     .module('songs')
-    .factory('SongsService', SongsService);
+    .factory('Song', Song);
 
-  SongsService.$inject = ['$resource'];
+  Song.$inject = ['$resource'];
 
-  function SongsService($resource){
+  function Song($resource){
     var Song = $resource('/api/v1.0/songs/:song_id', {
       'song_id': '@id'
     }, {
@@ -914,9 +923,9 @@
 		.module('stepmakers')
 		.controller('IndexStepmakersCtrl', IndexStepmakersCtrl);
 
-	IndexStepmakersCtrl.$inject = ['StepmakersService'];
+	IndexStepmakersCtrl.$inject = ['Stepmaker'];
 
-	function IndexStepmakersCtrl(StepmakersService) {
+	function IndexStepmakersCtrl(Stepmaker) {
 		var vm = this;
 		vm.stepmakers = [];
     vm.isLoading = true;
@@ -931,7 +940,7 @@
 		};
 
     vm.getStepmakers = function() {
-      StepmakersService.get({page: vm.query.page}, function(response){
+      Stepmaker.get({page: vm.query.page}, function(response){
         vm.query.total = response.totalItems;
         vm.stepmakers = response.data;
         vm.isLoading = false;
@@ -948,11 +957,11 @@
 
 	angular
 		.module('stepmakers')
-		.factory('StepmakersService', StepmakersService);
+		.factory('Stepmaker', Stepmaker);
 
-	StepmakersService.$inject = ['$resource'];
+	Stepmaker.$inject = ['$resource'];
 
-	function StepmakersService($resource){
+	function Stepmaker($resource){
 		var Stepmaker = $resource('/api/v1.0/stepmakers/:stepmaker_id', {
 			'stepmaker_id': '@id'
 		}, {
@@ -992,9 +1001,9 @@
 		.module('styles')
 		.controller('IndexStylesCtrl', IndexStylesCtrl);
 
-	IndexStylesCtrl.$inject = ['StylesService'];
+	IndexStylesCtrl.$inject = ['Style'];
 
-	function IndexStylesCtrl(StylesService) {
+	function IndexStylesCtrl(Style) {
 		var vm = this;
 		vm.styles = [];
     vm.isLoading = true;
@@ -1009,7 +1018,7 @@
 		};
 
     vm.getStyles = function() {
-      StylesService.get({page: vm.query.page}, function(response){
+      Style.get({page: vm.query.page}, function(response){
         vm.query.total = response.totalItems;
         vm.styles = response.data;
         vm.isLoading = false;
@@ -1026,11 +1035,11 @@
 
 	angular
 		.module('styles')
-		.factory('StylesService', StylesService);
+		.factory('Style', Style);
 
-	StylesService.$inject = ['$resource'];
+	Style.$inject = ['$resource'];
 
-	function StylesService($resource){
+	function Style($resource){
 		var Style = $resource('/api/v1.0/styles/:style_id', {
 			'style_id': '@id'
 		}, {
@@ -1070,9 +1079,9 @@
 		.module('types')
 		.controller('IndexTypesCtrl', IndexTypesCtrl);
 
-	IndexTypesCtrl.$inject = ['TypesService'];
+	IndexTypesCtrl.$inject = ['TypeSong'];
 
-	function IndexTypesCtrl(TypesService) {
+	function IndexTypesCtrl(TypeSong) {
 		var vm = this;
 		vm.types = [];
     vm.isLoading = true;
@@ -1087,7 +1096,7 @@
 		};
 
     vm.getTypes = function() {
-      TypesService.get({page: vm.query.page}, function(response){
+      TypeSong.get({page: vm.query.page}, function(response){
         vm.query.total = response.totalItems;
         vm.types = response.data;
         vm.isLoading = false;
@@ -1104,12 +1113,12 @@
 
 	angular
 		.module('types')
-		.factory('TypesService', TypesService);
+		.factory('TypeSong', TypeSong);
 
-	TypesService.$inject = ['$resource'];
+	TypeSong.$inject = ['$resource'];
 
-	function TypesService($resource){
-		var Type = $resource('/api/v1.0/types/:type_id', {
+	function TypeSong($resource){
+		var Type = $resource('/api/v1.0/typesSongs/:type_id', {
 			'type_id': '@id'
 		}, {
 			update: {
