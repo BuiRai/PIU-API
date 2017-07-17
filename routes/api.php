@@ -24,8 +24,14 @@ Route::group(['prefix' => 'v1.0', 'middleware' => 'cors'], function (){
     Route::resource('stepmakers', 'StepmakerController', ['except' => ['create', 'edit']]);
     Route::resource('styles', 'StyleController', ['except' => ['create', 'edit']]);
     Route::resource('levels', 'LevelController', ['except' => ['create', 'edit']]);
+    Route::get('levels/random-by-level/single', 'LevelController@singleRandomByLevel');
+    Route::get('levels/random-by-level/double', 'LevelController@doubleRandomByLevel');
+    Route::get('levels/random-by-range/single', 'LevelController@singleRandomByRange');
+    Route::get('levels/random-by-range/double', 'LevelController@doubleRandomByRange');
+    Route::get('levels/stepmakers/all', 'LevelController@levelsFromStepmaker');
     Route::resource('typesSongs', 'TypeSongController', ['except' => ['create', 'edit']]);
     Route::resource('channels', 'ChannelController', ['except' => ['create', 'edit']]);
+    Route::get('channels/songs/all', 'ChannelController@getSongsByStyle');
     Route::resource('chartTypes', 'ChartTypeController', ['except' => ['create', 'edit']]);
 
     // // Route to create a new role
