@@ -20,11 +20,11 @@ class StepmakerController extends Controller
 
     if ($request->has('page')) {
         $stepmakers = Cache::remember('CacheStepmakers_page_' . $page, 20/60, function(){
-            return Stepmaker::with('levels')->paginate(10)->items();
+            return Stepmaker::paginate(10)->items();
         });
     } else {
         $stepmakers = Cache::remember('CacheStepmakers_full', 20/60, function(){
-            return Stepmaker::with('levels')->get();
+            return Stepmaker::all();
         });
     }
 

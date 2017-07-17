@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Cache;
 class ChannelController extends Controller
 {
     /**
-   * Display all the channels
-   * @return \Illuminate\Http\JsonResponse
-   */
+    * Display all the channels
+    * @return \Illuminate\Http\JsonResponse
+    */
     public function index(Request $request)
     {
         $page = $request->has('page') ? $request->query('page') : 1;
@@ -166,6 +166,25 @@ class ChannelController extends Controller
             'code' => 204,
             'message' => 'The channel has been removed successfully'
         ], 204);
+    }
+
+    public function getSongsByStyle(Request $request)
+    {
+        $channel = Channel::with('songs')->where('name', $request->input('name'))->first();
+
+        if (!$channel) {
+            return response()->json([
+            'errors' => array([
+                    'code'=>404,
+                    'message' => 'No channel found'
+                ])
+            ], 404);
+        }
+
+        return response()->json([
+            'code' => 202,
+            'songs' => $channel->songs
+        ], 202);
     }
 
     /**
