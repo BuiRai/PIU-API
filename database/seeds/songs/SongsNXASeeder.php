@@ -78,7 +78,7 @@ class SongsNXASeeder extends Seeder
         $song->channels()->attach([4]);
         $song = Song::create([
             'id'=>'F14',
-            'title'=>'Procedimientos para llegar a un común acuerdo',
+            'title'=>'Procedimientos Para Llegar A Un Común Acuerdo',
             'bpm'=>'160',
             'artist_id'=>$pxndx->id,
             'game_version_id'=>$nxa->id,
@@ -240,7 +240,7 @@ class SongsNXASeeder extends Seeder
         $song->channels()->attach([4, 10]);
         $song = Song::create([
             'id'=>'F54',
-            'title'=>'Procedimientos Para Llegar A Un Comun Acuerdo',
+            'title'=>'Procedimientos Para Llegar A Un Común Acuerdo',
             'bpm'=>'160',
             'artist_id'=>$pxndx->id,
             'game_version_id'=>$nxa->id,

@@ -84,8 +84,8 @@ class SongsRebirthSeeder extends Seeder
         $song->channels()->attach([2]);
         $song = Song::create([
             'id'=>'707',
-            'title'=>'118',
-            'bpm'=>'My Way',
+            'title'=>'My Way',
+            'bpm'=>'118',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,
             'type_song_id'=>$normalType->id
@@ -129,7 +129,7 @@ class SongsRebirthSeeder extends Seeder
         $song->channels()->attach([2]);
         $song = Song::create([
             'id'=>'712',
-            'title'=>'W\' the Wisp',
+            'title'=>'Will-O\'-The-Wisp',
             'bpm'=>'210',
             'artist_id'=>$banya->id,
             'game_version_id'=>$rebirth->id,

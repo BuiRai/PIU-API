@@ -12,7 +12,6 @@ class GameVersionTableSeeder extends Seeder
    */
   public function run()
   {
-
     $date = new DateTime();
 
     GameVersion::create([

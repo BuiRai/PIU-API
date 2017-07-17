@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        DB::table('users')->delete();
+
         $users = array(
             ['name' => 'user', 'email' => 'user@gmail.com', 'password' => Hash::make('user')],
             ['name' => 'admin', 'email' => 'admin@gmail.com', 'password' => Hash::make('admin')]

@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
         $this->call(UsersTableSeeder::class);
         $this->call(ArtistsTableSeeder::class);
         $this->call(GameVersionTableSeeder::class);
@@ -22,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(StylesTableSeeder::class);
         $this->call(ChartTypesTableSeeder::class);
         $this->call(SongsTableSeeder::class);
+        $this->call(LevelsTableSeeder::class);
     }
 }
