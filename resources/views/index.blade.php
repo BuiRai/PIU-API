@@ -110,7 +110,7 @@
                                         </md-button>
                                     </md-menu-item>
                                     <md-menu-item>
-                                        <md-button class="md-raised">
+                                        <md-button class="md-raised" ng-click="logout()">
                                             <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
                                             <span style="margin-left:1.5em;margin-right: 1.5em;">Sign Out</span>
                                         </md-button>

@@ -1,8 +1,7 @@
 (function(){
   'use strict';
 
-  function routeConfig($routeProvider, $authProvider){
-    $authProvider.loginUrl = 'api/v1.0/authenticate';
+  function routeConfig($routeProvider){
 
     $routeProvider
       .when('/auth', {

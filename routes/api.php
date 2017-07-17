@@ -13,9 +13,20 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::group(['prefix'=>'v1.0'], function(){
+    Route::post('authenticate', 'Auth\LoginController@login');
+});
+
+Route::group(['prefix'=>'restricted', 'middleware' => 'auth:api'], function(){
+    Route::get('logout', 'Auth\LoginController@logout');
+    Route::get('/test', function () {
+        return 'authenticated';
+    });
+});
 
 // Route::group(['prefix' => 'v1.0', 'middleware' => ['cors']], function (){
-Route::group(['prefix' => 'v1.0', 'middleware' => 'cors'], function (){
+Route::group(['prefix' => 'v1.0', 'middleware' => ['cors']], function ()
+{
     Route::resource('songs', 'SongController', ['except' => ['create', 'edit']]);
     Route::post('songs/image/{id}', 'SongController@image');
     Route::resource('artists', 'ArtistController', ['except' => ['create', 'edit']]);
@@ -35,11 +46,18 @@ Route::group(['prefix' => 'v1.0', 'middleware' => 'cors'], function (){
     Route::resource('chartTypes', 'ChartTypeController', ['except' => ['create', 'edit']]);
 
     // // Route to create a new role
-    // Route::post('role', 'JwtAuthenticateController@createRole');
+    Route::post('roles', 'SecurityController@createRole');
     // // Route to create a new permission
-    // Route::post('permission', 'JwtAuthenticateController@createPermission');
+    Route::post('permissions', 'SecurityController@createPermission');
     // // Route to assign role to user
-    // Route::post('assign-role', 'JwtAuthenticateController@assignRole');
+    Route::post('assign-role', 'SecurityController@assignRole');
     // // Route to attache permission to a role
-    // Route::post('attach-permission', 'JwtAuthenticateController@attachPermission');
+    Route::post('attach-permission', 'SecurityController@attachPermission');
+});
+
+// Route::group(['prefix' => 'v1.0', 'middleware' => ['ability:Administrator,query-users']], function()
+Route::group(['prefix' => 'v1.0'], function()
+{
+    Route::get('users', 'SecurityController@index');
+
 });

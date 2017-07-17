@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Cache;
 class GameVersionController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except(['index','show']);
+    }
+
   /**
    * Display all the game versions from the database
    * @return mixed the response

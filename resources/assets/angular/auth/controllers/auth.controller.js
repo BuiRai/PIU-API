@@ -5,9 +5,9 @@
     .module('auth')
     .controller('AuthCtrl', AuthCtrl);
 
-  AuthCtrl.$inject = ['$mdDialog', '$auth'];
+  AuthCtrl.$inject = ['$mdDialog', '$auth', '$location'];
 
-  function AuthCtrl($mdDialog, $auth) {
+  function AuthCtrl($mdDialog, $auth, $location) {
     var vm = this;
 
     vm.init = function() {
@@ -24,13 +24,14 @@
 
     vm.submit = function() {
       if (vm.loginForm.$valid) {
-        console.log('Formulario válido, a login', vm.user);
         $auth.login(vm.user)
           .then(function(response){
-            console.info(response);
+            console.log(response);
+            vm.cancel();
+            $location.path('/songs');
           })
           .catch(function(response){
-            console.error(response);
+            console.error('Error papu: ', response.data);
           });
       } else {
         console.log('Formulario no válido');

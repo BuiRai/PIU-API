@@ -168,8 +168,9 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        // Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-        // Zizaco\Entrust\EntrustServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
         // Irazasyed\JwtAuthGuard\JwtAuthGuardServiceProvider::class,
 
         /*
@@ -231,9 +232,10 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
-        // 'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
-        // 'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
-        // 'Entrust' => Zizaco\Entrust\EntrustServiceProvider::class,
+        'Entrust' => Zizaco\Entrust\EntrustServiceProvider::class,
+        'JWTAuth'   => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Entrust' => Zizaco\Entrust\EntrustServiceProvider::class,
     ],
 
 ];

@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Cache;
 
 class ChartTypeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except(['index','show']);
+    }
+
     /**
    * Display all the chart types
    * @return \Illuminate\Http\JsonResponse
