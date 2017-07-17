@@ -3,11 +3,11 @@
 
 	angular
 		.module('channels')
-		.factory('ChannelsService', ChannelsService);
+		.factory('Channel', Channel);
 
-	ChannelsService.$inject = ['$resource'];
+	Channel.$inject = ['$resource'];
 
-	function ChannelsService($resource){
+	function Channel($resource){
 		var Channel = $resource('/api/v1.0/channels/:channel_id', {
 			'channel_id': '@id'
 		}, {

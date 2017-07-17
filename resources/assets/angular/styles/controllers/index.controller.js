@@ -5,9 +5,9 @@
 		.module('styles')
 		.controller('IndexStylesCtrl', IndexStylesCtrl);
 
-	IndexStylesCtrl.$inject = ['StylesService'];
+	IndexStylesCtrl.$inject = ['Style'];
 
-	function IndexStylesCtrl(StylesService) {
+	function IndexStylesCtrl(Style) {
 		var vm = this;
 		vm.styles = [];
     vm.isLoading = true;
@@ -22,7 +22,7 @@
 		};
 
     vm.getStyles = function() {
-      StylesService.get({page: vm.query.page}, function(response){
+      Style.get({page: vm.query.page}, function(response){
         vm.query.total = response.totalItems;
         vm.styles = response.data;
         vm.isLoading = false;

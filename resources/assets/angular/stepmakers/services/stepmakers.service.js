@@ -3,11 +3,11 @@
 
 	angular
 		.module('stepmakers')
-		.factory('StepmakersService', StepmakersService);
+		.factory('Stepmaker', Stepmaker);
 
-	StepmakersService.$inject = ['$resource'];
+	Stepmaker.$inject = ['$resource'];
 
-	function StepmakersService($resource){
+	function Stepmaker($resource){
 		var Stepmaker = $resource('/api/v1.0/stepmakers/:stepmaker_id', {
 			'stepmaker_id': '@id'
 		}, {

@@ -5,9 +5,9 @@
 		.module('gameVersions')
 		.controller('IndexGameVersionsCtrl', IndexArtistsCtrl);
 
-	IndexArtistsCtrl.$inject = ['GameVersionsService'];
+	IndexArtistsCtrl.$inject = ['GameVersion'];
 
-	function IndexArtistsCtrl(ArtistsService) {
+	function IndexArtistsCtrl(GameVersion) {
 		var vm = this;
 		vm.gameVersions = [];
     vm.isLoading = true;
@@ -22,7 +22,7 @@
 		};
 
     vm.getGameVersions = function() {
-      ArtistsService.get({page: vm.query.page}, function(response){
+      GameVersion.get({page: vm.query.page}, function(response){
         vm.query.total = response.totalItems;
         vm.gameVersions = response.data;
         vm.isLoading = false;

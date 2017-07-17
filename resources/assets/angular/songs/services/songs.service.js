@@ -3,11 +3,11 @@
 
   angular
     .module('songs')
-    .factory('SongsService', SongsService);
+    .factory('Song', Song);
 
-  SongsService.$inject = ['$resource'];
+  Song.$inject = ['$resource'];
 
-  function SongsService($resource){
+  function Song($resource){
     var Song = $resource('/api/v1.0/songs/:song_id', {
       'song_id': '@id'
     }, {

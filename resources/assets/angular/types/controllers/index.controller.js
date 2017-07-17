@@ -5,9 +5,9 @@
 		.module('types')
 		.controller('IndexTypesCtrl', IndexTypesCtrl);
 
-	IndexTypesCtrl.$inject = ['TypesService'];
+	IndexTypesCtrl.$inject = ['TypeSong'];
 
-	function IndexTypesCtrl(TypesService) {
+	function IndexTypesCtrl(TypeSong) {
 		var vm = this;
 		vm.types = [];
     vm.isLoading = true;
@@ -22,7 +22,7 @@
 		};
 
     vm.getTypes = function() {
-      TypesService.get({page: vm.query.page}, function(response){
+      TypeSong.get({page: vm.query.page}, function(response){
         vm.query.total = response.totalItems;
         vm.types = response.data;
         vm.isLoading = false;

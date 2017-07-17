@@ -5,9 +5,9 @@
 		.module('artists')
 		.controller('IndexArtistsCtrl', IndexArtistsCtrl);
 
-	IndexArtistsCtrl.$inject = ['ArtistsService'];
+	IndexArtistsCtrl.$inject = ['Artist'];
 
-	function IndexArtistsCtrl(ArtistsService) {
+	function IndexArtistsCtrl(Artist) {
 		var vm = this;
 		vm.artists = [];
     vm.isLoading = true;
@@ -22,7 +22,7 @@
 		};
 
     vm.getArtists = function() {
-      ArtistsService.get({page: vm.query.page}, function(response){
+      Artist.get({page: vm.query.page}, function(response){
         vm.query.total = response.totalItems;
         vm.artists = response.data;
         vm.isLoading = false;

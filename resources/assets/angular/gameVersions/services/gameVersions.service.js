@@ -3,11 +3,11 @@
 
 	angular
 		.module('gameVersions')
-		.factory('GameVersionsService', GameVersionsService);
+		.factory('GameVersion', GameVersion);
 
-	GameVersionsService.$inject = ['$resource'];
+	GameVersion.$inject = ['$resource'];
 
-	function GameVersionsService($resource){
+	function GameVersion($resource){
 		var GameVersion = $resource('/api/v1.0/gameVersions/:gameVersion_id', {
 			'gameVersion_id': '@id'
 		}, {

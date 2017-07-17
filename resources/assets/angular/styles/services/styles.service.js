@@ -3,11 +3,11 @@
 
 	angular
 		.module('styles')
-		.factory('StylesService', StylesService);
+		.factory('Style', Style);
 
-	StylesService.$inject = ['$resource'];
+	Style.$inject = ['$resource'];
 
-	function StylesService($resource){
+	function Style($resource){
 		var Style = $resource('/api/v1.0/styles/:style_id', {
 			'style_id': '@id'
 		}, {

@@ -3,11 +3,11 @@
 
 	angular
 		.module('levels')
-		.factory('LevelsService', LevelsService);
+		.factory('Level', Level);
 
-	LevelsService.$inject = ['$resource'];
+	Level.$inject = ['$resource'];
 
-	function LevelsService($resource){
+	function Level($resource){
 		var Level = $resource('/api/v1.0/levels/:level_id', {
 			'level_id': '@id'
 		}, {

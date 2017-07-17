@@ -3,11 +3,11 @@
 
 	angular
 		.module('artists')
-		.factory('ArtistsService', ArtistsService);
+		.factory('Artist', Artist);
 
-	ArtistsService.$inject = ['$resource'];
+	Artist.$inject = ['$resource'];
 
-	function ArtistsService($resource){
+	function Artist($resource){
 		var Artist = $resource('/api/v1.0/artists/:artist_id', {
 			'artist_id': '@id'
 		}, {

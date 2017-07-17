@@ -5,9 +5,9 @@
     .module('songs')
     .controller('ShowSongCtrl', ShowSongCtrl);
 
-    ShowSongCtrl.$inject = ['SongsService', 'ChartTypesService',  'StepmakersService', 'StylesService', '$routeParams', 'LevelsService', 'song', '$q', '$mdToast'];
+    ShowSongCtrl.$inject = ['Song', 'ChartType',  'Stepmaker', 'Style', '$routeParams', 'Level', 'song', '$q', '$mdToast'];
 
-    function ShowSongCtrl(SongsService, ChartTypesService, StepmakersService, StylesService, $routeParams, LevelsService, song, $q, $mdToast) {
+    function ShowSongCtrl(Song, ChartType, Stepmaker, Style, $routeParams, Level, song, $q, $mdToast) {
       var vm = this;
       vm.song = song.data || {};
       vm.level = {};
@@ -40,7 +40,7 @@
 
       vm.getStepmakers = function(){
         var deferred = $q.defer();
-        StepmakersService.get(function(response){
+        Stepmaker.get(function(response){
           deferred.resolve(response.data);
         }, function(err){
           deferred.reject(err);
@@ -50,7 +50,7 @@
 
       vm.getStyles = function(){
         var deferred = $q.defer();
-        StylesService.get(function(response){
+        Style.get(function(response){
           deferred.resolve(response.data);
         }, function(err){
           deferred.reject(err);
@@ -60,7 +60,7 @@
 
       vm.getChartTypes = function(){
         var deferred = $q.defer();
-        ChartTypesService.get(function(response){
+        ChartType.get(function(response){
           deferred.resolve(response.data);
         }, function(err){
           deferred.reject(err);
@@ -72,7 +72,7 @@
         console.log('level:',vm.level);
         if (vm.levelForm.$valid) {
           vm.level.song_id = vm.song.id;
-          LevelsService.save(vm.level, function(response){
+          Level.save(vm.level, function(response){
             vm.song.levels.push(response.data);
             vm.showToast('Level created successfully');
           });

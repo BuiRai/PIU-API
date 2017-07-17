@@ -5,9 +5,9 @@
 		.module('channels')
 		.controller('IndexChannelsCtrl', IndexChannelsCtrl);
 
-	IndexChannelsCtrl.$inject = ['ChannelsService'];
+	IndexChannelsCtrl.$inject = ['Channel'];
 
-	function IndexChannelsCtrl(ChannelsService) {
+	function IndexChannelsCtrl(Channel) {
 		var vm = this;
 		vm.channels = [];
     vm.isLoading = true;
@@ -22,7 +22,7 @@
 		};
 
     vm.getChannels = function() {
-      ChannelsService.get({page: vm.query.page}, function(response){
+      Channel.get({page: vm.query.page}, function(response){
         console.log(response.data);
         vm.query.total = response.totalItems;
         vm.channels = response.data;

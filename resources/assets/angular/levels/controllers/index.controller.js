@@ -5,9 +5,9 @@
 		.module('levels')
 		.controller('IndexLevelsCtrl', IndexLevelsCtrl);
 
-	IndexLevelsCtrl.$inject = ['LevelsService'];
+	IndexLevelsCtrl.$inject = ['Level'];
 
-	function IndexLevelsCtrl(LevelsService) {
+	function IndexLevelsCtrl(Level) {
 		var vm = this;
 		vm.levels = [];
     vm.isLoading = true;
@@ -22,7 +22,7 @@
 		};
 
     vm.getLevels = function() {
-      LevelsService.get({page: vm.query.page}, function(response){
+      Level.get({page: vm.query.page}, function(response){
         console.log(response.data);
         vm.query.total = response.totalItems;
         vm.levels = response.data;

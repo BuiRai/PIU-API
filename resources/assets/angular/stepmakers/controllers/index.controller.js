@@ -5,9 +5,9 @@
 		.module('stepmakers')
 		.controller('IndexStepmakersCtrl', IndexStepmakersCtrl);
 
-	IndexStepmakersCtrl.$inject = ['StepmakersService'];
+	IndexStepmakersCtrl.$inject = ['Stepmaker'];
 
-	function IndexStepmakersCtrl(StepmakersService) {
+	function IndexStepmakersCtrl(Stepmaker) {
 		var vm = this;
 		vm.stepmakers = [];
     vm.isLoading = true;
@@ -22,7 +22,7 @@
 		};
 
     vm.getStepmakers = function() {
-      StepmakersService.get({page: vm.query.page}, function(response){
+      Stepmaker.get({page: vm.query.page}, function(response){
         vm.query.total = response.totalItems;
         vm.stepmakers = response.data;
         vm.isLoading = false;

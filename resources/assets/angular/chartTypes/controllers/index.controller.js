@@ -5,9 +5,9 @@
 		.module('chartTypes')
 		.controller('IndexChartTypesCtrl', IndexChartTypesCtrl);
 
-	IndexChartTypesCtrl.$inject = ['ChartTypesService'];
+	IndexChartTypesCtrl.$inject = ['ChartType'];
 
-	function IndexChartTypesCtrl(ChartTypesService) {
+	function IndexChartTypesCtrl(ChartType) {
 		var vm = this;
 		vm.chartTypes = [];
     vm.isLoading = true;
@@ -22,7 +22,7 @@
 		};
 
     vm.getChartTypes = function() {
-      ChartTypesService.get({page: vm.query.page}, function(response){
+      ChartType.get({page: vm.query.page}, function(response){
         console.log(response.data);
         vm.query.total = response.totalItems;
         vm.chartTypes = response.data;

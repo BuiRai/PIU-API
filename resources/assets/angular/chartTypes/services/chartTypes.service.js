@@ -3,11 +3,11 @@
 
 	angular
 		.module('chartTypes')
-		.factory('ChartTypesService', ChartTypesService);
+		.factory('ChartType', ChartType);
 
-	ChartTypesService.$inject = ['$resource'];
+	ChartType.$inject = ['$resource'];
 
-	function ChartTypesService($resource){
+	function ChartType($resource){
 		var ChartType = $resource('/api/v1.0/chartTypes/:chartType_id', {
 			'chartType_id': '@id'
 		}, {

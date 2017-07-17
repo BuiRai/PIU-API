@@ -3,12 +3,12 @@
 
 	angular
 		.module('types')
-		.factory('TypesService', TypesService);
+		.factory('TypeSong', TypeSong);
 
-	TypesService.$inject = ['$resource'];
+	TypeSong.$inject = ['$resource'];
 
-	function TypesService($resource){
-		var Type = $resource('/api/v1.0/types/:type_id', {
+	function TypeSong($resource){
+		var Type = $resource('/api/v1.0/typesSongs/:type_id', {
 			'type_id': '@id'
 		}, {
 			update: {

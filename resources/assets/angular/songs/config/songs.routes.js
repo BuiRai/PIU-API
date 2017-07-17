@@ -24,11 +24,11 @@
 
   routeConfig.$inject = ['$routeProvider'];
 
-  getSong.$inject = ['$route', 'SongsService'];
+  getSong.$inject = ['$route', 'Song'];
 
-  function getSong($route, SongsService) {
+  function getSong($route, Song) {
     console.log($route.current.params.songId);
-    return SongsService.get({song_id: $route.current.params.songId}).$promise;
+    return Song.get({song_id: $route.current.params.songId}).$promise;
   }
 
 })();
