@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Song extends Model
 {
+    use SearchableTrait;
 
     public $incrementing = false;
 
@@ -15,10 +17,14 @@ class Song extends Model
     // Fillable attributes
     protected $fillable = array('id', 'title','bpm','bannerImage' , 'artist_id', 'game_version_id', 'type_song_id');
 
-    protected $visible = ['id', 'title', 'bpm', 'bannerImage', 'artist', 'levels', 'gameVersion', 'type', 'channels', 'type_id', 'artist_id', 'game_version_id'];
-
     // Hidden fields
     protected $hidden = ['created_at','updated_at'];
+
+    protected $searchable = [
+        'columns' => [
+            'title' => 10
+        ]
+    ];
 
     /*
     * Relations below here
