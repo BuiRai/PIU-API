@@ -71,7 +71,7 @@
       $mdDialog.show({
         controller: 'AuthCtrl',
         controllerAs: 'vm',
-        templateUrl: 'angular/auth/views/auth.view.html',
+        templateUrl: 'dist/views/auth/auth.view.html',
         parent: angular.element(document.body),
         targetEvent: event,
         clickOutsideToClose: true,
