@@ -56,16 +56,16 @@
 })(ApplicationConfiguration);
 
 (function(app){
-	'use strict';
-
-	app.registerModule('channels');
-}(ApplicationConfiguration));
-
-(function(app){
   'use strict';
 
   app.registerModule('auth');
 })(ApplicationConfiguration);
+
+(function(app){
+	'use strict';
+
+	app.registerModule('channels');
+}(ApplicationConfiguration));
 
 (function(app){
 	'use strict';
@@ -191,6 +191,88 @@
 	}
 })();
 
+(function(){
+  'use strict';
+
+  function routeConfig($authProvider){
+    $authProvider.loginUrl = 'api/v1.0/authenticate';
+    $authProvider.signupUrl = '/api/v1.0/signup';
+    $authProvider.tokenPrefix = 'PIU';
+
+    // If need some provider, add below please
+    // More info on: https://github.com/sahat/satellizer
+  }
+
+  angular
+    .module('auth')
+    .config(routeConfig);
+
+  routeConfig.$inject = ['$authProvider'];
+}());
+
+(function(){
+  'use strict';
+
+  function routeConfig($routeProvider){
+
+    $routeProvider
+      .when('/auth', {
+        templateUrl: 'dist/views/auth/auth.view.html',
+        controller: 'AuthCtrl',
+        controllerAs: 'vm'
+      });
+  }
+
+  angular
+    .module('auth')
+    .config(routeConfig);
+
+  routeConfig.$inject = ['$routeProvider', '$authProvider'];
+})();
+
+(function(){
+  'use strict';
+
+  angular
+    .module('auth')
+    .controller('AuthCtrl', AuthCtrl);
+
+  AuthCtrl.$inject = ['$mdDialog', '$auth', '$location'];
+
+  function AuthCtrl($mdDialog, $auth, $location) {
+    var vm = this;
+
+    vm.init = function() {
+
+    };
+
+    vm.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    vm.authenticate = function(provider) {
+      $auth.login()
+    };
+
+    vm.submit = function() {
+      if (vm.loginForm.$valid) {
+        $auth.login(vm.user)
+          .then(function(response){
+            console.log(response);
+            vm.cancel();
+            $location.path('/songs');
+          })
+          .catch(function(response){
+            console.error('Error papu: ', response.data);
+          });
+      } else {
+        console.log('Formulario no válido');
+      }
+    };
+  }
+
+})();
+
 (function () {
 	'use strict';
 
@@ -270,67 +352,83 @@
 	}
 }());
 
-(function(){
-  'use strict';
+(function () {
+	'use strict';
 
-  function routeConfig($routeProvider){
+	function routeConfig($routeProvider) {
+		$routeProvider
+			.when('/chartTypes', {
+				templateUrl: 'dist/views/chartTypes/index.view.html',
+				controller: 'IndexChartTypesCtrl',
+				controllerAs: 'vm'
+			});
+	}
 
-    $routeProvider
-      .when('/auth', {
-        templateUrl: 'dist/views/auth/auth.view.html',
-        controller: 'AuthCtrl',
-        controllerAs: 'vm'
+	angular
+		.module('chartTypes')
+		.config(routeConfig);
+
+	routeConfig.$inject = ['$routeProvider'];
+
+})();
+
+(function (){
+	'use strict';
+
+	angular
+		.module('chartTypes')
+		.controller('IndexChartTypesCtrl', IndexChartTypesCtrl);
+
+	IndexChartTypesCtrl.$inject = ['ChartType'];
+
+	function IndexChartTypesCtrl(ChartType) {
+		var vm = this;
+		vm.chartTypes = [];
+    vm.isLoading = true;
+    vm.query = {
+      limit: 10,
+      page: 1,
+      total: 0
+    };
+
+		vm.init = function() {
+			vm.getChartTypes();
+		};
+
+    vm.getChartTypes = function() {
+      ChartType.get({page: vm.query.page}, function(response){
+        console.log(response.data);
+        vm.query.total = response.totalItems;
+        vm.chartTypes = response.data;
+        vm.isLoading = false;
+      }, function(err){
+        console.log(err);
       });
-  }
+    };
+	}
 
-  angular
-    .module('auth')
-    .config(routeConfig);
-
-  routeConfig.$inject = ['$routeProvider', '$authProvider'];
 })();
 
 (function(){
-  'use strict';
+	'use strict';
 
-  angular
-    .module('auth')
-    .controller('AuthCtrl', AuthCtrl);
+	angular
+		.module('chartTypes')
+		.factory('ChartType', ChartType);
 
-  AuthCtrl.$inject = ['$mdDialog', '$auth', '$location'];
+	ChartType.$inject = ['$resource'];
 
-  function AuthCtrl($mdDialog, $auth, $location) {
-    var vm = this;
+	function ChartType($resource){
+		var ChartType = $resource('/api/v1.0/chartTypes/:chartType_id', {
+			'chartType_id': '@id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
 
-    vm.init = function() {
-
-    };
-
-    vm.cancel = function() {
-      $mdDialog.cancel();
-    };
-
-    vm.authenticate = function(provider) {
-      $auth.login()
-    };
-
-    vm.submit = function() {
-      if (vm.loginForm.$valid) {
-        $auth.login(vm.user)
-          .then(function(response){
-            console.log(response);
-            vm.cancel();
-            $location.path('/songs');
-          })
-          .catch(function(response){
-            console.error('Error papu: ', response.data);
-          });
-      } else {
-        console.log('Formulario no válido');
-      }
-    };
-  }
-
+		return ChartType;
+	}
 })();
 
 (function(){
@@ -425,85 +523,6 @@
       $location.path('/');
     };
   };
-})();
-
-(function () {
-	'use strict';
-
-	function routeConfig($routeProvider) {
-		$routeProvider
-			.when('/chartTypes', {
-				templateUrl: 'dist/views/chartTypes/index.view.html',
-				controller: 'IndexChartTypesCtrl',
-				controllerAs: 'vm'
-			});
-	}
-
-	angular
-		.module('chartTypes')
-		.config(routeConfig);
-
-	routeConfig.$inject = ['$routeProvider'];
-
-})();
-
-(function (){
-	'use strict';
-
-	angular
-		.module('chartTypes')
-		.controller('IndexChartTypesCtrl', IndexChartTypesCtrl);
-
-	IndexChartTypesCtrl.$inject = ['ChartType'];
-
-	function IndexChartTypesCtrl(ChartType) {
-		var vm = this;
-		vm.chartTypes = [];
-    vm.isLoading = true;
-    vm.query = {
-      limit: 10,
-      page: 1,
-      total: 0
-    };
-
-		vm.init = function() {
-			vm.getChartTypes();
-		};
-
-    vm.getChartTypes = function() {
-      ChartType.get({page: vm.query.page}, function(response){
-        console.log(response.data);
-        vm.query.total = response.totalItems;
-        vm.chartTypes = response.data;
-        vm.isLoading = false;
-      }, function(err){
-        console.log(err);
-      });
-    };
-	}
-
-})();
-
-(function(){
-	'use strict';
-
-	angular
-		.module('chartTypes')
-		.factory('ChartType', ChartType);
-
-	ChartType.$inject = ['$resource'];
-
-	function ChartType($resource){
-		var ChartType = $resource('/api/v1.0/chartTypes/:chartType_id', {
-			'chartType_id': '@id'
-		}, {
-			update: {
-				method: 'PUT'
-			}
-		});
-
-		return ChartType;
-	}
 })();
 
 (function () {

@@ -33,6 +33,8 @@ gulp.task('sass', function(){
     .pipe(gulp.dest('public/css'))
 });
 
+gulp.task('default',['scripts', 'sass', 'views']);
+
 gulp.task('watch', function(){
   gulp.watch('resources/assets/sass/**.scss', ['sass']);
   gulp.watch(jsFiles, ['scripts']);
