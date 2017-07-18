@@ -56,16 +56,16 @@
 })(ApplicationConfiguration);
 
 (function(app){
-  'use strict';
-
-  app.registerModule('auth');
-})(ApplicationConfiguration);
-
-(function(app){
 	'use strict';
 
 	app.registerModule('channels');
 }(ApplicationConfiguration));
+
+(function(app){
+  'use strict';
+
+  app.registerModule('auth');
+})(ApplicationConfiguration);
 
 (function(app){
 	'use strict';
@@ -191,69 +191,6 @@
 	}
 })();
 
-(function(){
-  'use strict';
-
-  function routeConfig($routeProvider, $authProvider){
-    $authProvider.loginUrl = 'api/v1.0/authenticate';
-
-    $routeProvider
-      .when('/auth', {
-        templateUrl: 'dist/views/auth/auth.view.html',
-        controller: 'AuthCtrl',
-        controllerAs: 'vm'
-      });
-  }
-
-  angular
-    .module('auth')
-    .config(routeConfig);
-
-  routeConfig.$inject = ['$routeProvider', '$authProvider'];
-})();
-
-(function(){
-  'use strict';
-
-  angular
-    .module('auth')
-    .controller('AuthCtrl', AuthCtrl);
-
-  AuthCtrl.$inject = ['$mdDialog', '$auth'];
-
-  function AuthCtrl($mdDialog, $auth) {
-    var vm = this;
-
-    vm.init = function() {
-
-    };
-
-    vm.cancel = function() {
-      $mdDialog.cancel();
-    };
-
-    vm.authenticate = function(provider) {
-      $auth.login()
-    };
-
-    vm.submit = function() {
-      if (vm.loginForm.$valid) {
-        console.log('Formulario válido, a login', vm.user);
-        $auth.login(vm.user)
-          .then(function(response){
-            console.info(response);
-          })
-          .catch(function(response){
-            console.error(response);
-          });
-      } else {
-        console.log('Formulario no válido');
-      }
-    };
-  }
-
-})();
-
 (function () {
 	'use strict';
 
@@ -333,6 +270,163 @@
 	}
 }());
 
+(function(){
+  'use strict';
+
+  function routeConfig($routeProvider){
+
+    $routeProvider
+      .when('/auth', {
+        templateUrl: 'dist/views/auth/auth.view.html',
+        controller: 'AuthCtrl',
+        controllerAs: 'vm'
+      });
+  }
+
+  angular
+    .module('auth')
+    .config(routeConfig);
+
+  routeConfig.$inject = ['$routeProvider', '$authProvider'];
+})();
+
+(function(){
+  'use strict';
+
+  angular
+    .module('auth')
+    .controller('AuthCtrl', AuthCtrl);
+
+  AuthCtrl.$inject = ['$mdDialog', '$auth', '$location'];
+
+  function AuthCtrl($mdDialog, $auth, $location) {
+    var vm = this;
+
+    vm.init = function() {
+
+    };
+
+    vm.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    vm.authenticate = function(provider) {
+      $auth.login()
+    };
+
+    vm.submit = function() {
+      if (vm.loginForm.$valid) {
+        $auth.login(vm.user)
+          .then(function(response){
+            console.log(response);
+            vm.cancel();
+            $location.path('/songs');
+          })
+          .catch(function(response){
+            console.error('Error papu: ', response.data);
+          });
+      } else {
+        console.log('Formulario no válido');
+      }
+    };
+  }
+
+})();
+
+(function(){
+  'use strict';
+
+  angular
+    .module('main')
+    .controller('SidenavCtrl', SidenavCtrl);
+
+  SidenavCtrl.$inject = [
+    '$scope',
+    '$timeout',
+    '$mdSidenav',
+    '$log',
+    '$location',
+    '$auth',
+    '$mdDialog'
+  ];
+
+  function SidenavCtrl($scope, $timeout, $mdSidenav, $log, $location, $auth, $mdDialog) {
+
+    $scope.toggleLeft = buildDelayedToggler('left');
+    $scope.toggleRight = buildToggler('right');
+    $scope.isOpenRight = function(){
+      return $mdSidenav('right').isOpen();
+    };
+
+    /**
+     * Supplies a function that will continue to operate until the
+     * time is up.
+     */
+    function debounce(func, wait, context) {
+      var timer;
+
+      return function debounced() {
+        var context = $scope,
+            args = Array.prototype.slice.call(arguments);
+        $timeout.cancel(timer);
+        timer = $timeout(function() {
+          timer = undefined;
+          func.apply(context, args);
+        }, wait || 10);
+      };
+    }
+
+    /**
+     * Build handler to open/close a SideNav; when animation finishes
+     * report completion in console
+     */
+    function buildDelayedToggler(navID) {
+      return debounce(function() {
+        // Component lookup should always be available since we are not using `ng-if`
+        $mdSidenav(navID)
+          .toggle()
+          .then(function () {
+            $log.debug("toggle " + navID + " is done");
+          });
+      }, 200);
+    }
+
+    function buildToggler(navID) {
+      return function() {
+        // Component lookup should always be available since we are not using `ng-if`
+        $mdSidenav(navID)
+          .toggle()
+          .then(function () {
+            $log.debug("toggle " + navID + " is done");
+          });
+      };
+    }
+
+    $scope.showSignInDialog = function(event) {
+      $mdDialog.show({
+        controller: 'AuthCtrl',
+        controllerAs: 'vm',
+        templateUrl: 'dist/views/auth/auth.view.html',
+        parent: angular.element(document.body),
+        targetEvent: event,
+        clickOutsideToClose: true,
+        locals: {}
+      })
+      .then(function(){
+
+      }, function(){
+
+      });
+    };
+
+    $scope.logout = function() {
+      console.info('Logout!!');
+      $auth.logout();
+      $location.path('/');
+    };
+  };
+})();
+
 (function () {
 	'use strict';
 
@@ -410,88 +504,6 @@
 
 		return ChartType;
 	}
-})();
-
-(function(){
-  'use strict';
-
-  angular
-    .module('main')
-    .controller('SidenavCtrl', SidenavCtrl);
-
-  SidenavCtrl.$inject = ['$scope', '$timeout', '$mdSidenav', '$log', '$mdDialog'];
-
-  function SidenavCtrl($scope, $timeout, $mdSidenav, $log, $mdDialog) {
-
-    $scope.toggleLeft = buildDelayedToggler('left');
-    $scope.toggleRight = buildToggler('right');
-    $scope.isOpenRight = function(){
-      return $mdSidenav('right').isOpen();
-    };
-
-    /**
-     * Supplies a function that will continue to operate until the
-     * time is up.
-     */
-    function debounce(func, wait, context) {
-      var timer;
-
-      return function debounced() {
-        var context = $scope,
-            args = Array.prototype.slice.call(arguments);
-        $timeout.cancel(timer);
-        timer = $timeout(function() {
-          timer = undefined;
-          func.apply(context, args);
-        }, wait || 10);
-      };
-    }
-
-    /**
-     * Build handler to open/close a SideNav; when animation finishes
-     * report completion in console
-     */
-    function buildDelayedToggler(navID) {
-      return debounce(function() {
-        // Component lookup should always be available since we are not using `ng-if`
-        $mdSidenav(navID)
-          .toggle()
-          .then(function () {
-            $log.debug("toggle " + navID + " is done");
-          });
-      }, 200);
-    }
-
-    function buildToggler(navID) {
-      return function() {
-        // Component lookup should always be available since we are not using `ng-if`
-        $mdSidenav(navID)
-          .toggle()
-          .then(function () {
-            $log.debug("toggle " + navID + " is done");
-          });
-      };
-    }
-
-    $scope.showSignInDialog = function(event) {
-      $mdDialog.show({
-        controller: 'AuthCtrl',
-        controllerAs: 'vm',
-        templateUrl: 'angular/auth/views/auth.view.html',
-        parent: angular.element(document.body),
-        targetEvent: event,
-        clickOutsideToClose: true,
-        locals: {
-
-        }
-      })
-      .then(function(){
-
-      }, function(){
-
-      });
-    };
-  };
 })();
 
 (function () {
