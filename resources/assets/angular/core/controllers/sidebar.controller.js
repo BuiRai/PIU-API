@@ -12,11 +12,12 @@
     '$log',
     '$location',
     '$auth',
-    '$mdDialog'
+    '$mdDialog',
+    '$rootScope',
+    '$localStorage'
   ];
 
-  function SidenavCtrl($scope, $timeout, $mdSidenav, $log, $location, $auth, $mdDialog) {
-
+  function SidenavCtrl($scope, $timeout, $mdSidenav, $log, $location, $auth, $mdDialog, $rootScope, $localStorage) {
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.toggleRight = buildToggler('right');
     $scope.isOpenRight = function(){
@@ -86,8 +87,11 @@
 
     $scope.logout = function() {
       console.info('Logout!!');
-      $auth.logout();
-      $location.path('/');
+      $auth.logout().then(function(){
+        delete $localStorage.user;
+        $rootScope.user = null;
+        $location.path('/');
+      });
     };
   };
 })();

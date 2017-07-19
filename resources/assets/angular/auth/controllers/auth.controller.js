@@ -5,10 +5,11 @@
     .module('auth')
     .controller('AuthCtrl', AuthCtrl);
 
-  AuthCtrl.$inject = ['$mdDialog', '$auth', '$location'];
+  AuthCtrl.$inject = ['$mdDialog', '$auth', '$location', '$rootScope', '$localStorage'];
 
-  function AuthCtrl($mdDialog, $auth, $location) {
+  function AuthCtrl($mdDialog, $auth, $location, $rootScope, $localStorage) {
     var vm = this;
+    vm.user = {};
 
     vm.init = function() {
 
@@ -26,7 +27,10 @@
       if (vm.loginForm.$valid) {
         $auth.login(vm.user)
           .then(function(response){
-            console.log(response);
+            console.log(response.data.user);
+            $localStorage.user = response.data.user;
+            $rootScope.user = response.data.user;
+            console.log('root:', $rootScope.user);
             vm.cancel();
             $location.path('/songs');
           })
