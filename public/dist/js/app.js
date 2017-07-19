@@ -24,8 +24,8 @@
   };
   window.ApplicationConfiguration = service;
 
-  // window.BASE_PATH = 'https://pumpitup.herokuapp.com/api/v1.0/';
-  window.BASE_PATH = 'http://localhost:8000/api/v1.0/';
+  window.BASE_PATH = 'https://pumpitup.herokuapp.com/api/v1.0/';
+  // window.BASE_PATH = 'http://localhost:8000/api/v1.0/';
 
   var mainApplicationModule = angular.module(service.mainApplicationModuleName,
   	service.applicationModuleVendorDependencies);
@@ -91,12 +91,6 @@
 })(ApplicationConfiguration);
 
 (function(app){
-	'use strict';
-
-	app.registerModule('stepmakers');
-})(ApplicationConfiguration);
-
-(function(app){
   'use strict';
 
   app.registerModule('songs');
@@ -105,13 +99,19 @@
 (function(app){
 	'use strict';
 
-	app.registerModule('styles');
+	app.registerModule('stepmakers');
 })(ApplicationConfiguration);
 
 (function(app){
 	'use strict';
 
 	app.registerModule('types');
+})(ApplicationConfiguration);
+
+(function(app){
+	'use strict';
+
+	app.registerModule('styles');
 })(ApplicationConfiguration);
 
 (function () {
@@ -357,85 +357,6 @@
 	}
 }());
 
-(function (){
-	'use strict';
-
-	angular
-		.module('chartTypes')
-		.controller('IndexChartTypesCtrl', IndexChartTypesCtrl);
-
-	IndexChartTypesCtrl.$inject = ['ChartType'];
-
-	function IndexChartTypesCtrl(ChartType) {
-		var vm = this;
-		vm.chartTypes = [];
-    vm.isLoading = true;
-    vm.query = {
-      limit: 10,
-      page: 1,
-      total: 0
-    };
-
-		vm.init = function() {
-			vm.getChartTypes();
-		};
-
-    vm.getChartTypes = function() {
-      ChartType.get({page: vm.query.page}, function(response){
-        console.log(response.data);
-        vm.query.total = response.totalItems;
-        vm.chartTypes = response.data;
-        vm.isLoading = false;
-      }, function(err){
-        console.log(err);
-      });
-    };
-	}
-
-})();
-
-(function () {
-	'use strict';
-
-	function routeConfig($routeProvider) {
-		$routeProvider
-			.when('/chartTypes', {
-				templateUrl: 'dist/views/chartTypes/index.view.html',
-				controller: 'IndexChartTypesCtrl',
-				controllerAs: 'vm'
-			});
-	}
-
-	angular
-		.module('chartTypes')
-		.config(routeConfig);
-
-	routeConfig.$inject = ['$routeProvider'];
-
-})();
-
-(function(){
-	'use strict';
-
-	angular
-		.module('chartTypes')
-		.factory('ChartType', ChartType);
-
-	ChartType.$inject = ['$resource'];
-
-	function ChartType($resource){
-		var ChartType = $resource('/api/v1.0/chartTypes/:chartType_id', {
-			'chartType_id': '@id'
-		}, {
-			update: {
-				method: 'PUT'
-			}
-		});
-
-		return ChartType;
-	}
-})();
-
 (function(){
   'use strict';
 
@@ -539,6 +460,85 @@
 
 	function routeConfig($routeProvider) {
 		$routeProvider
+			.when('/chartTypes', {
+				templateUrl: 'dist/views/chartTypes/index.view.html',
+				controller: 'IndexChartTypesCtrl',
+				controllerAs: 'vm'
+			});
+	}
+
+	angular
+		.module('chartTypes')
+		.config(routeConfig);
+
+	routeConfig.$inject = ['$routeProvider'];
+
+})();
+
+(function (){
+	'use strict';
+
+	angular
+		.module('chartTypes')
+		.controller('IndexChartTypesCtrl', IndexChartTypesCtrl);
+
+	IndexChartTypesCtrl.$inject = ['ChartType'];
+
+	function IndexChartTypesCtrl(ChartType) {
+		var vm = this;
+		vm.chartTypes = [];
+    vm.isLoading = true;
+    vm.query = {
+      limit: 10,
+      page: 1,
+      total: 0
+    };
+
+		vm.init = function() {
+			vm.getChartTypes();
+		};
+
+    vm.getChartTypes = function() {
+      ChartType.get({page: vm.query.page}, function(response){
+        console.log(response.data);
+        vm.query.total = response.totalItems;
+        vm.chartTypes = response.data;
+        vm.isLoading = false;
+      }, function(err){
+        console.log(err);
+      });
+    };
+	}
+
+})();
+
+(function(){
+	'use strict';
+
+	angular
+		.module('chartTypes')
+		.factory('ChartType', ChartType);
+
+	ChartType.$inject = ['$resource'];
+
+	function ChartType($resource){
+		var ChartType = $resource('/api/v1.0/chartTypes/:chartType_id', {
+			'chartType_id': '@id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+
+		return ChartType;
+	}
+})();
+
+(function () {
+	'use strict';
+
+	function routeConfig($routeProvider) {
+		$routeProvider
 			.when('/gameVersions', {
 				templateUrl: 'dist/views/gameVersions/index.view.html',
 				controller: 'IndexGameVersionsCtrl',
@@ -590,6 +590,26 @@
 
 })();
 
+(function () {
+	'use strict';
+
+	function routeConfig($routeProvider) {
+		$routeProvider
+			.when('/levels', {
+				templateUrl: 'dist/views/levels/index.view.html',
+				controller: 'IndexLevelsCtrl',
+				controllerAs: 'vm'
+			});
+	}
+
+	angular
+		.module('levels')
+		.config(routeConfig);
+
+	routeConfig.$inject = ['$routeProvider'];
+
+})();
+
 (function(){
 	'use strict';
 
@@ -610,26 +630,6 @@
 
 		return GameVersion;
 	}
-})();
-
-(function () {
-	'use strict';
-
-	function routeConfig($routeProvider) {
-		$routeProvider
-			.when('/levels', {
-				templateUrl: 'dist/views/levels/index.view.html',
-				controller: 'IndexLevelsCtrl',
-				controllerAs: 'vm'
-			});
-	}
-
-	angular
-		.module('levels')
-		.config(routeConfig);
-
-	routeConfig.$inject = ['$routeProvider'];
-
 })();
 
 (function (){
@@ -672,25 +672,6 @@
 (function(){
 	'use strict';
 
-	function routeConfig($routeProvider) {
-		$routeProvider
-			.when('/', {
-				templateUrl: 'dist/views/main/index.view.html',
-				controller: 'MainCtrl',
-				controllerAs: 'vm'
-			});
-	}
-
-	angular
-		.module('main')
-		.config(routeConfig);
-
-	routeConfig.$inject = ['$routeProvider'];
-})();
-
-(function(){
-	'use strict';
-
 	angular
 		.module('levels')
 		.factory('Level', Level);
@@ -708,6 +689,25 @@
 
 		return Level;
 	}
+})();
+
+(function(){
+	'use strict';
+
+	function routeConfig($routeProvider) {
+		$routeProvider
+			.when('/', {
+				templateUrl: 'dist/views/main/index.view.html',
+				controller: 'MainCtrl',
+				controllerAs: 'vm'
+			});
+	}
+
+	angular
+		.module('main')
+		.config(routeConfig);
+
+	routeConfig.$inject = ['$routeProvider'];
 })();
 
 (function(){
@@ -738,84 +738,6 @@
 
 })();
 
-
-(function () {
-	'use strict';
-
-	function routeConfig($routeProvider) {
-		$routeProvider
-			.when('/stepmakers', {
-				templateUrl: 'dist/views/stepmakers/index.view.html',
-				controller: 'IndexStepmakersCtrl',
-				controllerAs: 'vm'
-			});
-	}
-
-	angular
-		.module('stepmakers')
-		.config(routeConfig);
-
-	routeConfig.$inject = ['$routeProvider'];
-
-})();
-
-(function (){
-	'use strict';
-
-	angular
-		.module('stepmakers')
-		.controller('IndexStepmakersCtrl', IndexStepmakersCtrl);
-
-	IndexStepmakersCtrl.$inject = ['Stepmaker'];
-
-	function IndexStepmakersCtrl(Stepmaker) {
-		var vm = this;
-		vm.stepmakers = [];
-    vm.isLoading = true;
-    vm.query = {
-      limit: 10,
-      page: 1,
-      total: 0
-    };
-
-		vm.init = function() {
-			vm.getStepmakers();
-		};
-
-    vm.getStepmakers = function() {
-      Stepmaker.get({page: vm.query.page}, function(response){
-        vm.query.total = response.totalItems;
-        vm.stepmakers = response.data;
-        vm.isLoading = false;
-      }, function(err){
-        console.log(err);
-      });
-    };
-	}
-
-})();
-
-(function(){
-	'use strict';
-
-	angular
-		.module('stepmakers')
-		.factory('Stepmaker', Stepmaker);
-
-	Stepmaker.$inject = ['$resource'];
-
-	function Stepmaker($resource){
-		var Stepmaker = $resource('/api/v1.0/stepmakers/:stepmaker_id', {
-			'stepmaker_id': '@id'
-		}, {
-			update: {
-				method: 'PUT'
-			}
-		});
-
-		return Stepmaker;
-	}
-})();
 
 (function(){
   'use strict';
@@ -1019,15 +941,15 @@
 
 	function routeConfig($routeProvider) {
 		$routeProvider
-			.when('/styles', {
-				templateUrl: 'dist/views/styles/index.view.html',
-				controller: 'IndexStylesCtrl',
+			.when('/stepmakers', {
+				templateUrl: 'dist/views/stepmakers/index.view.html',
+				controller: 'IndexStepmakersCtrl',
 				controllerAs: 'vm'
 			});
 	}
 
 	angular
-		.module('styles')
+		.module('stepmakers')
 		.config(routeConfig);
 
 	routeConfig.$inject = ['$routeProvider'];
@@ -1038,14 +960,14 @@
 	'use strict';
 
 	angular
-		.module('styles')
-		.controller('IndexStylesCtrl', IndexStylesCtrl);
+		.module('stepmakers')
+		.controller('IndexStepmakersCtrl', IndexStepmakersCtrl);
 
-	IndexStylesCtrl.$inject = ['Style'];
+	IndexStepmakersCtrl.$inject = ['Stepmaker'];
 
-	function IndexStylesCtrl(Style) {
+	function IndexStepmakersCtrl(Stepmaker) {
 		var vm = this;
-		vm.styles = [];
+		vm.stepmakers = [];
     vm.isLoading = true;
     vm.query = {
       limit: 10,
@@ -1054,13 +976,13 @@
     };
 
 		vm.init = function() {
-			vm.getStyles();
+			vm.getStepmakers();
 		};
 
-    vm.getStyles = function() {
-      Style.get({page: vm.query.page}, function(response){
+    vm.getStepmakers = function() {
+      Stepmaker.get({page: vm.query.page}, function(response){
         vm.query.total = response.totalItems;
-        vm.styles = response.data;
+        vm.stepmakers = response.data;
         vm.isLoading = false;
       }, function(err){
         console.log(err);
@@ -1074,21 +996,21 @@
 	'use strict';
 
 	angular
-		.module('styles')
-		.factory('Style', Style);
+		.module('stepmakers')
+		.factory('Stepmaker', Stepmaker);
 
-	Style.$inject = ['$resource'];
+	Stepmaker.$inject = ['$resource'];
 
-	function Style($resource){
-		var Style = $resource('/api/v1.0/styles/:style_id', {
-			'style_id': '@id'
+	function Stepmaker($resource){
+		var Stepmaker = $resource('/api/v1.0/stepmakers/:stepmaker_id', {
+			'stepmaker_id': '@id'
 		}, {
 			update: {
 				method: 'PUT'
 			}
 		});
 
-		return Style;
+		return Stepmaker;
 	}
 })();
 
@@ -1167,5 +1089,83 @@
 		});
 
 		return Type;
+	}
+})();
+
+(function () {
+	'use strict';
+
+	function routeConfig($routeProvider) {
+		$routeProvider
+			.when('/styles', {
+				templateUrl: 'dist/views/styles/index.view.html',
+				controller: 'IndexStylesCtrl',
+				controllerAs: 'vm'
+			});
+	}
+
+	angular
+		.module('styles')
+		.config(routeConfig);
+
+	routeConfig.$inject = ['$routeProvider'];
+
+})();
+
+(function (){
+	'use strict';
+
+	angular
+		.module('styles')
+		.controller('IndexStylesCtrl', IndexStylesCtrl);
+
+	IndexStylesCtrl.$inject = ['Style'];
+
+	function IndexStylesCtrl(Style) {
+		var vm = this;
+		vm.styles = [];
+    vm.isLoading = true;
+    vm.query = {
+      limit: 10,
+      page: 1,
+      total: 0
+    };
+
+		vm.init = function() {
+			vm.getStyles();
+		};
+
+    vm.getStyles = function() {
+      Style.get({page: vm.query.page}, function(response){
+        vm.query.total = response.totalItems;
+        vm.styles = response.data;
+        vm.isLoading = false;
+      }, function(err){
+        console.log(err);
+      });
+    };
+	}
+
+})();
+
+(function(){
+	'use strict';
+
+	angular
+		.module('styles')
+		.factory('Style', Style);
+
+	Style.$inject = ['$resource'];
+
+	function Style($resource){
+		var Style = $resource('/api/v1.0/styles/:style_id', {
+			'style_id': '@id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+
+		return Style;
 	}
 })();
