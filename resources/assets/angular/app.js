@@ -24,8 +24,8 @@
   };
   window.ApplicationConfiguration = service;
 
-  // window.BASE_PATH = 'https://pumpitup.herokuapp.com/api/v1.0/';
-  window.BASE_PATH = 'http://localhost:8000/api/v1.0/';
+  window.BASE_PATH = 'https://pumpitup.herokuapp.com/api/v1.0/';
+  // window.BASE_PATH = 'http://localhost:8000/api/v1.0/';
 
   var mainApplicationModule = angular.module(service.mainApplicationModuleName,
   	service.applicationModuleVendorDependencies);
