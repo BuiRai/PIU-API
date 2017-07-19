@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Cache;
 
 class SongController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except(['index', 'show']);
+    }
 
     /**
     * Display all the songs from the database

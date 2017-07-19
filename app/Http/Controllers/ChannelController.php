@@ -12,7 +12,7 @@ class ChannelController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api')->except(['index','show']);
+        $this->middleware('auth:api')->except(['index', 'show', 'getSongsByChannel']);
     }
 
     /**
@@ -174,7 +174,7 @@ class ChannelController extends Controller
         ], 204);
     }
 
-    public function getSongsByStyle(Request $request)
+    public function getSongsByChannel(Request $request)
     {
         $channel = Channel::with('songs')->where('name', $request->input('name'))->first();
 

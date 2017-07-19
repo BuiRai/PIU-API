@@ -10,6 +10,20 @@ use Illuminate\Support\Facades\Cache;
 
 class LevelController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except([
+            'index',
+            'show',
+            'singleRandomByLevel',
+            'doubleRandomByLevel',
+            'singleRandomByRange',
+            'doubleRandomByRange',
+            'levelsFromStepmaker'
+        ]);
+    }
+
     /**
     * Display all the levels
     * @return \Illuminate\Http\JsonResponse
