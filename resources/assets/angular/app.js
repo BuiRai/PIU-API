@@ -16,7 +16,8 @@
 	    'ngTouch',
 	    'ngMaterial',
       'md.data.table',
-      'satellizer'
+      'satellizer',
+      'ngStorage'
   	],
   	mainApplicationModuleName: mainApplicationModuleName,
   	registerModule: registerModule

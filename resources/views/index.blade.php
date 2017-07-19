@@ -92,7 +92,7 @@
                                 <md-icon class="material-icon">menu</md-icon>
                             </md-button>
                             <h2 md-truncate flex>PIU</h2>
-                            <md-menu>
+                            <!-- <md-menu>
                                 <md-button class="md-icon-button" aria-label="Favorite" ng-click="$mdOpenMenu()">
                                     <md-icon class="material-icon">more_vert</md-icon>
                                 </md-button>
@@ -116,7 +116,7 @@
                                         </md-button>
                                     </md-menu-item>
                                 </md-menu-content>
-                            </md-menu>
+                            </md-menu> -->
                         </div>
                     </md-toolbar>
                     <header class="header">
@@ -139,6 +139,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular-route.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular-sanitize.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular-touch.min.js"></script>
+        <!-- NgStorage -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
         <!-- Angular Material Library -->
         <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 

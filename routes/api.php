@@ -19,9 +19,6 @@ Route::group(['prefix'=>'v1.0'], function(){
 
 Route::group(['prefix'=>'restricted', 'middleware' => 'auth:api'], function(){
     Route::get('logout', 'Auth\LoginController@logout');
-    Route::get('/test', function () {
-        return 'authenticated';
-    });
 });
 
 // Route::group(['prefix' => 'v1.0', 'middleware' => ['cors']], function (){
@@ -42,7 +39,7 @@ Route::group(['prefix' => 'v1.0', 'middleware' => ['cors']], function ()
     Route::get('levels/stepmakers/all', 'LevelController@levelsFromStepmaker');
     Route::resource('typesSongs', 'TypeSongController', ['except' => ['create', 'edit']]);
     Route::resource('channels', 'ChannelController', ['except' => ['create', 'edit']]);
-    Route::get('channels/songs/all', 'ChannelController@getSongsByStyle');
+    Route::get('channels/songs/all', 'ChannelController@getSongsByChannel');
     Route::resource('chartTypes', 'ChartTypeController', ['except' => ['create', 'edit']]);
 
     // // Route to create a new role
