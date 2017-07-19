@@ -20,6 +20,7 @@
     "angular": "1.6.2",
     "angular-material-data-table": "^0.10.10",
     "angular-material-sidenav": "^0.0.14",
-    "satellizer": "^0.15.5"
+    "satellizer": "^0.15.5",
+    "ngstorage": "^0.3.11"
   }
 }

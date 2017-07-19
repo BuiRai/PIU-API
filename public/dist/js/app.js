@@ -16,7 +16,8 @@
 	    'ngTouch',
 	    'ngMaterial',
       'md.data.table',
-      'satellizer'
+      'satellizer',
+      'ngStorage'
   	],
   	mainApplicationModuleName: mainApplicationModuleName,
   	registerModule: registerModule
@@ -90,15 +91,15 @@
 })(ApplicationConfiguration);
 
 (function(app){
-  'use strict';
-
-  app.registerModule('songs');
-})(ApplicationConfiguration);
-
-(function(app){
 	'use strict';
 
 	app.registerModule('stepmakers');
+})(ApplicationConfiguration);
+
+(function(app){
+  'use strict';
+
+  app.registerModule('songs');
 })(ApplicationConfiguration);
 
 (function(app){
@@ -237,10 +238,11 @@
     .module('auth')
     .controller('AuthCtrl', AuthCtrl);
 
-  AuthCtrl.$inject = ['$mdDialog', '$auth', '$location'];
+  AuthCtrl.$inject = ['$mdDialog', '$auth', '$location', '$rootScope', '$localStorage'];
 
-  function AuthCtrl($mdDialog, $auth, $location) {
+  function AuthCtrl($mdDialog, $auth, $location, $rootScope, $localStorage) {
     var vm = this;
+    vm.user = {};
 
     vm.init = function() {
 
@@ -258,7 +260,10 @@
       if (vm.loginForm.$valid) {
         $auth.login(vm.user)
           .then(function(response){
-            console.log(response);
+            console.log(response.data.user);
+            $localStorage.user = response.data.user;
+            $rootScope.user = response.data.user;
+            console.log('root:', $rootScope.user);
             vm.cancel();
             $location.path('/songs');
           })
@@ -352,26 +357,6 @@
 	}
 }());
 
-(function () {
-	'use strict';
-
-	function routeConfig($routeProvider) {
-		$routeProvider
-			.when('/chartTypes', {
-				templateUrl: 'dist/views/chartTypes/index.view.html',
-				controller: 'IndexChartTypesCtrl',
-				controllerAs: 'vm'
-			});
-	}
-
-	angular
-		.module('chartTypes')
-		.config(routeConfig);
-
-	routeConfig.$inject = ['$routeProvider'];
-
-})();
-
 (function (){
 	'use strict';
 
@@ -406,6 +391,26 @@
       });
     };
 	}
+
+})();
+
+(function () {
+	'use strict';
+
+	function routeConfig($routeProvider) {
+		$routeProvider
+			.when('/chartTypes', {
+				templateUrl: 'dist/views/chartTypes/index.view.html',
+				controller: 'IndexChartTypesCtrl',
+				controllerAs: 'vm'
+			});
+	}
+
+	angular
+		.module('chartTypes')
+		.config(routeConfig);
+
+	routeConfig.$inject = ['$routeProvider'];
 
 })();
 
@@ -445,11 +450,12 @@
     '$log',
     '$location',
     '$auth',
-    '$mdDialog'
+    '$mdDialog',
+    '$rootScope',
+    '$localStorage'
   ];
 
-  function SidenavCtrl($scope, $timeout, $mdSidenav, $log, $location, $auth, $mdDialog) {
-
+  function SidenavCtrl($scope, $timeout, $mdSidenav, $log, $location, $auth, $mdDialog, $rootScope, $localStorage) {
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.toggleRight = buildToggler('right');
     $scope.isOpenRight = function(){
@@ -519,8 +525,11 @@
 
     $scope.logout = function() {
       console.info('Logout!!');
-      $auth.logout();
-      $location.path('/');
+      $auth.logout().then(function(){
+        delete $localStorage.user;
+        $rootScope.user = null;
+        $location.path('/');
+      });
     };
   };
 })();
@@ -663,6 +672,25 @@
 (function(){
 	'use strict';
 
+	function routeConfig($routeProvider) {
+		$routeProvider
+			.when('/', {
+				templateUrl: 'dist/views/main/index.view.html',
+				controller: 'MainCtrl',
+				controllerAs: 'vm'
+			});
+	}
+
+	angular
+		.module('main')
+		.config(routeConfig);
+
+	routeConfig.$inject = ['$routeProvider'];
+})();
+
+(function(){
+	'use strict';
+
 	angular
 		.module('levels')
 		.factory('Level', Level);
@@ -680,25 +708,6 @@
 
 		return Level;
 	}
-})();
-
-(function(){
-	'use strict';
-
-	function routeConfig($routeProvider) {
-		$routeProvider
-			.when('/', {
-				templateUrl: 'dist/views/main/index.view.html',
-				controller: 'MainCtrl',
-				controllerAs: 'vm'
-			});
-	}
-
-	angular
-		.module('main')
-		.config(routeConfig);
-
-	routeConfig.$inject = ['$routeProvider'];
 })();
 
 (function(){
@@ -729,6 +738,84 @@
 
 })();
 
+
+(function () {
+	'use strict';
+
+	function routeConfig($routeProvider) {
+		$routeProvider
+			.when('/stepmakers', {
+				templateUrl: 'dist/views/stepmakers/index.view.html',
+				controller: 'IndexStepmakersCtrl',
+				controllerAs: 'vm'
+			});
+	}
+
+	angular
+		.module('stepmakers')
+		.config(routeConfig);
+
+	routeConfig.$inject = ['$routeProvider'];
+
+})();
+
+(function (){
+	'use strict';
+
+	angular
+		.module('stepmakers')
+		.controller('IndexStepmakersCtrl', IndexStepmakersCtrl);
+
+	IndexStepmakersCtrl.$inject = ['Stepmaker'];
+
+	function IndexStepmakersCtrl(Stepmaker) {
+		var vm = this;
+		vm.stepmakers = [];
+    vm.isLoading = true;
+    vm.query = {
+      limit: 10,
+      page: 1,
+      total: 0
+    };
+
+		vm.init = function() {
+			vm.getStepmakers();
+		};
+
+    vm.getStepmakers = function() {
+      Stepmaker.get({page: vm.query.page}, function(response){
+        vm.query.total = response.totalItems;
+        vm.stepmakers = response.data;
+        vm.isLoading = false;
+      }, function(err){
+        console.log(err);
+      });
+    };
+	}
+
+})();
+
+(function(){
+	'use strict';
+
+	angular
+		.module('stepmakers')
+		.factory('Stepmaker', Stepmaker);
+
+	Stepmaker.$inject = ['$resource'];
+
+	function Stepmaker($resource){
+		var Stepmaker = $resource('/api/v1.0/stepmakers/:stepmaker_id', {
+			'stepmaker_id': '@id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+
+		return Stepmaker;
+	}
+})();
 
 (function(){
   'use strict';
@@ -925,84 +1012,6 @@
 
     return Song;
   }
-})();
-
-(function () {
-	'use strict';
-
-	function routeConfig($routeProvider) {
-		$routeProvider
-			.when('/stepmakers', {
-				templateUrl: 'dist/views/stepmakers/index.view.html',
-				controller: 'IndexStepmakersCtrl',
-				controllerAs: 'vm'
-			});
-	}
-
-	angular
-		.module('stepmakers')
-		.config(routeConfig);
-
-	routeConfig.$inject = ['$routeProvider'];
-
-})();
-
-(function (){
-	'use strict';
-
-	angular
-		.module('stepmakers')
-		.controller('IndexStepmakersCtrl', IndexStepmakersCtrl);
-
-	IndexStepmakersCtrl.$inject = ['Stepmaker'];
-
-	function IndexStepmakersCtrl(Stepmaker) {
-		var vm = this;
-		vm.stepmakers = [];
-    vm.isLoading = true;
-    vm.query = {
-      limit: 10,
-      page: 1,
-      total: 0
-    };
-
-		vm.init = function() {
-			vm.getStepmakers();
-		};
-
-    vm.getStepmakers = function() {
-      Stepmaker.get({page: vm.query.page}, function(response){
-        vm.query.total = response.totalItems;
-        vm.stepmakers = response.data;
-        vm.isLoading = false;
-      }, function(err){
-        console.log(err);
-      });
-    };
-	}
-
-})();
-
-(function(){
-	'use strict';
-
-	angular
-		.module('stepmakers')
-		.factory('Stepmaker', Stepmaker);
-
-	Stepmaker.$inject = ['$resource'];
-
-	function Stepmaker($resource){
-		var Stepmaker = $resource('/api/v1.0/stepmakers/:stepmaker_id', {
-			'stepmaker_id': '@id'
-		}, {
-			update: {
-				method: 'PUT'
-			}
-		});
-
-		return Stepmaker;
-	}
 })();
 
 (function () {
